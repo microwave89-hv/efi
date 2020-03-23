@@ -1,0 +1,163 @@
+		         EFI System Event Log Viewer - Release Notes
+		         Copyright (c) 2007 - 2010, Intel Corporation
+			          All Rights Reserved
+			            May 21, 2010
+
+The EFI system event log (SEL) viewer utility is a EFI-based application program 
+used for displaying data from the BMC's system event log.
+
+
+RELEASE NOTES FOR SEL Viewer VERSION 2.0.1 Build 19
+
+A. SUPPORTED PLATFORMS
+
+   S5500 & S5520 Platform series.
+
+B. DEPENDENCIES
+   
+   1. Executes in UEFI 2.0 compliant EFI shell.
+
+   2. Requires the files ipmi.efi, selenus.hlp, hrs.ini and selenus.str besides the application 
+      executable, selview.exe.
+
+   3. run the following command in EFI shell before running the SEL Viewer application:
+	mode 100 31
+
+   
+C. CHANGES SINCE THE PREVIOUS RELEASE
+
+   S5500 & S5520 Platform series.
+      1. Added support for decoding HDD SEL Errors Under SATA AHCI mode.
+      2. Added decoding logic for Memory ECC Error SEL Records.
+
+     
+D. HOW TO USE THIS UTILITY
+
+   1. Boot to EFI shell prompt.
+   
+   2. Copy the files selview.efi, sel.ini, hrs.ini, selview.str, ipmi.efi and selview.hlp to a hard drive 
+      or USB key (all these files should be in the same directory).
+   
+   3. GUI interface
+
+      The SEL Viewer is invoked by entering the following command in EFI prompt:
+   
+   	selview	
+
+      Use the arrow keys to browse through the menu and press the <Enter>
+      key to select a particular menu.  A brief description of the selected 
+      menu item is displayed in the tip-view window at the bottom of the GUI.
+
+   4. Command-line interface
+
+      The SEL Viewer can be run as a command-line application for some of the actions that
+      it performs, including clearing the SEL or saving SEL contents to a file.
+
+         selview [SEL File Name] [Options]
+
+      a. To view the command-line help:
+
+         selview /h   
+
+      b. To save the SEL entries to a file in text format:
+
+         selview log.sel /save
+
+      c. To save the SEL entries to a file in hex format:
+
+         selview log.sel /save /hex
+
+      d. To clear the SEL entries:
+
+         selview /clear
+
+E. KNOWN ISSUES
+    None.
+
+F. UNSUPPORTED FEATURES
+    None.
+
+G. INSTRUCTIONS TO END USER
+
+
+*	The server needs to be updated with the appropriate latest FRUSDR package. 
+        The SDR repository is essential in translating SEL entries to a readable SEL description.
+
+*	Do not modify the HRS.ini file.  Any modifications to this file may cause unpredictable behavior of the SEL Viewer utility.  
+
+*	If the SDR record is not found for a SEL event combination (Sensor Type, 
+	Generator ID and Sensor number) , the utility will display  sensor type and number instead of the name field, 
+	and the SEL Viewer will display sensor reading and threshold reading values as "unspecified".
+
+*	If the SEL Viewer utility cannot find the description string for a SEL 
+	event combination (sensor type, offset, evd1, evd2 and evd3), the utility displays the event description for that event as "Unknown Event". 
+
+*	If the event description for the given SEL event is more than 256 characters:
+		- Only up to 256 characters will be displayed in the event description 
+         	  column of the GUI.
+		- The bottom window will show the complete event description.
+
+*	The HR_SEL.log file contains the information on Type 02 SEL events 
+	that could not be decoded.  This file is created in the same folder where SEL Viewer application is running
+
+*       In case of OEM events, Utility decodes events of type C0, C1 and Microsoft OEM events of type 0xDC, 0xDD & 0xDE.
+
+* 	SEL Viewer decodes only the events complying with IPMI 1.5 and 2.0 specifications.
+
+*       Third-party brands and names are the property of their respective owners.
+
+
+Legal Information
+-----------------------
+    
+        
+================================================================================
+
+                               LEGAL INFORMATION
+
+================================================================================
+
+Information in this document is provided in connection with Intel Products
+
+and for the purpose of supporting Intel developed server boards and systems.
+
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+
+property rights is granted by this document. Except as provided in Intel's 
+
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+
+sale and/or use of Intel products including liability or warranties relating 
+
+to fitness for a particular purpose, merchantability, or infringement of any 
+
+patent, copyright or other intellectual property right. Intel Corporation may 
+
+have patents or pending patent applications, trademarks, copyrights, or other 
+
+intellectual property rights that relate to the presented subject matter.  
+
+The furnishing of documents and other materials and information does not 
+
+provide any license, express or implied, by estoppel or otherwise, to any 
+
+such patents, trademarks, copyrights, or other intellectual property rights.  
+
+Intel products are not intended for use in medical, life saving, or life 
+
+sustaining applications. Intel may make changes to specifications and product 
+
+descriptions at any time, without notice.
+
+
+Intel is a registered trademark of Intel Corporation. 
+
+*Other names and brands are the property of their respective owners.
+
+Copyright (c) 2003 - 2010 Intel Corporation.
+
+(end)
+
+

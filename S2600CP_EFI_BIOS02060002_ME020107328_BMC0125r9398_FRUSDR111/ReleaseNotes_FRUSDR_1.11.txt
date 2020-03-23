@@ -1,0 +1,574 @@
+=============================================================================
+    Intel(R) Server Platform S2600CP FRU/SDR Update Release Notes
+=============================================================================
+
+INTEL(R) Product Collaboration and Systems Division
+Intel Corporation
+2111 N.E. 25th Avenue, Hillsboro, OR 97124 USA
+
+=============================================================================
+
+DATE:   Feb 06, 2014
+
+TO:     Intel(R) Server Platform S2600CP customers
+
+SUBJECT:    IBMC(R) FRU/SDR update package S2600CP_FRUSDR_111 release notes
+
+=============================================================================
+                               LEGAL INFORMATION
+=============================================================================
+Information in this document is provided in connection with Intel products.
+No license, express or implied, by estoppel or otherwise, to any intellectual
+property rights is granted by this document. Except as provided in Intel's
+Terms and Conditions of Sale for such products, Intel assumes no liability
+whatsoever, and Intel disclaims any express or implied warranty, relating to
+sale and/or use of Intel products including liability or warranties relating
+to fitness for a particular purpose, merchantability, or infringement of any
+patent, copyright or other intellectual property right. Intel Corporation may
+have patents or pending patent applications, trademarks, copyrights, or other
+intellectual property rights that relate to the presented subject matter.
+The furnishing of documents and other materials and information does not
+provide any license, express or implied, by estoppel or otherwise, to any
+such patents, trademarks, copyrights, or other intellectual property rights.
+Intel products are not intended for use in medical, life saving, or life
+sustaining applications. Intel may make changes to specifications and product
+descriptions at any time, without notice.
+
+Intel is a registered trademark of Intel Corporation.
+
+*Other names and brands are the property of their respective owners.
+
+Copyright (c) 2010 - 2014 Intel Corporation.
+
+
+=============================================================================
+                              ABOUT THIS RELEASE
+=============================================================================
+
+SDR file version:                   1.11
+Baseboard FRU file version:         1.00
+Master configuration file version:  1.11
+FRUSDR utility version:             11.0 Build 20
+
+=============================================================================
+        SYSTEM HARDWARE & SOFTWARE REQUIREMENTS/REVISIONS
+=============================================================================
+
+- This FRU/SDR package has only been tested on Canoe Pass FAB3 baseboards.
+
+- BMC firmware rev 1.17(or later) MUST be preinstalled prior to installing
+  this FRU/SDR package.
+
+- BIOS R1.06 or later
+
+- MB Ver FB3
+
+=============================================================================
+                      IMPORTANT INSTALLATION NOTES
+=============================================================================
+
+- None
+
+=============================================================================
+            INSTALLATION PROCEDURE
+=============================================================================
+
+1. Ensure BMC release 1.17 or later is pre-installed before attempting this
+   FRU/SDR update.
+
+2. Copy all of the files in the S2600CP_FRUSDR_111.zip archive to a USB key,
+   hard disk drive or floppy drive.
+   All of the files in this zip archive must reside in the same directory.
+
+3. Boot to EFI and then run the following command to display the
+   contents of the baseboard FRU device:
+
+    FRUSDR /d FRU
+
+   If device is empty(which is the case for all new FAB3 baseboards) or corrupted, then
+   execute the following command to program the empty FRU device:
+
+   For Canoe Pass:
+        FRUSDR /fru S2600CP.fru
+
+4. Now execute the following command to bring up the main FRU/SDR load menu:
+
+    FRUSDR /cfg master.cfg
+
+
+5. Select the option which is applicable to what you want to do. On a brand
+   new baseboard I would highly recommend to run option 3 to program both
+   the FRU and SDR. By reprogramming the FRU you will be given the option
+   to input data from the keyboard into various chassis, board and product
+   areas. Ensure that you select the correct chassis from the chassis
+   selection menu otherwise your fan sensors will not be configured
+   properly.
+
+6. Once the package has finished its installation, I would highly recommend
+   to DC power off the system and cycle AC power.
+
+=============================================================================
+                           KNOWN ISSUES/WORKAROUNDS
+=============================================================================
+
+FCP_13:
+- FRUSDR update FRU fail(frusdr 11.0 build02).
+
+FCP_14:
+- FRUSDR update FRU fail(frusdr 11.0 build02).
+
+FCP_15:
+- FRUSDR update FRU fail(frusdr 11.0 build02).
+
+=============================================================================
+                           FEATURES ADDED
+=============================================================================
+FCP_01:
+- This package is only for PO builds.
+- Update SDR as per CanoePass_CONFIG-FSC.xls(v1.1).
+
+FCP_02:
+- Follow Canoe Pass FSC config sheet Rev (1.5).
+
+FCP_03:
+- Follow Canoe Pass FSC config sheet Rev (1.7).
+- Add auto SKU detection.
+- Remove N12 voltage.
+- Add ME FRUSDR.
+- Add front panel FRUSDR.
+
+FCP_04:
+- Add SDR "ERR2 TimeOut".
+- Add SDR "MSID Misatch".
+- Add HDD status.
+- Modify BB +1.5V & BB +1.35V Sensor Initialization to 0x3E.
+- Modify FSC Global Clamp Tags.
+- Modify PS FAN Low threshold.
+ 
+FCP_05:
+- Follow Canoe Pass FSC config sheet Rev (1.9).
+- Modify the P1/P2 VRD HOT sensor Sensor Units 2 from 01 change to 00
+- Add detect FP Board FRU.
+- Add detect 4 port &  8 port BP Board.
+- Modify HSBP Temp Assertion Event Mask & Deassertion Event Mask to 8532.
+- Modify HSBP Temp Reading Mask & Settable / Readable Threshold Masks to 1B1B.
+- Modify CP BMC fru Board Product Name.
+- Modify SDR Entity Instance
+- Fix PS REDUNDANCY.
+
+FCP_06:
+- Follow Canoe Pass FSC config sheet Rev (2.0).
+- FRUSDR UTILITY upgrade to Version 10.0 Build 5.
+- Add FRUSDR BIOS Post Error and BIOS Boot Event.
+- Modify Front Panel FRU detect(if not detect Front Panel FRU then run USER SELECT mode).
+- Modify MEM Thrm Trip 1/2/3/4 Sensor Type and Event reading type code to 0x01 and 0x03.
+- Remove Union Peak M Non Redundant Fan 1/2 present.
+- Modify power supply detect and HSBP detect.
+- Add CPU detect.
+
+FCP_07:
+- Follow Canoe Pass FSC config sheet Rev (2.1).
+- Modify BIOS SDR "Mem Conf Sensor" sensor number to 0x09.
+- Add SDR :"System Airflow".
+- Add SDR :"IBMC Watchdog".
+- Add SDR :"VR WD Timer".
+- Add SDR "P1 MEM01 VRD Hot","P1 MEM23 VRD Hot","P2 MEM01 VRD Hot","P2 MEM23 VRD Hot".
+- Modify SDR HDD name : "HDD 1 Status" ~ "HDD 24 Status".
+
+FCP_08:
+- Follow Canoe Pass FSC config sheet Rev (2.1).
+- Modify HSBP detected(MASTER.CFG).
+- Modify Power Supply and HSBP prompt(MASTER.CFG).
+- Modify "Mem Thrm Trip 2" Tag and del Mem Thrm Trip 3,Mem Thrm Trip 4.
+- CPU1/2 Status(sensor number:0x70,0x71) Mask set "Processor disabled" to 1 = 0182h.
+- disable sensor number:0x2F,0xB0,0xB1,0xB2,0xB3.
+- Add "BMC System Management Health Monitoring"(sensor number:0x10) to SDR and disable the Sensor (code not ready).
+- modify SPS FW Health(sensor number:0x17)Sensor type, Event/Reading Type Code to 0xDC, 0x75.
+- Modify volatge scale.(ref config sheet 1.8).
+
+FCP_09:
+- Follow Canoe Pass FSC config sheet Rev (2.4).
+- Modify auto detect 120mm Fan (Union Peak M Non Redundant). 
+- Modify voltage nominal/max/min/uc/unc/lc/lnc value. 
+- Modify "System Airflow" as config sheet 2.4.
+- Add "Exit Air Temp"(sensor number:0x2E).
+- Enable DIMM Aggregate Margin sensor number 0xb0 to 0xb3.
+- Enable Baseboard NIC Temperature sensor number 0x2f.
+- Enable BMC FW Health sensor number 0x10.
+- Modify HSBP detected(MASTER.CFG).
+- Modyfy UPM base power supply detect.
+
+FCP_10:
+- Follow Canoe Pass FSC config sheet Rev (2.5).
+- Update MASTER.CFG front panel didn't auto detected as "Other Chassis".
+- Modify 'BMC FW Health' Sensor Capabilities to 40h.
+- add sensor:240VA Fault(sensor number 12h(disable)).
+
+FCP_11:
+- Follow Canoe Pass FSC config sheet Rev (2.6).
+- System airflow Nominal reading & Normal Maximum value.
+
+FCP_12:
+- Follow Canoe Pass FSC config sheet Rev (2.6).
+- Modify Domain 0 to 4,  FSC Sub-record Type = 04h (Advanced Fan Failure) and FSC Sub-record Type = 05h (Fans Off).
+
+FCP_13:
+- Follow Canoe Pass FSC config sheet Rev (2.7).
+- Modify Entity ID 07 all Entity Instance = 01h.
+- Add MTT CPU0/MTT CPU1 SDR.
+- Update FRUSDR utility to FRUSDR11.0-Build02, and update FRUSDR.txt.
+
+FCP_14:
+- Follow Canoe Pass FSC config sheet Rev (2.8).
+- Add P0/P1 MSID SDR,sensor number 0x81/0x87.
+- Modify Union peak M Redundant SDR :FSC Record Type = 11h (System Airflow Formula).
+- Exit Air Temp(0x2E) Add tag "EATEMP".
+- Add MASTER.CFG power supply check to set "EATEMP" tag.
+- Modify 0x34/0x35 MTT CPU0/CPU1 Owner/LUN from 00 change to 0x60.
+- Modify DTS Look-up Table Record/Processor Parameters 22/DTS Slope to CB01.
+- Change sensor name from "IBMC Watchdog"(0X0A) to "BMC Watchdog".
+- Change sensor name from "BMC FW Health"(0X10) to "BMC Health".
+- Modify Global Clamp:DIMM Thrm Mrgn 1(0xB0),DIMM Thrm Mrgn 2(0xB1),DIMM Thrm Mrgn 3(0xB2),DIMM Thrm Mrgn 4(0xB3) 
+  Sensor Unavailable Control Value set to 0x00.
+
+FCP_15:
+- Follow Canoe Pass FSC config sheet Rev (2.9).
+- Add SDR FW Update Status(0x12) and HSC 0/1/2 Status(0x69,0x6A,0x6B).
+- MASTER.CFG shipping:Add CLEAR "PS_REDUNDANCY" and CLEAR "EATEMP".
+- MASTER.CFG FCT and FCT2 :Add SET "EATEMP".
+- Exit Air Temp(0x2E)Global Clamp Add tag 'EATEMP','UPM_BASE','UPM'
+- Exit Air Temp(0x2E)SDR add tag 'UPM_BASE','UPM'
+- Fan Redundancy (0x0C) add tag 'FCT'and 'FCT2'.
+- Add SDR Fan 6 Present( 0x45).
+- Add other chassis Redundant Fan 1 to 6 present taag (sensor number 40 to 45):
+  OTHER_FAN_1,OTHER_FAN_2,OTHER_FAN_3,OTHER_FAN_4,OTHER_FAN_5,OTHER_FAN_6.
+- Modify Fan Redundancy Map SDR Record Tag for 'OTHER','FCT','FCT2'.
+- Add NM discovery sensor data record.
+
+FCP_16:
+- Follow Canoe Pass FSC config sheet Rev (2.9).
+- MASTER.CFG Other chassis :add CLEAR "PS_REDUNDANCY" and CLEAR "EATEMP".
+- MASTER.CFG other chassis :set fan redundancy sensor flag "FAN_REDUN_FLAG". 
+- SDR: Fan Redundancy(0x0c)flag from "OTHER" flag chenge to "FAN_REDUN_FLAG"
+- Modify Fan Redundancy Map SDR Record Tag from 'OTHER'change to 'FAN_REDUN_FLAG'
+- SDR: Exit Air Temp remove tag "UPM_BASE" and "UPM".
+- Global Clamp Header Record: Exit Air Temp remove tag "UPM_BASE" and "UPM".
+- Global Clamp Header Record: Clamp ID 01  the ¡¥Clamp Flags¡¦ = 11h.
+- Modify VBAT SDR and VBAT scale.
+- MASTER.CFG: Modify HSBP check FRU PN(Product Name).
+
+FCP_17:
+- Follow Canoe Pass FSC config sheet Rev (3.2).
+- Modify MASTER.CFG FCT/FCT2 SET "EATEMP" to CLEAR "EATEMP"
+- Modify SDR sensor name "Chs Intrusion"(04h) change to "Physical Scrty".
+- Modify SDR sensor name "VR WD Timer"(0Bh) change to "VR Watchdog".
+- Modify SDR sensor name "BB CPU1 VR Temp "(24h) change to "BB P2 VR Temp"(Thermal engineer will change to "BB P2 VR Temp").
+- Modify SDR sensor name all fans change change(30H~38H) to "System Fan xx".
+- Modify SDR sensor name "CPU1 Status"(70h) change to "P1 Status".
+- Modify SDR sensor name "CPU2 Status"(71h) change to "P2 Status".
+- Modify SDR sensor name "P1 ERR2 TimeOut"(7Ch) change to "P1 ERR2".
+- Modify SDR sensor name "P2 ERR2 TimeOut"(7Dh) change to "P2 ERR2".
+- Modify SDR sensor name "P1 MSID Mismatch"(81h) change to "P1 MSID Misatch".
+- Modify SDR sensor name "P2 MSID Mismatch"(87h) change to "P2 MSID Misatch".
+- Modify SDR sensor name "CPU1 VRD Hot"(90h) change to "P1 VRD Hot".
+- Modify SDR sensor name "CPU2 VRD Hot"(91h) change to "P2 VRD Hot".
+- Modify SDR sensor name "Mem Thrm Trip 1"(C0h) change to "Mem P1 Thrm Trip".
+- Modify SDR sensor name "Mem Thrm Trip 2"(C1h) change to "Mem P2 Thrm Trip".
+- add SDR Chassis ID and FAN FRU LED Mapping(UPM BASE/UPM/Other Chassis/FCT/FCT2).
+- Modify New PS Fan SDRs (sensor number: A0/A1/A4/A5).
+
+FCP_18:
+- Follow Canoe Pass FSC config sheet Rev (3.4).
+
+FCP_19:
+- Follow Canoe Pass FSC config sheet Rev (3.5).
+- Modify "P0 MSID Misatch" to "P0 MSID Mismatch"(81),"P1 MSID Misatch" to "P1 MSID Mismatch"(87).
+- Modify Agg Thrm Mgn 1 ~ 5 Assertion/Deassertion Event Mask to 0000.
+
+FCP_20:
+- Follow Canoe Pass FSC config sheet Rev (3.7).
+- Modify Global Stepwise Records/unque ID:0,determine number:4/ area for human readable values for LCC/PWM initial speed point:9
+  from 19%(13h) change to  25%(19h).
+- Add 'OTHER' tag to Global Stepwise Records "BB EDGE Temp"(20).
+- Add 'OTHER' tag to Global Clamp Headers "P1 Therm Margin"(74),DIMM Thrm Mrgn 1(B0),DIMM Thrm Mrgn 2(B1),
+  BB EDGE Temp(20),BB CPU1 VR Temp(24),BB BMC Temp(23),BB MEM VR Temp(25),LAN NIC Temp(2F),SSB Temp(22),P1 DTS Therm Mgn(83).
+- Modify VBAT(DE) SDR. 
+- Modify SDR name 'MTT CPU0' to 'P1 MTT'.
+- Modify SDR name 'MTT CPU1' to 'P2 MTT'.
+- Modify SDR name 'P0 MSID Mismatch' to 'P1 MSID Mismatch'
+- Modify SDR name 'P1 MSID Mismatch' to 'P2 MSID Mismatch'
+- Modify MASTER.CFG detect PS_REDUNDANCY.
+- Add P1 MTT/P2 MTT tag.
+- MASTER.CFG: delete OTHER chassis fan redundancy sensor detect tag "FAN_REDUN_FLAG".
+- MASTER.CFG: Modify FCT/FCT2 "OTHER_FAN_6" change to "FCT_FAN_6".
+- SDR: Fan Redundancy (0x0C) remove 'FAN_REDUN_FLAG' tag.
+- SDR: System Fan 6' add 'FCT_FAN_6' tag.
+- SDR: Fan 1 Present (0x40) remove 'OTHER_FAN_1' tag.
+- SDR: Fan 2 Present (0x41) remove 'OTHER_FAN_2' tag.
+- SDR: Fan 3 Present (0x42) remove 'OTHER_FAN_3' tag.
+- SDR: Fan 4 Present (0x43) remove 'OTHER_FAN_4' tag.
+- SDR: Fan 5 Present (0x44) remove 'OTHER_FAN_5' tag.
+- SDR: Fan 5 Present (0x45) 'OTHER_FAN_6' change to 'FCT_FAN_6'.
+- SDR: Fan Redundancy Map SDR Record remove 'FAN_REDUN_FLAG' tag.
+
+FCP_21:
+- Follow Canoe Pass FSC config sheet Rev (3.8).
+- SDR: Modify Global Clamp Record P2 DTS Margin(0x84) Clamp Flags CPU Number=1.
+- SDR: remove SAS Mod Temp clamp tag 'UPM'.
+- SDR: FP NMI Diag Int add tag 'FP_NMI'.
+- MASTER.CFG: FCT2, SET "PS_REDUNDANCY" change to CLEAR "PS_REDUNDANCY".
+- MASTER.CFG: FCT2, SET "750_PS2" change to CLEAR "750_PS2".
+- MASTER.CFG: OTHER chassis prompt "Does the front panel support a NMI button?".
+- MASTER.CFG: UP-M NR,UP-M R,Shipping,FCT,FCT2 add SET "FP_NMI".
+- Modify FRUSDR utility version 11 duild 5.
+
+FCP_22:
+- Follow Canoe Pass FSC config sheet Rev (4.0).
+- MASTER.CFG: Shipping/FCT/FCT2 remove SET "FP_NMI".
+- SDR: Modify P1 Mem Thrm Trip(0xC0)/P2 Mem Thrm Trip(0xC1) Sensor Type to 0C, Event / Reading Base Type to 6F.
+
+S2600CP_FRUSDR_23:
+- Follow Canoe Pass FSC config sheet Rev (4.2).
+- Modify FRU file name, version update to 0.04.
+- master.cfg: Modify FRU and SDR file name.
+- S2600CP.sdr: Modify Exit Air Temp(0x2E) OEM to 0x47.
+
+S2600CP_FRUSDR_24:
+- Follow Canoe Pass FSC config sheet Rev (4.4).
+- S2600CP.sdr: Modify System Airflow(0x11) Analog characteristic flags from 00 change to 07.
+- S2600CP.sdr: BMC Health(0x10) Deassertion Event Mask from 1000 change to 0000.
+- S2600CP.sdr: Modify DOMAIN 0 to DOMAIN 7.
+
+S2600CP_FRUSDR_25:
+- Follow Canoe Pass FSC config sheet Rev (4.5).
+- master.cfg: Add "NO_CHASSIS_INTRU" tag for Other chassis and shipping.
+- S2600CP.sdr: Sensor number 0x04:into two, one is with chassis intrusion event mask, another is not.
+- S2600CP.sdr: Sensor number 0x2F:entity id change to 07h and instance change to 01h.
+- S2600CP,sdr: CPU VR (24h) fan clamp threshold from 88 to 72.
+
+S2600CP_FRUSDR_26:
+- Follow Canoe Pass FSC config sheet Rev (4.5).
+- S2600CP.sdr: Modify Global Stepwise/other chassis/Stepwise Curve ID 100/Domain Max - bit 7 from 0 change to 1.
+- S2600CP.sdr: 'Mem Rdnc Sensor' Sensor Owner ID from 1 change to 0x33.
+- S2600CP.sdr: 'Mem Conf Sensor' Sensor Number from 9 change to 2,
+               Event / Reading Base Type from 0x6F change to 0x09.
+- S2600CP.sdr: add SDR 'QPI Link Width'(0x09).
+- S2600CP.sdr: add SDR 'Sparing Rdnc'(0x11).
+- S2600CP.sdr: 'Rdnc Mod Sensor'(0x12) Sensor Owner ID from 0x33 change to 0x01.
+- S2600CP.sdr: add SDR 'Mmry Parity Err'(0x13).
+- S2600CP.sdr: 'PCIe Fat Sensor' Sensor Number from 0x04 change to 0x14,
+               Event / Reading Base Type from 0x70 change to 0x76.
+- S2600CP.sdr: 'QPI Fatl Sensor' Sensor Number from 0x07 change to 0x17,
+               Event / Reading Base Type from 0x73 change to 0x74.
+- S2600CP.sdr: add SDR 'BIOS Evt Sensor'(0x83)(two BIOS Evt Sensor).
+
+S2600CP_FRUSDR_100:
+- Follow Canoe Pass FSC config sheet Rev (4.6).
+- S2600CP.sdr: add SDR'PCIe Fat Sensor'(0x04)(two PCIe Fat Sensor).
+- FRUSDR UTILITY upgrade to Version 11.0 Build 6.
+
+S2600CP_FRUSDR_101:
+- Follow Canoe Pass FSC config sheet Rev (4.7).
+- S2600CP.sdr: modify FCT/FCT2 FAN FRU LED Mapping Number of mapping pairs.
+- S2600CP.sdr: modify SDR Entity Instance.
+- S2600CP.sdr: Global clamp records add IO Module Temp and SAS Module Temp.
+- S2600CP.sdr: Add I/O MODULE , I/O MODULE FRU and clamp record.
+- S2600CP.sdr: Add SAS MODULE , SAS MODULE FRU and clamp record.
+- S2600CP.sdr: modify SDR Exit Air Temp(0x2E) Assertion/Deassertion Event Mask and Reading Mask & Settable to 0000.      
+
+S2600CP_FRUSDR_102:
+- Follow Canoe Pass FSC config sheet Rev (4.8).
+- S2600CP.sdr: Modify SDR sensor name "Pwr Unit Status"(0x01),"SMI Timeout"(0x06),"BMC FW Health"(0x10),"PS1 Power In"(0x54),
+  "PS2 Power In"(0x55).
+
+S2600CP_FRUSDR_103:
+- Follow Canoe Pass FSC config sheet Rev (5.1).
+
+S2600CP_FRUSDR_104:
+- Follow Canoe Pass FSC config sheet Rev (5.1).
+- Master.cfg : change chassis code name to product name.
+- Master.cfg : change copyright 2011-->2012.
+
+S2600CP_FRUSDR_105:
+- Follow Canoe Pass FSC config sheet Rev (5.2).
+- S2600CP.sdr: Front Panel temp sensor entity ID from 0x0C to 0x40 in SDR to solve DCMI issue.
+- S2600CP.sdr: Modify "front panel" FRU Entity ID from 0x07 change to 0x0C.
+- S2600CP.sdr: Modify "front panel" FRU Entity Instance from 0x37 change to 0x01.
+- S2600CP.sdr: Modify "Baseboard" FRU Entity Instance from 0x36 change to 0x01.
+- S2600CP.sdr: Modify "SAS Module" FRU Entity Instance from 0x31 change to 0x01.
+- S2600CP.sdr: Add SDR Type 11 Record "Pwr Supply 1 FRU".
+- S2600CP.sdr: Add SDR Type 11 Record "Pwr Supply 2 FRU".
+- S2600CP.sdr: Add SDR Type 11 Record "HS Backplane 1".
+- S2600CP.sdr: Add SDR Type 11 Record "HS Backplane 2".
+- S2600CP.sdr: Add SDR Type 11 Record "HS Backplane 3".
+
+S2600CP_FRUSDR_106:
+- Follow Canoe Pass FSC config sheet Rev (5.2).
+- Update FRUSDR utility Version 11.0 Build 9.
+- S2600CP.sdr: Modify HDD number.
+
+S2600CP_FRUSDR_107:
+- Follow Canoe Pass FSC config sheet Rev (5.4).
+- Update FRUSDR utility Version 11.0 Build 11.
+- S2600CP.sdr: Power unit redundancy sensor "Capabilities" change to 00.
+
+S2600CP_FRUSDR_108:
+- Follow Canoe Pass FSC config sheet Rev (5.4).
+- S2600CP.sdr: Modify sensor number 02 "Pwr Unit Redund" Remove De-assertion event from FF00 change to 0000.
+- S2600CP.sdr: Modify sensor number 70/71 "P1 Status"/"P2 Status" Assertion Event Mask/Deassertion Event Mask/Reading Mask to 8200.
+- S2600CP.sdr: Modify sensor number 90/91 P1 VRD Hot/P2 VRD Hot Sensor Capabilities to 40.
+- S2600CP.sdr: Modify sensor number 94~97 P1 MEM01 VRD Hot/P1 MEM23 VRD Hot/P2 MEM01 VRD Hot/P2 MEM23 VRD Hot Sensor Capabilities to 40.
+- S2600CP.sdr: Modify sensor number F0~FE,60~68 HDD 0 Status to HDD 23 Status Assertion Event Mask/Deassertion Event Mask/Reading Mask to 8300.
+- S2600CP.sdr: Modify sensor number 34/35 'P1 MTT"/"P2 MTT" M = 0x05, B=0x00, Rexp/Bexp = 0xF0.
+- Update FRUSDR utility Version 11.0 Build 14.
+
+S2600CP_FRUSDR_109:
+- Follow Canoe Pass FSC config sheet Rev (5.6).
+- S2600CP.sdr: Update upper critical and upper noncritical for exit air temperature in sys config tab.
+
+S2600CP_FRUSDR_110:
+- Follow Canoe Pass FSC config sheet Rev (5.6).
+- FRUSDR UTILITY upgrade to Version 11.0 Build 19.
+
+S2600CP_FRUSDR_111:
+- Follow Canoe Pass FSC config sheet Rev (5.6).
+- S2600CP.sdr: Add sensor number 66/67 PSU1 Status/PSU2 Status SDR.
+
+=============================================================================
+                           ISSUES FIXED
+=============================================================================
+FCP_01:
+- None.
+
+FCP_02:
+EPSD100011519-FRUSDR update didn't have "Other chassis" can be choose.
+EPSD100011517-System Fan3 (#0x31) sensor reading always 0x00.
+
+FCP_03:
+EPSD100011518-Voltage /BB +1.1V STBY (#0xDD) lower non-critical event logged while system boot up. 
+EPSD100011759-No 550W power supply can be choose for FRUSDR 02 updated.
+
+FCP_04:
+EPSD100011946-No define MSID sensor in FCP_03 / CP_BMC.SDR file.
+EPSD100011947-No define ERR2 sensor in FCP_03 / CP_BMC.SDR file.
+
+FCP_05:
+none
+
+FCP_06:
+EPSD100011979-After OS watchdog timeout failed on last boot, but there was no error message in the SEL log.
+EPSD100012043-[EWS]MEM Thrm Trip (0xC0, 0xC1, 0xC2, 0xC3) sensor Health always show "Unknow".
+
+FCP_07:
+EPSD100219643-SDR file has two BIOS records with the same generator ID and sensor number.
+
+FCP_08:
+EPSD100219958-Canoe Pass FRU/SDR package FCP_07 loads DIMM thermal trip sensors for processors 3 & 4.
+EPSD100012166-Issue Get SM signal command to get fan power/speed got response 0x64 (full speed).
+
+FCP_09:
+none.
+
+FCP_10:
+EPSD100013577-Update FRUSDR with non-FRU front panel, update utility didn't auto detected as "Other Chassis".
+EPSD100220565-DIMM Air velocity records lacking in SDR.
+EPSD100220564-DTS Lookup tables missing in SDR.
+
+FCP_11:
+none.
+
+FCP_12:
+none.
+
+FCP_13:
+EPSD100014114-Smash Enter show /system1/sensor*: Target Not Found.
+EPSD100220986-SDR record lacking for MEM thortting.
+EPSD100221121-Advanced Fan Failure sub-records are not used correctly.
+
+FCP_14:
+EPSD100221121-Advanced Fan Failure sub-records are not used correctly.
+EPSD100221366-Exit Air Temp sensor 0x2e should only be installed when PMBUSpower supply detected.
+EPSD100014433-The init sensor scanning bit is not cleared as it is expected to be.
+EPSD100014214-Exit Air Temp(0x2E) Sensor status always show 0xE0 (Not available).
+
+FCP_15:
+EPSD100220686-No SEL entry found for successfull FW Update after successfully updating FW using .nsh file.
+EPSD100220687-No SEL entry found for FW Update Failure.
+
+FCP_16:
+EPSD100221878-Incorrect Clamp Flags in P2 Therm Margin FSC clamp record.
+EPSD100015016-Update FRUSDR got message "Hot Swap Backplane 1 FRU is invalid".
+
+FCP_17:
+EPSD100221962-Critical fan tach events occur when fans are driven at Normal Control Value PWM.
+
+FCP_18:
+none.
+
+FCP_19:
+EPSD100222920-Global Aggregate Thermal Margin sensors have incorrect event masks.
+
+FCP_20:
+EPSD100221962-Critical fan tach events occur when fans are driven at Normal Control Value PWM.
+EPSD100016120-Execute FSC script LinearStepwise_003.tcl always got fail result.
+EPSD100016187-Fans are running on full speed after FRUSDR flashed for Other chassis setting.
+
+FCP_21:
+none.
+
+FCP_22:
+none.
+
+S2600CP_FRUSDR_23:
+none.
+
+S2600CP_FRUSDR_24:
+none.
+
+S2600CP_FRUSDR_25:
+None.
+
+S2600CP_FRUSDR_26:
+None.
+
+S2600CP_FRUSDR_100:
+None.
+
+S2600CP_FRUSDR_101:
+None.
+
+S2600CP_FRUSDR_102:
+None.
+
+S2600CP_FRUSDR_103:
+None.
+
+S2600CP_FRUSDR_104:
+None.
+
+S2600CP_FRUSDR_105:
+None.
+
+S2600CP_FRUSDR_106:
+None.
+
+S2600CP_FRUSDR_107:
+None
+
+S2600CP_FRUSDR_108:
+None
+
+S2600CP_FRUSDR_109:
+None
+
+S2600CP_FRUSDR_110:
+None
+
+S2600CP_FRUSDR_111:
+None
+
+=============================================================================
+                             REFERENCE MATERIAL
+=============================================================================
+CanoePass_CONFIG-FSC Rev 5.6 datasheet.
+[END OF RELEASE NOTES]

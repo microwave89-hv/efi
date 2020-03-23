@@ -1,0 +1,266 @@
+->StartImage(0xACFD9118, , )
+File: \System\Library\CoreServices\boot.efi
+Image: AA008000 - AA085000 (7D000)
+Overriding boot services ...
+Boot services overriden!
+Overriding runtime services ...
+->CalculateCrc32(BFE9EE18, 120, 0xBFE9EE28) = Success
+Runtime services overriden!
+STARTING: \System\Library\CoreServices\boot.efi
+->LocateProtocol(FFECFFFF-923C-14D2-9E3F-22A0C969563B, 0, AEB868B0/BFE89AA8) = Success
+->HandleProtocol(ACFD9118, gEfiLoadedImageProtocolGuid, AD939540) = Success
+->GetVariable(efiboot-perf-record, gEfiAppleBootGuid, 0/0, 0, 0) = Not Found
+->GetVariable(BackgroundClear, gEfiAppleNvramGuid, 0/0, 4, AA07F248) = Not Found
+->LocateProtocol(gEfiConsoleControlProtocolGuid, 0, 0/AEFDFFE8) = Success
+->LocateProtocol(C5C5DA95-7D5C-45E6-B2F1-3FD52BB10077, 0, 0/0) = Not Found
+->GetVariable(ROM, gEfiAppleNvramGuid, 0/0, 6, AEB86838) = Not Found
+->SetVariable(ROM, gEfiAppleNvramGuid, 6, 6, FFFFFF01) = Success
+->GetVariable(MLB, gEfiAppleNvramGuid, 0/0, 80, AEB867B0) = Not Found
+->SetVariable(MLB, gEfiAppleNvramGuid, 6, D, AEB86760) = Success
+->LocateProtocol(gEfiDataHubProtocolGuid, 0, AEB866B0/BF7139B0) = Success
+-> AllocatePages(AllocateMaxAddress, LoaderCode, 0x1, 0xFFFFFFFF/0xAA57C000) = Success
+->GetVariable(boot-switch-vars, gEfiAppleBootGuid, 0/0, 2C, AA082978) = Not Found
+->GetVariable(boot-signature, gEfiAppleBootGuid, 0/0, 14, AA082980) = Not Found
+->GetVariable(UIScale, gEfiAppleNvramGuid, 0/2D363141, 1, AEB8669B) = Not Found
+->LocateProtocol(gEfiAppleFirmwarePasswordProtocolGuid, 0, 2D363141392D3344/AEFABDB0) = Success
+->GetVariable(security-mode, gEfiAppleBootGuid, 0/0, 0, AEB86538) = Not Found
+->LocateProtocol(AppleBootKeyPressProtocolGuid, 0, 800000000000000E/AEFDA068) = Success
+->HandleProtocol(ACFD9118, gEfiLoadedImageProtocolGuid, AD939540) = Success
+->HandleProtocol(ACFB7A98, gEfiDevicePathProtocolGuid, ACFB7B18) = Success
+->HandleProtocol(ACFB7A98, gEfiSimpleFileSystemProtocolGuid, AE633028) = Success
+->GetVariable(recovery-boot-mode, gEfiAppleBootGuid, 0/0, A, AEB86646) = Not Found
+->GetVariable(boot-args, gEfiAppleBootGuid, 0/0, 0, 0) = Not Found
+->GetVariable(efi-boot-kernelcache-data, gEfiAppleBootGuid, 80000000/80000000, 0, 0) = Not Found
+->GetVariable(efi-boot-file-data, gEfiAppleBootGuid, 80000000/80000000, 0, 0) = Not Found
+->GetVariable(AAPL,PanicInfo0000, gEfiAppleBootGuid, 0/0, 0, 0) = Not Found
+->LocateHandleBuffer(ByProtocol, gEfiBlockIoProtocolGuid, 0, 11, A9FF8718) = Success
+->HandleProtocol(ACFBBE18, gEfiDevicePathProtocolGuid, ACFC9018) = Success
+->HandleProtocol(AA57DC18, gEfiDevicePathProtocolGuid, ACFBB618) = Success
+->HandleProtocol(ACFB7898, gEfiDevicePathProtocolGuid, ACFBB218) = Success
+->LocateProtocol(8ECE08D8-A6D4-430B-A7B0-2DF318E7884A, 0, 0/0) = Not Found
+->LocateProtocol(03622D6D-362A-4E47-9710-C238B23755C1, 0, 0/0) = Not Found
+->GetVariable(gfx-saved-config-restore-status, gEfiAppleNvramGuid, 0/0, 8, AEB86680) = Not Found
+-> AllocatePages(AllocateAddress, LoaderData, 0x541, 0xFA00000/0xFA00000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0xE3, 0x10000000/0x10000000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x13, 0xF900000/0xF900000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x1, 0x100E3000/0x100E3000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x1, 0x100E4000/0x100E4000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x19, 0x100E5000/0x100E5000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x1DD8, 0x101EA000/0x101EA000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x178, 0x11FC2000/0x11FC2000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0xEC, 0x100FE000/0x100FE000) = Success
+->GetVariable(FirmwareFeatures, gEfiAppleNvramGuid, 0/6, 4, AEB8660C) = Success
+->GetVariable(FirmwareFeaturesMask, gEfiAppleNvramGuid, 0/6, 4, AEB86608) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x1, 0x1213A000/0x1213A000) = Success
+->HandleProtocol(ACFB7A98, AppleNetBootProtocolGuid, 0) = Unsupported
+->LocateProtocol(AppleNetBootProtocolGuid, 0, 0/AD494178) = Success
+->LocateProtocol(gDevicePropertiesGuid, 0, 7365636976726573/AEFCC930) = Success
+->HandleProtocol(AEFEB298, gEfiGraphicsOutputProtocolGuid, AEFDFFA8) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x1, 0x1213B000/0x1213B000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x3, 0x1213C000/0x1213C000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x2, 0x1213F000/0x1213F000) = Success
+->GetMemoryMap(0x0/0x2E80, 0, 0x3AC8, 0x30, 0x1) = Buffer Too Small
+->GetMemoryMap(0x3080/0x2EB0, A9FE8018, 0x3AC9, 0x30, 0x1) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x45B, 0x12141000/0x12141000) = Success
+-> AllocatePages(AllocateAddress, LoaderData, 0x4, 0x1259C000/0x1259C000) = Success
+->GetMemoryMap(0x0/0x2E80, 0, 0x3ACC, 0x30, 0x1) = Buffer Too Small
+->GetMemoryMap(0x4000/0x2E80, 1259C000, 0x3ACC, 0x30, 0x1) = Success
+ExitBootServices called. Doing some more dumps ...
+SysTable: BFE9EF18
+- FirmwareVendor: AE701498, Apple
+- FirmwareRevision: 1000A
+- ConsoleInHandle: AEFEB518, ConIn: AEFDFD40
+- ConsoleOutHandle: AEFEB298, ConOut: AEFDFF40
+- StandardErrorHandle: 0, StdErr: 0
+- RuntimeServices: BFE9EE18, BootServices: AE938780
+- ConfigurationTable: BFE93E18
+  AE9388F0 - gEfiDxeServicesTableGuid
+  BFE94018 - gEfiHobListGuid
+  AE938250 - gEfiMemoryTypeInformationGuid
+  AE938B88 - gEfiDebugImageInfoTableGuid
+  BF0F1730 - F76761DC-FF89-44E4-9C0C-CD0ADA4EF983
+  BFEEE000 - gEfiAcpi10TableGuid
+  BFEEE014 - gEfiAcpi20TableGuid
+  BFEC3000 - gEfiSmbiosTableGuid
+- RuntimeServices: BFE9EE18
+    GetTime: A9F887AD
+    SetTime: A9F8885C
+    GetWakeupTime: A9F888A7
+    SetWakeupTime: A9F8893D
+    SetVirtualAddressMap: A9F889A8
+    ConvertPointer: A9F88A58
+    GetVariable: A9F88AC9
+    GetNextVariableName: A9F88BCD
+    SetVariable: A9F88C90
+    GetNextHighMonotonicCount: A9F88D43
+    ResetSystem: A9F88D92
+    UpdateCapsule: A9F88E28
+    QueryCapsuleCapabilities: A9F88E96
+    QueryVariableInfo: A9F88F2D
+- RuntimeServices Oiginals:
+    GetTime: BF0EE280
+    SetTime: BF0EE28C
+    GetWakeupTime: BF0EE2AC
+    SetWakeupTime: BF0EE2CC
+    SetVirtualAddressMap: BF714374
+    ConvertPointer: BF7142A0
+    GetVariable: BF20D2C0
+    GetNextVariableName: BF20D444
+    SetVariable: BF20D5B0
+    GetNextHighMonotonicCount: BF1F732C
+    ResetSystem: AEFB542C
+    UpdateCapsule: BF7092E8
+    QueryCapsuleCapabilities: 986C617470
+    QueryVariableInfo: 507000003
+Variables:
+00000007 NV+BS+RT+    4DFBBAAB-1392-4FDE-ABB8-C41CC5AD7D5D:Setup, DataSize = 146
+00000007 NV+BS+RT+    AF9FFD67-EC10-488A-9DFC-6CBF5EE22C2E:AcpiGlobalVariable, DataSize = 8
+00000007 NV+BS+RT+    8983FD2D-113C-4E2B-8F47-0ABFEB20A41A:SmmS3NvsData, DataSize = 4
+00000003 NV+BS+	   gEfiAppleNvramGuid:security-key, DataSize = 4
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:Lang, DataSize = 3
+00000007 NV+BS+RT+    FE47349A-7F0D-4641-822B-34BAA28ECDD0:NVPanelData, DataSize = 44
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:ConOut, DataSize = 1C
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:BootOrder, DataSize = 2
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:Boot0081, DataSize = 4E
+00000007 NV+BS+RT+    gEfiAppleBootGuid:BootCampHD, DataSize = 20
+00000007 NV+BS+RT+    gEfiAppleBootGuid:RemoteDisabled, DataSize = 1
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:ConOutDev, DataSize = 1C
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:Boot0080, DataSize = 62
+00000007 NV+BS+RT+    gEfiAppleBootGuid:efi-boot-device-data, DataSize = 4A
+00000007 NV+BS+RT+    gEfiAppleBootGuid:efi-boot-device, DataSize = 109
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:Boot0082, DataSize = 52
+00000007 NV+BS+RT+    gEfiAppleBootGuid:prev-lang:kbd, DataSize = 9
+00000007 NV+BS+RT+    36C28AB5-6566-4C50-9EBD-CBB920F83843:preferred-networks, DataSize = C0
+00000007 NV+BS+RT+    36C28AB5-6566-4C50-9EBD-CBB920F83843:preferred-count, DataSize = 8
+00000007 NV+BS+RT+    gEfiAppleBootGuid:LocationServicesEnabled, DataSize = 1
+00000007 NV+BS+RT+    gEfiAppleBootGuid:boot-image, DataSize = 38
+00000003 NV+BS+	   gEfiAppleBootGuid:AAPL,PanicInfoLog, DataSize = 5C
+00000007 NV+BS+RT+    gEfiAppleBootGuid:AAPL,PanicInfoLog, DataSize = A
+00000007 NV+BS+RT+    36C28AB5-6566-4C50-9EBD-CBB920F83843:current-network, DataSize = C0
+00000007 NV+BS+RT+    gEfiAppleBootGuid:fmm-computer-name, DataSize = 12
+00000007 NV+BS+RT+    24A6EDCB-EBB6-490B-A455-FC9E8FAB5366:BluetoothUHEDevices, DataSize = 1E9
+00000007 NV+BS+RT+    gEfiAppleBootGuid:SystemAudioVolume, DataSize = 1
+00000007 NV+BS+RT+    gEfiGlobalVarGuid:BootFFFF, DataSize = 7C
+00000003 NV+BS+	   ShellAlias:copy, DataSize = 6
+00000003 NV+BS+	   ShellAlias:del, DataSize = 6
+00000003 NV+BS+	   ShellAlias:dir, DataSize = 6
+00000003 NV+BS+	   ShellAlias:md, DataSize = C
+00000003 NV+BS+	   ShellAlias:rd, DataSize = 6
+00000003 NV+BS+	   ShellAlias:cr, DataSize = 54
+00000007 NV+BS+RT+    gEfiAppleBootGuid:boot-gamma, DataSize = 6E
+00000007 NV+BS+RT+    gEfiAppleBootGuid:backlight-level, DataSize = 2
+00000007 NV+BS+RT+    8D63D4FE-BD3C-4AAD-881D-86FD974BC1DF:last-oslogin-ident, DataSize = 24
+00000007 NV+BS+RT+    EB704011-1402-11D3-8E77-00A0C969723B:MTC, DataSize = 4
+00000007 NV+BS+RT+    gEfiAppleNvramGuid:AAPL,PathProperties0000, DataSize = 152
+00000006    BS+RT+    gEfiAppleNvramGuid:FirmwareFeaturesMask, DataSize = 4
+00000002    BS+	   gEfiAppleNvramGuid:system-id, DataSize = 10
+00000006    BS+RT+    gEfiGlobalVarGuid:LangCodes, DataSize = 6
+00000002    BS+	   gEfiGlobalVarGuid:LEGACYVGAHANDLE, DataSize = 8
+00000006    BS+RT+    gEfiGlobalVarGuid:ErrOutDev, DataSize = 1C
+00000006    BS+RT+    gEfiAppleNvramGuid:FirmwareFeatures, DataSize = 4
+00000006    BS+RT+    gEfiGlobalVarGuid:BootCurrent, DataSize = 2
+00000002    BS+	   ShellProtId:DevIo, DataSize = 10
+00000002    BS+	   ShellProtId:Fs, DataSize = 10
+00000002    BS+	   ShellProtId:DiskIo, DataSize = 10
+00000002    BS+	   ShellProtId:BlkIo, DataSize = 10
+00000002    BS+	   ShellProtId:Txtin, DataSize = 10
+00000002    BS+	   ShellProtId:Txtout, DataSize = 10
+00000002    BS+	   ShellProtId:Load, DataSize = 10
+00000002    BS+	   ShellProtId:Image, DataSize = 10
+00000002    BS+	   ShellProtId:UnicodeCollation, DataSize = 10
+00000002    BS+	   ShellProtId:SerialIo, DataSize = 10
+00000002    BS+	   ShellProtId:Pxebc, DataSize = 10
+00000002    BS+	   ShellProtId:Tcp, DataSize = 10
+00000002    BS+	   ShellProtId:Net, DataSize = 10
+00000002    BS+	   ShellProtId:Nii, DataSize = 10
+00000002    BS+	   ShellProtId:UgaDraw, DataSize = 10
+00000002    BS+	   ShellProtId:UgaIo, DataSize = 10
+00000002    BS+	   ShellProtId:GraphicsOutput, DataSize = 10
+00000002    BS+	   ShellProtId:EdidDiscovered, DataSize = 10
+00000002    BS+	   ShellProtId:EdidActive, DataSize = 10
+00000002    BS+	   ShellProtId:EdidOverride, DataSize = 10
+00000002    BS+	   ShellProtId:ShellInt, DataSize = 10
+00000002    BS+	   ShellProtId:SEnv, DataSize = 10
+00000002    BS+	   ShellProtId:ShellProtId, DataSize = 10
+00000002    BS+	   ShellProtId:ShellDevPathMap, DataSize = 10
+00000002    BS+	   ShellProtId:ShellAlias, DataSize = 10
+00000002    BS+	   ShellProtId:G0, DataSize = 10
+00000002    BS+	   ShellProtId:Efi, DataSize = 10
+00000002    BS+	   ShellProtId:GenFileInfo, DataSize = 10
+00000002    BS+	   ShellProtId:FileSysInfo, DataSize = 10
+00000002    BS+	   ShellProtId:PcAnsi, DataSize = 10
+00000002    BS+	   ShellProtId:Vt100, DataSize = 10
+00000002    BS+	   ShellProtId:Vt100+, DataSize = 10
+00000002    BS+	   ShellProtId:VtUtf8, DataSize = 10
+00000002    BS+	   ShellProtId:ESP, DataSize = 10
+00000002    BS+	   ShellProtId:GPT MBR, DataSize = 10
+00000002    BS+	   ShellProtId:DriverBinding, DataSize = 10
+00000002    BS+	   ShellProtId:ComponentName, DataSize = 10
+00000002    BS+	   ShellProtId:Configuration, DataSize = 10
+00000002    BS+	   ShellProtId:Diagnostics, DataSize = 10
+00000002    BS+	   ShellProtId:WinNtThunk, DataSize = 10
+00000002    BS+	   ShellProtId:WinNtDriverIo, DataSize = 10
+00000002    BS+	   ShellProtId:SerialPrivate, DataSize = 10
+00000002    BS+	   ShellProtId:PciRootBridgeIo, DataSize = 10
+00000002    BS+	   ShellProtId:PciIo, DataSize = 10
+00000002    BS+	   ShellProtId:IsaIo, DataSize = 10
+00000002    BS+	   ShellProtId:UsbIo, DataSize = 10
+00000002    BS+	   ShellProtId:IsaAcpi, DataSize = 10
+00000002    BS+	   ShellProtId:SimplePointer, DataSize = 10
+00000002    BS+	   ShellProtId:ConIn, DataSize = 10
+00000002    BS+	   ShellProtId:ConOut, DataSize = 10
+00000002    BS+	   ShellProtId:StdErr, DataSize = 10
+00000002    BS+	   ShellProtId:Decompress, DataSize = 10
+00000002    BS+	   ShellProtId:DebugPort, DataSize = 10
+00000002    BS+	   ShellProtId:DebugSupport, DataSize = 10
+00000002    BS+	   ShellProtId:ScsiPassThru, DataSize = 10
+00000002    BS+	   ShellProtId:ScsiIo, DataSize = 10
+00000002    BS+	   ShellProtId:BusSpecificDriverOverride, DataSize = 10
+00000002    BS+	   ShellProtId:UsbHc, DataSize = 10
+00000002    BS+	   ShellProtId:UsbHc2, DataSize = 10
+00000002    BS+	   ShellProtId:ExtScsiPassThru, DataSize = 10
+00000002    BS+	   ShellProtId:MNPSb, DataSize = 10
+00000002    BS+	   ShellProtId:MNP, DataSize = 10
+00000002    BS+	   ShellProtId:ARPSb, DataSize = 10
+00000002    BS+	   ShellProtId:ARP, DataSize = 10
+00000002    BS+	   ShellProtId:DHCPv4Sb, DataSize = 10
+00000002    BS+	   ShellProtId:DHCPv4, DataSize = 10
+00000002    BS+	   ShellProtId:TCPv4Sb, DataSize = 10
+00000002    BS+	   ShellProtId:TCPv4, DataSize = 10
+00000002    BS+	   ShellProtId:IPv4Sb, DataSize = 10
+00000002    BS+	   ShellProtId:IPv4, DataSize = 10
+00000002    BS+	   ShellProtId:IPv4Config, DataSize = 10
+00000002    BS+	   ShellProtId:UDPv4Sb, DataSize = 10
+00000002    BS+	   ShellProtId:UDPv4, DataSize = 10
+00000002    BS+	   ShellProtId:MTFTPv4Sb, DataSize = 10
+00000002    BS+	   ShellProtId:MTFTPv4, DataSize = 10
+00000002    BS+	   ShellProtId:Dpath, DataSize = 10
+00000002    BS+	   ShellProtId:Unknown Device, DataSize = 10
+00000002    BS+	   SEnv:efishellmode, DataSize = C
+00000002    BS+	   ShellDevPathMap:fs0, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:fs1, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:fs2, DataSize = 46
+00000002    BS+	   ShellDevPathMap:fs3, DataSize = 46
+00000002    BS+	   ShellDevPathMap:fs4, DataSize = 46
+00000002    BS+	   ShellDevPathMap:blk0, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:blk1, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:blk2, DataSize = 46
+00000002    BS+	   ShellDevPathMap:blk3, DataSize = 46
+00000002    BS+	   ShellDevPathMap:blk4, DataSize = 46
+00000002    BS+	   ShellDevPathMap:blk5, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:blk6, DataSize = 20
+00000002    BS+	   ShellDevPathMap:blk7, DataSize = 20
+00000002    BS+	   ShellDevPathMap:blk8, DataSize = 1C
+00000002    BS+	   ShellDevPathMap:blk9, DataSize = 1C
+00000002    BS+	   ShellDevPathMap:blkA, DataSize = 1C
+00000002    BS+	   ShellDevPathMap:hd30b, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:hd30d, DataSize = 4A
+00000002    BS+	   ShellDevPathMap:hd24a0b, DataSize = 46
+00000002    BS+	   ShellDevPathMap:hd26b0b, DataSize = 46
+00000002    BS+	   ShellDevPathMap:hd26b0c, DataSize = 46
+00000002    BS+	   SEnv:path, DataSize = 1C2
+00000006    BS+RT+    gEfiAppleNvramGuid:ROM, DataSize = 6
+00000006    BS+RT+    gEfiAppleNvramGuid:MLB, DataSize = D
+Restoring original runtime services ...
+->CalculateCrc32(BFE9EE18, 120, 0xBFE9EE28) = Success
+Runtime services restored!

@@ -1,0 +1,260 @@
+================================================================================
+       Intel(R) Xeon(R) Processor-Based Server BIOS Development
+================================================================================
+
+INTEL Product Collaboration and Systems Division
+Intel Corporation
+2111 N.E. 25th Avenue, Hillsboro, OR 97124 USA
+
+================================================================================
+
+DATE    : November, 2013
+TO      : Intel(R) Xeon(R) Processor-Based Server Platform customers
+SUBJECT : Manageability Engine Release notes for version SPS_02.01.07.328
+
+================================================================================
+                           LEGAL INFORMATION
+================================================================================
+
+Information in this document is provided in connection with Intel Products
+and for the purpose of supporting Intel developed server boards and systems.
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+property rights is granted by this document. Except as provided in Intel's 
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+sale and/or use of Intel products including liability or warranties relating 
+to fitness for a particular purpose, merchantability, or infringement of any 
+patent, copyright or other intellectual property right. Intel Corporation 
+may have patents or pending patent applications, trademarks, copyrights, or
+other intellectual property rights that relate to the presented subject matter.
+The furnishing of documents and other materials and information does not 
+provide any license, express or implied, by estoppel or otherwise, to any such
+patents, trademarks, copyrights, or other intellectual property rights.  
+Intel products are not intended for use in medical, life saving, or life 
+sustaining applications. Intel may make changes to specifications and product
+descriptions at any time, without notice.
+
+Intel is a registered trademark of Intel Corporation. 
+
+*Other names and brands are the property of their respective owners.
+
+Copyright (C) 2013 Intel Corporation.
+
+================================================================================
+                              ABOUT THIS RELEASE
+================================================================================
+Build Stamp : ME Firmware             --> 02.01.07.328
+              ME Recovery Boot Loader --> 02.01.07.328
+Build Date  : November, 2013
+
+================================================================================
+                           Supported Platforms
+================================================================================
+        S2400BB
+        S2600CP
+        S2600CO
+        W2600CR
+        S2400EP
+        S2400GP
+        S2600GL
+        S2600GZ
+        S2600IP
+        S2600JF
+        S2400LP
+        S2600KI
+        S2400SC
+        S2600WP
+        S4600LH
+        S1400FP
+        S1600JP
+        S1400SP
+                
+================================================================================
+                        ME RECOVERY INSTRUCTIONS
+================================================================================
+The Recovery process can be initiated by setting the recovery jumper (called ME
+FRC UPDT Jumper)
+
+The following steps demonstrate this recovery process:
+   1.  Power OFF the system.
+   2.  Switch the ME FRC UPDT jumper. Details regarding the jumper ID and
+       location can be obtained from the Board EPS for that Platform.
+   4.  Power ON the system.
+   5.  Enter Setup and verify Error manager displays 83A0 error code
+   6.  Boot to EfiShell and update ME if necessary
+   7.  AC OFF the system, and revert the ME FRC UPDT jumper position to
+       "normal operation".
+   8.  Power ON the system.
+   9.  Enter setup and verify Error Manager does not display 83A0 error code
+
+Note 1 : ME will continuously monitor recovery jumper. Whenever ME FRC UPDT is
+         asserted ME will immediately switch to recovery mode.  AC Power cycle
+         is required after de-asserting ME FRC UPDT jumper for ME to function
+         normally.
+Note 2 : When MC FRC UPDT jumper is asserted with AC OFF, ME will restore to
+         factory default settings.
+
+================================================================================
+				ME FW Capsule INSTALLATION NOTES
+================================================================================
+WARNING:  It is very important to follow these instructions as they are written.
+Failure to update using the proper procedure may cause damage to your system.
+
+!!!!! AC failure during update may cause damage to your system and be unrecoverable !!!!!
+
+!!!!! Failing to follow the above procedure will switch ME into recovery mode  !!!!!    
+
+Please follow the below procedure to update ME using UEFI iFlash32 11.0 Build 6
+   1.  Boot the system to EFI Shell
+   2.  Download ME release package
+   3.  Unzip the ME release package to HD or USB Flash Drive
+   3.  Map the respective storage device in system with the command
+           Shell> map -r
+   4.  Change the Shell to mapped device file system
+           Example: Shell> fs0: (or fs1:)
+   5.  Run the IFlash32 utility on the prompt.
+       Use MEComplete_xx_xx_xx_xxx.cap file when the whole ME Image update is
+       required.
+           fs0:\> IFlash32 [File Name] /u /ni
+   6.  Reboot system after the update is completed.
+
+===============================================================================
+                           KNOWN ISSUES/WORKAROUNDS
+===============================================================================
+- BIOS R02.01.0002 and later is compliant to UEFI specification 2.3.1.
+  If the system is running these versions then the user needs to update their
+  utilities and System Management Software to the versions shown below. 
+  Failure to do so may cause the lower versions of the utilities and System
+  Management Software to malfunction.
+    Utilities
+      OFU       v11 Build 14 or higher
+      selview   v11 Build 10 or higher
+      syscfg    v12 Build 8 or higher
+      sysinfo   v12 Build 10 or higher
+    
+    System Management Software
+      Intel(R) Active System Console (IASC)  6.1.10 or higher
+      Intel(R) SNMP Subagent (SNMP-SA)       6.0.10 or higher
+      Intel(R) Deployment Assistant (IDA)    5.1.3 or higher
+
+================================================================================
+                     KNOWN ISSUES in 02.01.07.328 release
+================================================================================
+- On simulated memory throttling PECI register it was observed that Memory
+  Throttling Statistics sensor reading value is update too late. Based on 250 ms
+  sensor scanning interval sensor value should be updated after 6 seconds,
+  actually it was updated later, up to 15 seconds.
+- Too few steps in the ramp generated by SMART & CLST.
+- No monitoring capability is reported in NM Capabilities sensor if temperature
+  reading source is set to OEM command.
+- PEC error is not reported for Send Raw PMBus commands of write/read word and
+  block write/read type.
+- Unstable limiting and Correction Time Exceeded event was sometimes observed
+  for memory domain (id 2).
+- In a system with more than 2 PSU the PSU discovery procedure is done every 1
+  seconds while it should be done every 10 seconds. Too much traffic is observed
+  on PMBus.
+- Few percent power limit oscillations were observed when limiting in memory
+  domain.
+- P-state limit lock was observed two times in longevity tests of power
+  limiting enable (policy create) and disable (policy destroy) cycles.
+- If power threshold is defined in several NM polices and the power consumption
+  exceeds the threshold the NM Alert Threshold Exceeded message is sent only
+  for the first policy, not for all polices.
+- There is no ME FW Health Event (Event Data 2 = 5: BMC did not respond to cold
+  reset request and ME rebooted the platform) generated after shutdown caused
+  by policy with shutdown action.
+- Operational S0/S1 Only unblocks "Set Reset Mode" HECI command after ME reset.
+- There is an additional global reset after the global reset caused by
+  CPU_PWROK (or PCH_PWROK) dropdown.
+- BIOS does not boot when ME is in Recovery mode. This affects boot from G3
+  (Always On configuration) and any Sx exit (S0/S1 configuration).
+- Get Self Test Results command does not return error for missing PSUs if their
+  "PSU Status Sensor" is disabled.
+- Global platform power NM Policy correction time is exceeded when power
+  readings scanning period is set to 1000ms.
+
+================================================================================
+                     Issues fixed in 02.01.07.328 release
+================================================================================
+- Fixed: Platform is not able to power on properly after being shut down by NM
+         Policy
+- Fixed: Global platform power consumption reported by NM Statistics in S5 is
+         incorrect
+- Fixed: OOB (out-of-band) stress test by issuing the wrong username may cause
+         connection to be unavailable
+- Fixed: Shutdown action can be interrupted by cold reset when volatile NM
+         policy is in use
+
+================================================================================
+                     Issues fixed in 02.01.07.231 release
+================================================================================
+- Fixed: Improper ME FW Health Event is sent when ME is reset to factory
+         defaults with IPMI command Force ME Recovery
+- Fixed: Throttling statistics in domain 0 and 1 are equal to 0, when power
+         policy is active in domain 0
+- Fixed: Power limit oscillations were observed after adding 7 NM power
+         limiting policies
+- Fixed: NM Capabilities event is not sent after disabling then re-enabling
+         scanning on its sensor
+- Fixed: ME Power State Change notification is not sent after Set ME Power
+         State command (M3 -> MOff)
+
+================================================================================
+                     Issues fixed in 02.01.07.225 release
+================================================================================
+- Fixed: NM IPMI commands are not working in S5 after G3
+- Fixed: Wear-out protection "start/stop" ME FW Health Events are not generated
+- Fixed: Platform does not boot when Recovery image in flash is corrupted
+
+================================================================================
+                     Issues fixed in 02.01.07.129 release
+================================================================================
+- Fixed: CPU Memory Throttling Status Sensor is latched in "upper non
+         recoverable" state following Memory Throttling event 
+- Fixed: After few minutes of operation DCA stops to work.
+- Fixed: Raw IPMI master write-read command of SMBus address 0xC2 failing
+
+================================================================================
+                     Issues fixed in 02.01.07.112 release
+================================================================================
+- Fixed: ME may fail to perform reset initiated with IPMI command (02h Cold
+         Reset or DFh Force ME Recovery) observed after hundreds of successful
+         resets. Following sequence happens when repeating 02h Cold Reset: 
+         - CC 00h - command is accepted, but ME reset is not performed, 
+         - CC CFh - command rejected, 
+         - CC C0h - command rejected, repeated for all subsequent retries.
+- Fixed: CPU Memory Throttling Status Sensor gets latched in "upper non
+         recoverable" state following Memory Throttling event after G3. 
+         
+================================================================================
+                     Issues fixed in 02.01.05.107 release
+================================================================================
+- Fixed: FW may hang in initialization state after the update of entire ME
+         region is interrupted by AC loss. 
+         - None of the available ME resets (AC cycle or Global Reset or Power
+           Button Override) can get ME out of the error condition, only
+           reflashing ME image. 
+- Fixed: FW may become unresponsive after switching from Recovery to
+         Operational (e.g. during Direct Update).
+         - Global Reset or Power Button Override can’t get ME out of the error
+           condition. 
+
+================================================================================
+                     Issues fixed in 02.01.05.091 release
+================================================================================
+- Fixed: Fix for Double AC cycle for recognizing OPROM changes
+
+===============================================================================
+                     Issues fixed in 02.01.05.069 release
+===============================================================================
+- Fixed: ME FW Health Event with Event Data 2 = 0 (Recovery GPIO forced) will
+         be generated after IPMI command "Force ME Recovery" issuing.
+- Fixed: ME FW unexpectedly resets when SMLink clock held low for a long period
+         of time
+- Fixed: Sometimes system stops responding after Power Cycle.
+
+===============================================================================
+                     Issues fixed in 02.01.05.064 release
+===============================================================================
+- First production release of ME

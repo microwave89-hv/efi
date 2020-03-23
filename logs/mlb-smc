@@ -1,0 +1,4 @@
+20:54:08",sid="tcp_",msg-type="INFO-IDEV",dev-id="0x000000007B695B90",class="MLB",location="internal",mlb-serial-number="C022393009SF0HMAK",mlb-serial-number1="C022393009SF0HMAK",mlb-serial-number2="?",mlb-serial-number3="?",mlb-serial-number4="?",mac-address="00:3E:E1:87:E0:72",rom-version="MBP101.88Z.00EE.B0A.1509111559",smc-version="2.3F36",bus-frequency="100",cpus-installed="?",northbridge-device-id="0x154",northbridge-revision="0x9",southbridge-device-id="0x1E57",southbridge-revision="0x4"
+context="?",ts="2016/06/09
+
+20:54:11",sid="tcp_",msg-type="INFO-IDEV",dev-id="0x0000000089794390",class="SMC",location="0x0",version="2.3f36",base-flasher-version="2.3f36",update-flasher-version="2.3f36",has-sensor-pid-trip="TRUE",has-sensor-peci-trip="TRUE",lock-bits="0x1",epm-product="0x64",epm-version="0x7",epm-reserved="0x0",epmuv-product="0x64",epmuv-powertable="0x1",is-primary="TRUE",mode="App code"

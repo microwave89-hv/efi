@@ -1,0 +1,75 @@
+PassMark ® Software MemTest86™
+Copyright (C) 2013-2016 PassMark Software
+All Rights Reserved
+http://www.memtest86.com
+
+Overview
+========================================
+PassMark's MemTest86 is a standalone memory testing software for x86 computers.
+MemTest86 boots from a CD and tests the RAM in your computer for 
+faults using a series of comprehensive algorithms and test patterns.
+<For more details see the MemTest86 User Guide>
+
+
+Requirements
+========================================
+- x86 System (Mac and PC)
+- CD drive
+
+
+Creating a bootable CD
+========================================
+
+1) Insert a CD into the CD drive.
+2) Use the CD burning software available on your system to create a CD-ROM using the uncompressed ISO image
+
+Be sure that you create a CD image from the ISO file rather than placing a copy of the ISO file onto a data CD. 
+Look for “Burn Image from File” or similar option under the File menu of your CD burning software. On a Mac, 
+you can use 'Disk Utility'.
+
+
+Booting the MemTest86 CD
+========================================
+The MemTest86 bootable CD supports dual booting on UEFI and BIOS platforms. 
+Most newer systems are able to run the UEFI version of MemTest86.
+On machines that don't support UEFI, the older V4 BIOS release of MemTest86 
+will be automatically booted.
+
+To boot from the drive you may need to go into your BIOS settings and
+alter your boot order. Or launch the boot menu at system startup.
+The methods for doing this will vary depending on your motherboard.
+
+To start MemTest86 insert the CD into the appropriate drive and restart your computer.
+If running on a UEFI system, the UEFI BIOS must be configured to boot from the device 
+that MemTest86 is installed on. Most systems have an optional boot menu that is enabled 
+by pressing a key at startup (often ESC, F9, F11 or F12).
+
+If available use the boot menu to select the correct drive. 
+You may see both the UEFI and BIOS as separate options. 
+Please consult your motherboard documentation for details.
+
+On a Mac, you need to hold down the 'c' key while the computer is booting to boot from CD. 
+To boot from USB, you need to hold down the ALT / Option key on the Mac keyboard 
+while powering on the machine.
+
+
+Documentation
+=============
+All the documentation is included in the MemTest86 User Guide PDF. It can be found under the
+'help' folder in the CD. 
+
+
+Support
+=======
+For technical support, questions, suggestions, please check the User Guide or 
+visit our web page at http://www.memtest86.com
+
+
+Ordering / Registration
+=======================
+All the details are in our sales information page
+http://www.memtest86.com/sales/index.php
+
+
+Enjoy..
+The PassMark Development team

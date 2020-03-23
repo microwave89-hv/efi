@@ -1,0 +1,19 @@
+Wed May 18 2011
+	* EFI Disk Utilities 1.3
+	- Enhance DISKPART to support partitioning in the physical block boundary and 
+	  optimal transfer length granularity of the device
+	- Enhance EFIFMT to align the FAT32 data region to the physical block boundary
+	  and optimal transfer length granularity of the device
+
+Thu Feb 12 2009
+	* EFI Disk Utilities 1.2
+	- Add ChangeLog
+	- Enhance the backward-compatibility to support running under EFI 1.1 
+	  Sample Implementation Shell
+	- Fix crashes when EFIFMT formats the 5th (or above) partition in GPT disk
+	- Update version info for new release
+
+Thu May 29 2008
+	* EFI Disk Utilities 1.1
+	- Enhance DISKPART to support partitioning in the physical block boudary
+	- Port to Edk

@@ -1,0 +1,670 @@
+﻿================================================================================
+Intel(R) Xeon(R) Processor-Based Server BIOS Development
+================================================================================
+
+INTEL Product Collaboration and Systems Division
+Intel Corporation
+2111 N.E. 25th Avenue, Hillsboro, OR 97124 USA
+
+================================================================================
+
+DATE    : May 11, 2015
+TO      : Multi-Core Intel(R) Xeon(R) Processor-Based Server Platform customers
+SUBJECT : BIOS Release notes for version R02.06.0002
+
+================================================================================
+                           LEGAL INFORMATION
+================================================================================
+
+INFORMATION IN THIS DOCUMENT IS PROVIDED IN CONNECTION WITH INTEL PRODUCTS. NO 
+LICENSE, EXPRESS OR IMPLIED, BY ESTOPPEL OR OTHERWISE, TO ANY INTELLECTUAL 
+PROPERTY RIGHTS IS GRANTED BY THIS DOCUMENT. EXCEPT AS PROVIDED IN INTEL'S TERMS 
+AND CONDITIONS OF SALE FOR SUCH PRODUCTS, INTEL ASSUMES NO LIABILITY WHATSOEVER 
+AND INTEL DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTY, RELATING TO SALE AND/OR USE 
+OF INTEL PRODUCTS INCLUDING LIABILITY OR WARRANTIES RELATING TO FITNESS FOR A 
+PARTICULAR PURPOSE, MERCHANTABILITY, OR INFRINGEMENT OF ANY PATENT, COPYRIGHT OR 
+OTHER INTELLECTUAL PROPERTY RIGHT. 
+
+A "Mission Critical Application" is any application in which failure of the Intel 
+Product could result, directly or indirectly, in personal injury or death. SHOULD 
+YOU PURCHASE OR USE INTEL'S PRODUCTS FOR ANY SUCH MISSION CRITICAL APPLICATION, 
+YOU SHALL INDEMNIFY AND HOLD INTEL AND ITS SUBSIDIARIES, SUBCONTRACTORS AND 
+AFFILIATES, AND THE DIRECTORS, OFFICERS, AND EMPLOYEES OF EACH, HARMLESS AGAINST 
+ALL CLAIMS COSTS, DAMAGES, AND EXPENSES AND REASONABLE ATTORNEYS' FEES ARISING OUT 
+OF, DIRECTLY OR INDIRECTLY, ANY CLAIM OF PRODUCT LIABILITY, PERSONAL INJURY, OR 
+DEATH ARISING IN ANY WAY OUT OF SUCH MISSION CRITICAL APPLICATION, WHETHER OR NOT 
+INTEL OR ITS SUBCONTRACTOR WAS NEGLIGENT IN THE DESIGN, MANUFACTURE, OR WARNING OF 
+THE INTEL PRODUCT OR ANY OF ITS PARTS. 
+
+Intel may make changes to specifications and product descriptions at any time, 
+without notice. Designers must not rely on the absence or characteristics of any 
+features or instructions marked "reserved" or "undefined". Intel reserves these for 
+future definition and shall have no responsibility whatsoever for conflicts or 
+incompatibilities arising from future changes to them. The information here is 
+subject to change without notice. Do not finalize a design with this information. 
+
+The products described in this document may contain design defects or errors known 
+as errata which may cause the product to deviate from published specifications. 
+Current characterized errata are available on request. 
+
+Contact your local Intel sales office or your distributor to obtain the latest 
+specifications and before placing your product order. 
+
+Copies of documents which have an order number and are referenced in this document, 
+or other Intel literature, may be obtained by calling 1-800-548-4725, 
+or go to: http://www.intel.com/design/literature.htm
+
+Intel is a registered trademark of Intel Corporation. 
+
+*Other names and brands are the property of their respective owners.
+
+Copyright (C) 2015 Intel Corporation.
+
+================================================================================
+                              ABOUT THIS RELEASE
+================================================================================
+Build Stamp : SE5C600.86B.02.06.0002.101320150901
+Build Date  : Oct 13 , 2015
+
+================================================================================
+                           Supported Platforms
+================================================================================ 
+        S2400BB
+        S2600CP	
+        S2600CO 	
+        W2600CR 
+        S2400EP			
+        S2600GL 
+        S2600GZ 	
+        S2600IP				
+        S2600JF		
+        S2400LP	
+        S2400SC	
+        S2600WP 
+        S4600LH 
+        S1400SP 
+        S1400FP
+        S1600JP	
+================================================================================
+                           BIOS COMPONENTS/CONTENTS
+================================================================================
+Processors supported: 
+Intel(R) Xeon processor E5-4600/2600/2400 series
+Intel(R) Xeon processor E5-4600/2600/2400 v2 series
+
+Microcode update versions:
+Intel(R) Xeon processor E5-4600/2600/2400 series C0 stepping: 0x00000513 CPUID = 0x206D5
+Intel(R) Xeon processor E5-4600/2600/2400 series C1 stepping: 0x00000619 CPUID = 0x206D6
+Intel(R) Xeon processor E5-4600/2600/2400 series C2 stepping: 0x00000710 CPUID = 0x206D7
+Intel(R) Xeon processor E5-4600/2600/2400 v2 series C0/C1 stepping: 0x00000428 CPUID = 0x306e4
+
+On-Board Component Option ROM Versions:
+Integrated Matrox VGA               : VBE BIOS V3.8 SQ
+1G PXE Option ROM                   : Intel(R) Boot Agent GE v1.5.53.1
+10G PXE Option ROM                  : Intel(R) Boot Agent XE v2.3.24.1
+iSCSI Option ROM                    : Intel(R) iSCSI Remote Boot version v3.0.34
+FCoE Option ROM                     : Intel(R) 10G FCoE OpROM v1.8.17
+UEFI Pxe drvier:		    		: v6.3.27
+SAS RAID Option ROM - RSTe          : 4.2.0.1036
+SATA RAID Option ROM - RSTe         : 4.2.0.1036
+SATA RSTe EFI driver Version        : 4.2.0.1036
+SAS RSTe EFI driver Version         : 4.2.0.1036
+ESRT II FOR SATA                    : A.14.02121826
+ESRT II FOR SCU                     : SCU.11.08131348I          
+BIOSAC                              : V2.4  
+SINIT                               : v2.2
+Intel(R) QPI Reference Code Version : V02.00.00.03
+Memory Reference Code Version       : V02.00.00.03
+Management Engine Firmware Version  : 02.01.07.328
+
+================================================================================
+			INSTALLATION NOTES
+================================================================================
+   1.  Boot the system into the EFI Shell
+   2.  Copy UEFI iFlash32 11.0 Build 8 or higher, ipmi.efi and BIOS capsule file 
+       to a HD or USB Flash Drive
+   3.  Map the respective storage device in the system with the command
+	   Shell> map -r
+   4.  Change the Shell to the mapped device file system
+	   Example: Shell> fs0: (or fs1:)
+   5.  Run the iflash32 utility at the prompt
+	   fs0:\> iflash32 /u /ni [Cap File Name]
+   6.  Reboot system, press F2 to setup and check BIOS ID. If BIOS ID is upgraded 
+       version the BIOS updated successfully.
+   7.  Do *NOT* interrupt the BIOS POST during the first boot.  
+ 
+
+================================================================================
+                        BIOS RECOVERY INSTRUCTIONS
+================================================================================
+BIOS RECOVERY INSTRUCTIONS: 
+      The Recovery process can be initiated by setting the recovery jumper 
+      (called BIOS Recovery Boot Jumper).
+       
+      A BIOS recovery can be accomplished from a USB Mass Storage device. 
+      
+      Please note that recovery from USB floppy is not supported on this platform. 
+       
+      The recovery media must contain the following files under the root directory:
+   	1.  RML.ROM 
+   	2.  UEFI iFlash32 11.0 Build 8 or higher (including ipmi.efi )
+   	3.  *Rec.CAP
+   	4.  Startup.nsh
+ 
+      BIOS starts the recovery process by first loading and booting to the recovery 
+      image file (RML.ROM) on the root directory of the recovery media (USB disk).
+      This process takes place before any video or console is available. Once the 
+      system boots to this recovery image file, it will boot automatically into EFI 
+      Shell to invoke the Startup.nsh script and start the flash update application 
+      (IFlash32.efi). IFlash32.efi requires the supporting BIOS Capsule image file 
+      (R02.06.0002Rec.CAP). After the update is complete, there will be a message displayed 
+      stating that the "BIOS has been updated successfully" indicating the recovery 
+      process is finished. The user should then power off the system and switch the 
+      recovery jumper back to normal operation before starting the system.
+ 
+      The following steps demonstrate this recovery process:
+   	1.  Power OFF the system.
+   	2.  Insert recovery media.
+   	3.  Switch the recovery jumper. Details regarding the jumper ID and location
+            can be obtained from the Board EPS for that Platform.
+   	4.  Power ON the system.
+   	5.  The BIOS POST screen will appear displaying the progress and system 
+            automatically boots to the EFI SHELL.
+   	6.  Startup.nsh file executes, and initiates the flash update (IFlash32.efi)
+            with new capsule file (R02.06.0002Rec.CAP). The regular IFlash message will be 
+            displayed at the end of the process, once the flash update succeeds.
+   	7.  Power OFF the system by using the front panel button or the "reset -s"
+            EFI Shell command, and revert the recovery jumper position to 
+            "normal operation".
+   	8.  Power ON the system. 
+   	9.  Do *NOT* interrupt the BIOS POST during the first boot.
+
+================================================================================
+				IMPORTANT NOTICE
+================================================================================
+     Due to security requirements, downgrade to previous revisions in normal mode
+     is NOT supported. Please use the BIOS Recovery procedure instead.
+	
+================================================================================
+				KNOWN ISSUES/WORKAROUND
+================================================================================
+- BIOS version R02.01.0002 and later is compliant to UEFI specification 2.3.1.
+  If the system is running these versions then the user needs to update their
+  utilities and System Management Software to the versions shown below. 
+  Failure to do so may cause the lower versions of the utilities and System
+  Management Software to malfunction.
+    Utilities
+      OFU       v11 Build 15 or higher
+      selview   v11 Build 10 or higher
+      syscfg    v12 Build 8 or higher
+      sysinfo   v12 Build 10 or higher
+    
+    System Management Software
+      Intel(R) Active System Console (IASC)  6.1.10 or higher
+      Intel(R) SNMP Subagent (SNMP-SA)       6.0.10 or higher
+      Intel(R) Deployment Assistant (IDA)    5.1.3 or higher
+	  
+=================================================================================   
+        BIOS R02.06.0002
+=================================================================================
+ - Fixed:The EFI script “Variable_reclaim.nsh” cannot complete successful and the BIOS Error Manager screen will show "A0A8" memory update failure error.
+ - Fixed:POST screen and BIOS setup screen will shows different BIOS version under recovery mode.
+
+
+=================================================================================   
+        BIOS R02.06.0001
+=================================================================================
+ - Fixed: Victor Sokolov - Removable RAID Controller . 
+ - Fixed : Change Boot Order with SYSCFG in S2600CO2
+ - Fixed: "Melock" fix. 
+ - Fixed: (X) BIOS 2.04 help screen text typos.
+ - Fixed: Romley Security issue.
+ - Fixed: The link speed of RS3WC080 storage card only report to Gen2 on BIOS R02.04.0002 with SNB CPU.
+ - Fixed: UEFI Optimized Boot acknowledges F2 Setup to start, but boots Windows instead.
+ 
+
+
+======================================================================================   
+        BIOS R02.05.0004
+=================================================================================
+ NOTICE:  As security requirement, BIOS version R02.05.0004 doesn't support capsule 
+ downgrade in normal mode. In order to downgrade from this BIOS version, you must use
+ the recovery jumper method (As described in the BIOS Recovery procedure).
+ 
+ 
+ -This version enhances the protection of platform configuration data as described in 
+	Intel Security Advisory INTEL-SA-00043
+	
+ - Updated: RSTe OPROM to 4.2.0.1036 
+ - Fixed: BIOS is configuring PCI configuration space Device control register 08 on one of the downstream port of PLX and the two 10GB NIC endpoints to 256B instead of 128 .
+ - Fixed: Sysinfo_v13.1.4: BIOS information "system information" cannot be dump into sysinfo_log.txt. 
+ - Fixed: AXX10GBNIAIOM intermittently can not be detected on HNS2600WP after rebooting when installing two to four nodes in chassis. 
+ - Fixed: "ID_NET_NAME_ONBOARD=eno1" are same for two onboard NICs which should be different. 
+ - Fixed: EFI Boot Options issue in BIOS  
+ - Fixed: Syscfg v12 build 14: BootOrder will be changed before and after running cmd: syscfg /s file.ini /f /b 
+ - Fixed: Boot order will not be load default by F9 but could load default by 'Syscfg /bldfs'. 
+ - Fixed: No Usable Memory Found after 240V AC line exponential dropout test Variable. 
+ - Fixed: R02.05.0001 OFU/iflash32 hang.
+ - Fixed: Sysinfo_v13.1.4: BIOS option "Processor PCIe Linkd Speed<socket1 and socket2>"  cannot be dump into sysinfo_log.txt. 
+ - Fixed: [x]BIOS configuration re-initialization issue after cold boots. 
+
+	
+ =================================================================================   
+ 				BIOS R02.04.0003
+=================================================================================
+ - Update: Integrate the new SSID(0x355B) of Intel Ethernet Controller X540 module in BIOS for supporting the new EEPROM of this IOM.
+
+
+=================================================================================   
+ 				BIOS R02.04.0002
+=================================================================================
+ - Updated: LAN Oprom (1G PXE_v1.5.53.1;10G PXE_v2.3.24.1; 10G Fcoe_v1.8.17; iSCSI_v3.0.34) 
+ 
+ 
+ =================================================================================   
+ 				BIOS R02.04.0001
+=================================================================================
+ - Fixed: SUT won't occur SPD failure
+ - Fixed: AMIBCP not able change BIOS setting "C6".
+ - Fixed: No video output from K5000 DVI port on LHP platform
+ - Updated: RSTe 4.1.0.1026 OPROM 
+ - Updated: LAN Oprom (1G PXE_v1.5.56;10G PXE_v2.3.27; 10G Fcoe_v1.8.17; iSCSI_v3.0.34)
+ - Updated: Disable A7 setting
+
+ 
+=================================================================================   
+ 				BIOS R02.03.0004
+=================================================================================
+ - Fixed: SMBIOS utility reports error:Internal Reference Designator
+ - Fixed: Some Options show up in BIOS setup but do not exist in BIOS EPS1.0
+ - Fixed: Removable RAID Controller in GZP
+ - Fixed: Boot device discover problem after BMC reset with EFI Optimize
+ - Fixed: Boot stop on an abnormal screen after excute cmd iflash32 /rd 
+ - Fixed: Zepher related issue on S2400BB
+ - Fixed: No password was required in order be able to using the key for Network
+ - Fixed: The ACPI test log have an error after run Pets10.0.
+ - Fixed: Error message will not be logged after CMOS battery removal
+ - Fixed: WHEAHCT Logo failed in Win2012R2 WHQL test on S4600LH.
+ - Fixed: Utilities cannot get SMBIOS in UEFI aware Linux.
+ - Fixed:Utilities need BIOS help to allocate 8KB reserved memory below 640
+ - Updated: New ESRT2 OpROMs for Romley Production BIOSes.- 
+ - Updated: RH7 support
+ - Updated: Support NTB on S1400FP
+ - Updated: Processor Microcode 0x00000428 CPUID = 0x306e4
+ 
+ 
+=================================================================================  
+ 				BIOS R02.03.0003
+=================================================================================
+ - This version enhances the protection of certain UEFI variables as described in 
+	Intel Security Advisory INTEL-SA-00038
+
+=================================================================================   
+ 				BIOS R02.03.0002
+=================================================================================
+ - Add "Memory Performance" option in BIOS Setup
+
+=================================================================================   
+ 				BIOS R02.03.0001
+=================================================================================
+ - Fixed: IRQ of 10GigE (on board) is not described by BIOS on S4600LH
+ - Fixed: System does not reset when memory address parity error
+ - Fixed: Blank console issue fix 
+ - Fixed: CTLE Settings for S4600LH platforms
+ - Fixed: System halt after creating RAID with 9750 card
+ - Fixed: User selected power policy not programmed into MSR 0xB01
+ - Fixed: ME not reporting SmaRT/CLST events to the SEL.
+ - Fixed: blank lines in server management screen
+ - Fixed: Change SMBIOS Type 1 - "SKUNum and Family fields" default from 
+   "To be filled by O.E.M" to "00"
+ - Fixed: Show error "BIOS handoff failed"after installLinux OS under UE
+ - Fixed: The SMBIOS log has wrong description about Port Type in Type8
+ - Fixed: Qlogic 4-Port Fiber Channel Cards Configuration does not work
+ - Fixed: SYSCFG "/bbo" and "/bbosys" not working as expected when "Static Boot Order" Enabled
+ - Fixed: After setting Admin password to enabled, no password is requested
+ - Fixed: BIOS needs to support more than 8 NIC boot from PXE
+ - Fixed: RMS25CB080 -610 board may not be detected on some platforms
+
+ 
+Others:
+ - Update processor microcode
+ - Update support for additional devices on PCIe Gen 3 qualified list on the 
+   Intel(R) Server Platforms for E5-4600/2600/2400 CPUs.
+ - Restore customized defaults when auto recovering from NVRAM corruption 
+ - Update reference code (V02.00.00.03)
+
+
+=================================================================================   
+ 				BIOS R02.02.0003
+=================================================================================
+ - Fixed: IRQ of 10GigE (on board) is not described by BIOS on S4600LH
+ - Fixed:System does not reset when memory address parity error
+ - Fixed: CTLE Settings for S4600LH platforms
+Others:
+- Update processor microcode.
+
+=================================================================================   
+ 				BIOS R02.02.0002
+=================================================================================
+- Fixed: The system can't power up after restoring the BIOS default value via removing the
+         CMOS battery
+=================================================================================   
+ 				BIOS R02.02.0001
+=================================================================================
+- Fixed: The BIOS options "PCIe Ports Link Speed" and "Phase Shedding" can be 
+         changed if entering the BIOS setup with the normal user password
+Others:
+- Update processor microcode.
+=================================================================================   
+ 				BIOS R02.01.0005
+=================================================================================
+- Fixed: PCIe link speed selection issue when using E5-4600/2600/2400 V2 CPUs
+- Fixed: Manufactory and Recovery mode failure issue
+=================================================================================   
+ 				BIOS R02.01.0004
+=================================================================================
+- Fixed: Memory Patrol scrub issue
+
+Others:
+- Add new devices to S2600JP PCIe Gen 3 qualified list.
+- Keep PCIe Gen 3 qualified list on the Intel(R) Server Platforms for E5-4600/2600/2400 CPUs. 
+  And remove this list for E5-4600/2600/2400 V2 CPUs.
+- Remove code changes for implementation of "Customize BIOS string or version for customers"
+- Integrated ME FW 02.01.07.328 release
+ =================================================================================   
+ 				BIOS R02.01.0003
+=================================================================================
+- Fixed: Memory Patrol scrub issue
+- Fixed: Intel(R) I350 Gigabit Network Connections show up in Windows Server 2008* R2 USB Device Eject menu
+- Fixed: Problems when configuring the Nvidia* K2000 cards on S2600GZ
+- Fixed: Emulex* PCIe card with Physical Function 0 not working
+- Fixed: "Lockstep x4 DIMMs" auto changed back to "Auto" when set to enabled
+- Fixed: S2600GZ system will BSOD after stress in Windows 2008* with 3DPC LRDIMM configuration
+- Fixed: SMBIOS Type 41 record: Device Type Instance is different from new BIOS R02.01.0002
+- Fixed: Can't distinguish when IPV4 UEFI network card boot option available
+- Fixed: Show error "BIOS handoff failed (BIOS bug?)" after installing the Linux* OS
+- Fixed: There are some errors in the SMBIOS common types.
+- Fixed: There are 2 same UEFI boot options that can't be deleted
+- Fixed: The system will halt after creating RAID with LSI* 9750-8i card inserted to PCIe slot 4/5/6
+- Fixed: When entering the BIOS setup with normal user rights, the "UEFI option rom control" option can be changed
+- Fixed: SR-iov Protocol test failure
+
+Others:
+- Provide an option to log PCIe correctable error
+- Customize BIOS string or version for customers
+- Replace "PCIe Gen 3 qualified list" solution with PCIe port based setup option for Gen3 "enable/disable"
+- Create an option in BIOS setup menu for "System Boot timeout" setting on earlier POST stage
+- Update micro code for Intel(R) Xeon(R) processor E5-4600/2600/2400 processors.
+- Update micro code for Intel(R) Xeon(R) processor E5-4600/2600/2400 v2 processors.
+- Update RSTe 3.8 Option ROM.
+- Update ESRT2 Option ROM.
+- Update PXE Option ROM
+- Make BIOS setting "phase shedding" Option visible, and default setting as "Disabled"
+- Change some strings about "Extended ATR" Option
+=================================================================================   
+ 				BIOS R02.01.0002
+=================================================================================
+- Fixed: There is no System event log when SBE or MBE is triggered from some specific slot.
+- Fixed: SysCfg utility ver 12.8 compatible issue with BIOS R02.01.0001.
+- Fixed: Administrator/user password will be cleared by clearing CMOS on BIOS R02.01.0001.
+
+Others: 
+ - Change "UEFI network stack" and "IPv4 PXE support" default value to "Disabled".
+
+=================================================================================   
+ 				BIOS R02.01.0001
+=================================================================================
+- Fixed: Network Stack is hidden and the default value of IPV4 PXE option is set 
+         to disabled.
+- Fixed: The Onboard infiniband controller name is shown incorrectly in BIOS setup
+         on some half-width board.
+- Fixed: Adaptec* 6405E installation causes system unstable in earlier BIOS POST.
+- Fixed: System boot takes longer time when Throttling mode is set to "Auto" with 
+         particular memory DIMM populated. 
+- Fixed: 2 ports of Qlogic* QLE2562 card can not be configured in Option rom. 
+- Fixed: Device manager of Windows Server 2008R2/2012 shows some unknown devices 
+         when Intel(R) Xeon processor E5-4600/2600/2400 v2 series installed.
+- Fixed: The fourth NIC information is missing in SMBIOS table Type 41 on Intel(R)
+         Server Boards S2600GZ and S1400SP.
+- Fixed: Unexpected "." is shown after the product name in SMBIOS Type 1.
+- Fixed: Some BIOS options have different values after loading Default (press F9 in
+         setup) and CMOS clear.
+- Fixed: Wake-on-LAN (WOL) feature does not work on Windows Server 2008R2/2012 OS.
+- Fixed: Unable to enter the LSI* MegaRAID Configuration Utility by pressing "Ctrl+C" 
+         on LSI* SAS 9200 controllers in some specific scenario.
+
+Others:
+ - Add UEFI 2.3.1 support.
+ - Add UEFI PXE support.
+ - Add UEFI Driver Control option in BIOS setup menu.
+ - Add Intel(R) Virtualization technology support for Intel(R) Xeon processor E5-4600/2600/2400 v2 series.
+ - Add QLogic* QLE2762 Gen3 support for Intel(R) Server Board S2600GZ/GL.
+ - Add an option in setup layout for enable/disable Intel(R) RAID modules RMT3CB080/RMS25CB080/RMS25CB040.
+ - Add C600 unsupported Upgrade Keys warning message implemented.
+ - Add Intel(R) SAS module RMS25LB Gen3 support for S2600JF, S2600WP, S1600JP. 
+ - Update Intel(R) Boot Agent (1G PXE Option ROM, 10G PXE Option ROM, iSCSI Option ROM, FCoE Option ROM).
+ - Update ESRT2 Option ROM for SCU and AHCI.
+ - Update RSTe 3.7 Option ROM.
+ - Update micro code for Intel(R) Xeon processor E5-4600/2600/2400 processors.
+ - Update micro code for Intel(R) Xeon processor E5-4600/2600/2400 v2 processors.
+ - Update ACM 2.2.
+ - Update "Extended ATR" default setting to 0x01 from 0x03.
+ - Update ATA secure erase to non-frozen state.
+
+================================================================================   
+ 				BIOS 01.08.0003
+================================================================================
+- Added C0 microcode version 0x405 for Intel(R) Xeon processor E5-4600/2600/2400 v2.
+
+NOTE:This BIOS does *not* support Intel(R) Xeon processor E5-4600/2600/2400 v2 steppings earlier than C0.
+
+================================================================================   
+ 				BIOS 01.08.0002
+================================================================================
+- Fixed: Quiet Boot option doesn't work sometimes. 
+
+Others:
+ - Does not display add-in card option rom in Quite Boot Mode.
+
+================================================================================   
+ 				BIOS 01.08.0001
+================================================================================
+- Fixed: BIOS can't automatically detect the boot files on the local HDD in EFI optimized boot mode.
+- Fixed: Utility such as DMIDECODE and SYSCFG utility can't get SMBIOS information 
+         under UEFI RHEL 6.2.   
+- Fixed: Device on PCIe slot 4 cannot be recognized on Intel(R) Server Board S2400SC.
+- Fixed: NIC1 Port2 PXE still shows as a boot option even when disabled in setup on 
+	 on Intel(R) Server Board S1400SP.
+- Fixed: Some add-on graphics card have compatibility issues with Microsoft* Windows* 7.
+- Fixed: The length of BMC user password doesn't meet the specification.
+- Fixed: S3 resume will hang sometimes.
+- Fixed: NM Power reading is incorrect on Intel(R) Server Boards S2400SC and S2400EP.
+- Fixed: Issue on Intel(R) Workstation Board W2600CR2 w/ Nvidia* Quadro* K5000 video adapter.
+
+Others:
+ - Add Fast Video feature on multiple platforms.
+ - Update Onboard LAN Oprom incl. 1G/10G PXE, 10G FCoE, iSCSI.
+ - Update ACM version.
+ - Add support for the Intel(R) Xeon processor E5-2600 v2 series - bootable only. 
+ - Add a warning message for the first boot if an Intel(R) Xeon processor E5-2600 v2
+   production processor is inserted.
+ - Add NTB support for Intel(R) Server Board S2600CO.
+ - Serial Over Lan function works if Console Redirection is either disabled or enabled.
+ - Update ME version.
+  
+================================================================================   
+ 				BIOS 01.07.0001
+================================================================================ 
+- Fixed: Update USB Stack to fix several USB issues.
+- Fixed: HDD Driver Fault LED can't be set on Intel(R) Server Board S2400LP.
+- Fixed: Update BIOS to higher UEFI version causes some failures with the flash utility.
+- Fixed: System will hang after setting NIC1 Port1 to Disabled and then performing a reboot on Intel(R)
+         Server Board S4600LH.
+- Fixed: Correct SMBIOS Type 8 E-USB Connector Port Type on Intel(R) Server Board S4600LH.
+
+Others:
+ - Update help strings for setup item "Memory SPD Override".
+ - Add Intel(R) Server Board S4600LH support for production.
+ - Update Board Pre-link Initial Values, VGA selection routine to cover up to four sockets
+   on Intel(R) Server Board S4600LH.
+ 
+================================================================================   
+ 				BIOS 01.06.0002
+================================================================================   
+Others:
+- Add fix to avoid the potential issues by limiting the PCIe slot speed to Gen2 unless
+  the add-in adapters are PCIe Gen 3 qualified on the Intel(R) Server Platforms.
+
+================================================================================   
+ 				BIOS 01.06.0001
+================================================================================  
+- Fixed: Remove NUMA setup option in Intel(R) Server Board S1400SP.                                     
+- Fixed: IO_MOD/SAS_MOD slot number is displayed incorrectly in Microsoft* Windows* 2008.      
+- Fixed: When the PCIe slot option ROM is set to disabled in BIOS setup, the option RoM is still enabled. 
+- Fixed: WHEAHCT Logo Test fails in some Microsoft* Windows* certification.                
+- Fixed: BIOS Setup screen may hang when loading efi image.
+- Fixed: Some USB devices can not be recognized in Bios USB configuration page.
+
+Others:
+- Update onboard SATA and SAS RAID option rom versions 
+- Update MRC rev. to 01.00.00.18
+- Display RAID configuration page in Quite Boot Mode when option rom is dispatched
+- Add PCIe Performance Tuning Knobs setup items
+- Add warnings in post screen when showing the capacity of the onboard RAID controller
+- Add memory 1866Mhz support for some platforms
+- Add fix in SMM hook in the runtime service
+ 
+================================================================================   
+ 				BIOS 01.05.0001
+================================================================================  
+- Fixed: User privilege of RMM4's channel3 mismatch with BIOS setup.
+- Fixed: Abnormal items will be displayed in PCIe slot OPROM control page after 
+         pressing F9 and then discard changes.
+- Fixed: Onboard NIC can not be disabled through BIOS setup on Intel(R) Server board S2600IP.
+- Fixed: There is "unknown device" in boot order when USB floppy plugs.
+
+Others:
+- Add Intel(R) Server Board S1400SP support.
+- Fix some compatible issue on memory Dimms with Atmel sensor.
+- Update processor microcode.
+
+================================================================================   
+ 				BIOS 01.04.0001
+================================================================================  
+- Fixed: There are some error information in SMBIOS type 178 on some platform.
+- Fixed: BIOS Server Management Screen is not compliant with specification.
+- Fixed: No Type 10 information within the SMBIOS table.
+- Fixed: Only Serial port B could be found under Serial Port Config on some product.
+- Fixed: Fix a bug in redirecting a Microsoft* Windows* OS ISO image file to another 
+         system from a remote client. 
+- Fixed: Can not disable NIC1 port1 in BIOS setup on Intel Server Board(R) S1400SP.
+- Fixed: Some failures in SMBIOS Type 8 and Type 10 structure.
+- Fixed: No ACPI S1 peripheral wake support under Red Hat* Linux 6.2 on Intel Server 
+         Board(R) S4600LH.
+- Fixed: Workaround for SDR Version incorrect in some cases.
+
+Others:
+- Add enable/Disable Option for PCIe option Rom.
+- Add support socket 3 and 4 in Legacy VGA socket on Intel Server Board(R) S4600LH.
+- Add PCIE CTLE setting on Intel Server Board(R) S1400SP.
+
+================================================================================   
+ 				BIOS 01.03.0002
+================================================================================  
+- Fixed: NIC Information can not be saved in the Sysinfo log file and it cannot be 
+	 retrieved or set using the syscfg utility. 
+- Fixed: If Remotely redirecting an ISO image from a client and the target system is restarted, 
+	 the target system will automatically boot to the redirected ISO image and start an OS installation.
+
+================================================================================   
+ 				BIOS 01.03.0001
+================================================================================ 
+- Fixed: On GUID based partitions any SMI call freezes system.
+- Fixed: When the baseboard LAN IPV6 is enabled in BIOS setup, the RMM4 configuration is greyed out.
+- Fixed: Unable to disable onboard NIC ports in BIOS setup.
+- Fixed: C1E is disabled when both C3 and C6 processor Cstates are disabled in BIOS setup.
+- Fixed: In BIOS setup, Serial B is incorrectly set to disabled by default and cannot be enabled.
+- Fixed: TPM Admin Control option should be disabled (grayed out) when the BIOS admin password is not set.
+
+================================================================================   
+ 				BIOS 01.02.0010
+================================================================================  
+- Fixed: Onboard NIC2 MAC address can not be shown correctly and it can't boot to PXE from NIC2 on
+         Intel(R) Server Board S2400EP. 
+
+================================================================================   
+ 				BIOS 01.02.0009
+================================================================================  
+- Fixed: Update add-in video output policy
+
+================================================================================   
+ 				BIOS 01.02.0008
+================================================================================  
+- Fixed: PCIe slot 5 max link width can only be detected as x4 on Intel(R) Server Board S1400FP.
+- Fixed: EFI network stack incorrectly uses Mezzenine NIC port.
+- Fixed: FRB2 timer will reset the system after 6 minutes when entering BIOS Setup via the <F6> boot menu.
+- Fixed: System cannot enter EUP Lot6 deep sleep mode.
+- Fixed: PCIe link speed changes occur without logging a SEL event.
+- Fixed: During POST, populated PCIe slots numbers are incorrectly identified.
+- Fixed: Cannot change Serial Port A to IRQ3 on Intel(R) Server Board S2600JF.
+- Fixed: NIC1 and NIC2 cannot be disabled on Intel(R) Server Board S2400SC.
+- Fixed: ACPI errors are reported in dmesg.log in SUSE* Linux* 11 SP2 RC x64.
+
+================================================================================ 
+ 				BIOS 01.02.0007
+================================================================================
+- Fixed: W2600CR Windows* 7 WHQL cert Failure - Single computer Display object Test Failure
+
+================================================================================ 
+ 				BIOS 01.02.0006
+================================================================================
+Others:
+- Update ME version to 02.01.05.091
+
+=================================================================================     
+ 				BIOS 01.02.0004                                     
+=================================================================================
+- Fixed:  S4 resume function is not stable on S2400BB.
+- Fixed:  Correct some products' onboard slot numbers shown in Windows device manage
+- Fixed:  Some NIC IO Modules can not be displayed in the NIC Configuration page of BIOS Setup.
+- Fixed:  Added specific blades items for S2600KI
+- Fixed:  Workstation System cannot enter S3 state in UEFI Windows* 7.
+- Fixed:  Onboard NIC device still can be detected in OS after disabled in BIOS
+- Fixed:  MAC addresses are not shown in BIOS setup on S2400EP Dual port SKU.
+- Fixed:  Some BIOS setup pages have incorrect strings and use incorrect format
+- Fixed:  ME interface fails sometime after S3 resume back on S2600CP
+- Fixed:  SMBIOS Type 8 of some product has some incorrect information
+- Fixed:  Intel(R) X520-T2 10G NIC did not work at expected PCI-E link speed
+- Fixed:  The HDD Fault LED on HSBP might behave incorrectly under some specific configurations.
+- Fixed:  System sometimes can not detect PCI-x storage card.
+
+Others:
+- Update new processor microcode and onboard device option roms
+
+=================================================================================     
+ 				BIOS 01.02.0003                                      
+=================================================================================
+- Fixed:  NIC1 and NIC2 cannot be disabled in BIOS setup.
+- Fixed:  Legacy VGA on CPU socket one is greyed out when add-in VGA card is associated with CPU socket 2.
+- Fixed:  Serial over LAN cannot be activated via IPMI with Console Redirection enabled in BIOS setup. 
+- Fixed:  PXE OPRom inoperative.
+- Fixed:  ISCSI option missing on some platforms. 
+- Fixed:  Implementation of "Iflash32 -rd" to load defaults on next system reset.
+- Fixed:  The DIMM fault LED behaves incorrectly on DIMM_D3 under memory Sparing mode.
+- Fixed:  Some Intel(R) NIC IO modules can't be detected under Microsoft* Windows* 2008, SP2.
+- Fixed:  The information for Onboard NICs is shown incorrectly in BIOS setup.
+- Fixed:  RAID RSTe OpROM fails to launch on AHCI SATA ports in RAID configuration.
+- Fixed:  There is no "RMM4 IPv6 Enable/Disable" option in BIOS setup.
+- Fixed:  The default value of Lan port PXE will show disabled for Intel(R) NIC I/O module.
+- Fixed:  CPU information is shown incorrectly in SMBIOS table if the user populates different frequency processors.
+- Fixed:  Active Processor Cores cannot be changed in BIOS setup.
+- Fixed:  Turbo boost will be disabled when choosing the balanced performance policy in BIOS setup.
+- Fixed:  Unexpected SEL entries logged after BIOS update.
+
+=================================================================================     
+ 				BIOS 01.01.1002                                      
+================================================================================= 
+- First production release BIOS.
+   
+
+[END OF RELEASE NOTES]   

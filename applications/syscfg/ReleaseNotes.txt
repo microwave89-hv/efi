@@ -1,0 +1,436 @@
+
+***********************************************************************************************************************
+*  For better visibility, please open this release notes with Lucida Console Font with regular Style and Size 10      *
+*  using Microsoft(R) Notepad without word wrap enabled                                                               *
+*                                                                                                                     *
+***********************************************************************************************************************
+
+
+Release Note for SYSCFG version 5.0.1 Build 27
+September 5, 2011
+
+Copyright (c) 2003-2011 Intel Corporation.
+
+==========================================
+Contents
+--------
+
+1. Introduction
+2. System requirements
+3. Getting started
+4. Reference Documentation
+5. Known Issues
+6. Features added/removed
+7. OS limitations
+8. Platform Dependencies
+9. Legal Information
+
+1. Introduction
+---------------
+The Save and Restore System Configuration utility (syscfg) is used for saving and restoring Firmware and BIOS settings to a binary file, 
+and for configuring Firmware and BIOS settings via a command line interface.
+
+2. System requirements
+----------------------
+---------------------|-------------------------------------------------------------------------------------------------------|
+Operating Systems    |                                    Platforms                                                          |
+                     |                                                                                                       |
+	             |-------------------------------------------------------------------------------------------------------|
+         	     |S7000FC4UR  | S5400SF | S3200/X38MLST | S3000PT | S3000AH | S5000/  | S5500 | S3420GP/TH | QSSC-S4R    |
+                     |            |         |               |         |         |MCAFEE_HC|       |& MCAFEE_GP |             |
+-------------------- |------------|---------|---------------|---------|---------|---------|------ |------------|-------------| 
+RHEL4 ( U4-32bit &   |            |         |               |         |         |         |       |            |             | 
+        EM64T  )     |      Y     |         |               |	 Y    |	   Y    |   Y     |       |            |             |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+RHEL4 ( U6-32bit &   |            |         |               |         |         |         |       |            |             |  
+        EM64T )      |            |         |               |    Y    |    Y    |   Y     |	  |	       |	     | 
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+RHEL5 ( 32bit &      |            |         |               |         |         |         |       |            |             |   
+        EM64T )      |	   Y	  |    Y    |	    Y	    |	 Y    |	   Y	|   Y	  |	  |	       |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+RHEL5.1 ( 32 bit &   |            |         |               |         |         |         |       |            |             | 
+          EM64T)     |	   Y	  |    Y    |	    Y	    |	 Y    |	   Y	|   Y	  |	  |	       |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+RHEL5.2,5.3 & 5.4    |            |         |               |         |         |         |       |            |             |
+    (32 bit & EM64T) |            |         |               |         |         |         |   Y   |     Y      |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+SUSE9 (SP3 32 bit &  |            |         |               |         |         |         |       |            |             |  
+       SP3 EM64T)    |	  	  |	    |		    |	 Y    |	   Y	|   Y	  |	  |	       |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+SUSE10 (32 bit &     |            |         |               |         |         |         |       |            |             |   
+        EM64T)	     |	   Y	  |    Y    |	    Y	    |	 Y    |	   	|   Y	  |	  |	       |	     |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+SUSE10 (SP1 32 bit & |            |         |               |         |         |         |       |            |             |   
+        SP1 EM64T)   |	   Y 	  |    Y    |	    Y       |	      |	   Y	|   Y	  |   	  |	       |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+SUSE10 (SP2 32 bit & |            |         |               |         |         |         |       |            |             |   
+        SP2 EM64T)   |	  	  |	    |	            |	      |		|	  |   Y	  |     Y      |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+SUSE11 (32 bit &     |            |         |               |         |         |         |       |            |             |   
+        EM64T)       |	  	  |	    |	            |	      |		|	  |   Y	  |     Y      |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+Windows Server 2003  |            |         |               |         |         |         |       |            |             |
+Enterprise           |            |         |               |         |         |         |       |            |             |
+(SP1 32 bit & EM64T) |	   Y	  |    Y    |		    |	      |		|  	  |	  |	       |	     |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Windows Server 2003  |            |         |               |         |         |         |       |            |             |
+Enterprise           |            |         |               |         |         |         |       |            |             |
+(SP2 32 bit & EM64T) |	   Y	  |    Y    |	    Y	    |	      |	   	|  	  |	  |	       |	     |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Windows Server 2003  |            |         |               |         |         |         |       |            |             | 
+Enterprise           |            |         |               |         |         |         |       |            |             |
+(R2 32bit & EM64T)   |	   	  |         |	    	    |	      |	   	|   Y	  |	  |	       |	     |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Windows Server 2003  |            |         |               |         |         |         |       |            |             |
+Enterprise (R2-SP2   |            |         |               |         |         |         |       |            |             |
+ 32bit & EM64T)      |	    	  |         |	    	    |	      |	   	|   Y	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Windows Server 2008  |            |         |               |         |         |         |       |            |             |
+Enterprise           |            |         |               |         |         |         |       |            |             |
+(32 bit & EM64T)     |     Y	  |    Y    |       Y       |	      |	   	|   Y	  |   Y	  |      Y     |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Windows Server 2008  |            |         |               |         |         |         |       |            |             |  
+Enterprise UEFI Aware|            |         |               |         |         |         |       |            |             |
+(EM64T)              |     	  |         |               |	      |	   	|   	  |   Y	  |      Y     |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+Windows XP           |            |         |               |         |         |         |       |            |             |  
+Professional         |            |         |               |         |         |         |       |            |             |
+(SP3 32 bit & EM64T) |     	  |         |               |	      |		|   	  |   Y	  |      Y     |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+WinVista (SP1 32 bit |            |         |               |         |         |         |       |            |             | 
+           & EM64T)  |      	  |         |               |	      |		|   	  |   Y	  |      Y     |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+Win7(32 bit & EM64T) |     	  |         |               |	      |		|   	  |   Y	  |            |             |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+WinPE 1.5	     |	   Y	  |    Y    | 	    Y       |	      |		|   Y	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+WinPE 1.6	     |	   Y	  |    Y    |       Y	    |	      |		|   Y	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+WinPE 2.0 (32 bit)   |	   Y	  |    Y    |       Y	    |	      |	   	|   Y	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+WinPE 2.1 (EM64T)    |	   Y	  |    Y    |       Y	    |	      |	   	|   Y	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+WinPE 3.0 (32 bit &  |            |         |               |         |         |         |       |            |             | 
+           EM64T)    |	    	  |         |        	    |	      |	   	|    	  |   Y	  |      Y     |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+WinPE 3.0 (EM64T)    |	    	  |         |        	    |	      |	   	|    	  |   Y	  |      Y     |      Y      |
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|
+EFI 1.1		     |		  |	    |               |         |		|	  |	  |	       |             |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|	
+UEFI 2.0	     |		  |         |		    |	      |		|	  |   Y	  |      Y     |      Y      |	
+---------------------|------------|---------|---------------|---------|---------|---------|-------|------------|-------------|                       
+Note: 'Y' implies an affirmation to the OS supported on the particular platform.
+
+IPMI 2.0 compliant ESB2 BMC and S3200/X38MLST, S5500, S3420 & QSSC-S4R platform series with Integrated BMC
+ 
+3. Getting started
+------------------
+     I. Installation
+        
+        A. Linux
+            a. Boot into Linux unzip the "SyscfgVXXX_BuildXX_RHEL.zip" or "SyscfgVXXX_BuildXX_SUSE.zip",file into a folder on               
+               your hard drive. After unzip "SysCfg_RHEL" or "SysCfg_SUSE" folder will be generated
+       
+               The syscfg directory will have the following files.
+
+                - install-smi-drv
+                - smi-2.0.2-1.i386.rpm
+                - ReleaseNotes.txt
+                - smi.c
+                - smi.h
+                - Makefile-2.4
+                - Makefile-2.6
+                - syscfg
+                - detectOpenIPMI
+                - Licenses/
+                - ENUS/
+
+            b. Run the 'install-smi-drv' script to install the 'smi' rpm.
+               Now execute the utility from the current folder where the package is unzipped.
+
+            c. To uninstall SMI driver run the following command manually
+                - rpm -e smi
+                         
+        B. UEFI
+            a. Boot into EFI and copy the following files:
+
+                - Licenses/
+                - biosconfig.efi
+                - BootDevice.efi
+                - fwadvcfg.efi
+                - iniparse.efi
+                - ipmi.efi
+                - lanconfig.efi
+                - pefconfig.efi
+                - powerconfig.efi
+                - serialconfig.efi
+                - solconfig.efi
+                - syscfg.efi
+                - systemconfig.efi
+                - userconfig.efi
+                - bioscfg.str
+                - bootdev.str
+                - fwadvcfg.str
+                - HelpBmc.str
+                - HelpMbmc.str
+                - lancfg.str
+                - pefcfg.str
+                - powercfg.str
+                - sercfg.str
+                - solcfg.str
+                - syscfg.str
+                - system.str
+                - usercfg.str
+                - ReleaseNotes.txt
+
+            b. Set the syscfg path variable SYSCFG_PATH. e.g:- set SYSCFG_PATH  fs0:\<syscfg_efi> where  
+               syscfg_efi is the folder containing all the files mentioned above.
+
+            c. Run 'syscfg' commands from the location where the files are copied as described in Section II.
+
+            d. To uninstall SYSCFG run the following commands manually
+        
+                -Delete the contents of the directory where the utility is installed.
+
+        C. Windows/WinPE          
+
+            a. Copy the "SyscfgVXXX_BuildXX_Win.ZIP" or "SyscfgVXXX_BuildXX_WinPE21.ZIP" file into your local
+               directory (e.g. C:\syscfg)
+
+            b. Unzip the folder
+
+            c. Four subfolders will be seen under c:\syscfg folder. Those are -
+
+                - Licenses
+                - InstallationIA32
+                - InstallationEM64T
+                - SysCfgRelease
+
+            d.  Only for WinPE2.1/WinPE3.0 OSs use WinPE supported syscfg binaries (i.e. SyscfgVXXX_BuildXX_WinPE21) 
+                this package will have following folders        
+               
+                - Licenses
+                - InstallationEM64T
+                - SysCfgRelease
+                        
+             
+            e. For 32bit platforms, go to InstallationIA32 folder from the command prompt, run the Install.Cmd
+               For EM64T platforms, go to InstallationEM64T folder from the command prompt, run the Install.Cmd
+
+            f. The above command will install the respective drivers to be used by SysCfg utility.
+               For WinPE 1.5/1.6 driver installation is not required since the driver will be part of the WinPE OS image.
+           
+            g. From the command prompt go to SysCfg Release folder and run the desired commands for the utility
+
+            h. To uninstall SYSCFG run the following commands manually
+        
+                -Delete the contents of the directory where the utility is installed.
+		-Manually uninstall drivers from the Device manager 
+             
+
+        II. Usage
+            Format: syscfg <switch> <argument1> <argument2> ...
+
+        Examples
+        --------
+
+          To save configuration to a binary or human editable (ini) format file.
+          Note: On Linux OS use ./syscfg 
+    
+          /save or /s
+          Format:  syscfg /s [Filename or filetype] [/f][/b] 
+          Example: syscfg /s 
+                   syscfg /s "filename" 
+                   syscfg /s "filename" /b
+                   syscfg /s ini /b  (supported only on S5500,S3420 and Emerald Ridge platforms)
+                   syscfg /s ini /f  (supported only on S5500,S3420 and Emerald Ridge platforms)
+                   syscfg /s scf /f
+                   syscfg /s scf /b
+                       
+          Restore configuration from a binary or human editable(ini) format file.
+    
+          /restore or /r
+    
+          Format:  syscfg /r [Filename or filetype] "/f" and/or "/b"
+          Example: syscfg /r [Filename](optional) /f
+                   syscfg /r [Filename](optional) /b
+                   syscfg /r [Filename](optional) /f /b 
+                   syscfg /r scf /b
+                   syscfg /r ini /f  (supported only on S5500,S3420 and Emerald Ridge platforms )
+                   syscfg /r /f /b
+                   syscfg /r /b
+                   syscfg /r /f
+    
+          Displaying BIOS settings 
+
+          /display bios or /d bios 
+
+          Format:  syscfg /d bios 
+          Example: syscfg /d bios
+ 
+        III. MSIPMI/OpenIPMI Driver Usage
+
+          a. By default, if present, the utility will use Microsoft IPMI or Open IPMI driver on Windows and Linux OS respectively. 
+             Utility installation procedure checks for presence of any of the above mentioned drivers and accordingly install Intel drivers.
+
+          b. In order to use the Intel IMB driver on Windows, the user needs to first manually uninstall the MS IPMI driver (steps mentioned below), 
+             and then install Intel IPMI driver by invoking 'Install.cmd' script from the appropriate folder (32bit or 64bit).
+
+          c. Steps to uninstall MSIPMI driver on Windows:
+             1. Go to windows device manager
+             2. Expand "System devices" Menu
+             3. If a device is seen with name "Microsoft Generic IPMI Compliant Device", right click and select Uninstall.
+
+          d. Steps to start/stop OpenIPMI driver on linux
+             1. To start run 'service ipmi start' on linux terminal.
+             2. To stop run 'service ipmi stop' on linux terminal.
+             3. To view the status of OpenIPMI driver run 'service ipmi status' on linux terminal.
+
+4. Reference Documentation
+--------------------------
+  
+    IPMI v2.0 specification
+    SYSCFG Utility User Guide
+    
+5. Known Issues
+---------------
+
+   1. System returns error message after executing syscfg BIOS commands for 
+      more than 20 times. Clear the NVRAM and restart the machine. 
+      
+   2. 'bbo', 'rfs', 'rbmc', 'rnm', help and display commands cannot not be cascaded with any other command
+
+   3. SYSCFG help page will exit for any of the arrow keys.
+ 
+   4. SYSCFG is not supported on VT Enable Kernel or OS.  
+
+   5. When the save operation is performed on an existing file with the quite mode switch '-q',
+      the file is overwritten without prompting the user.
+
+   6. The settings under server management are saved in BMC. For some of the settings under server  
+      management, after a reboot the values from BMC will override the values set through "bcs" switch.  
+
+      The following settings will be overwritten 
+                1. Resume on AC Power Loss
+                2. FRB-2 Enable
+                3. Clear System event log.
+
+   7.  While using save restore functionality the file name length with extension plus 
+       file path length should not exceed 256 characters.
+
+   8.  For proper display of help on Windows the cmd prompt window screen buffer
+       size should have width fixed to 80 and height fixed to 300. Also window size should
+       have width fixed to 80 and height fixed to 25
+
+   9.  System BOOT order cannot be restored through INI file (Applicable only for S5500, S3420 & QSSC-S4R platform series).
+
+   10. Using Ctrl+C while any SysCfg command is executing, may cause system crash
+
+
+6.  Features added/removed
+--------------------------
+
+   1. Added support for /bbo switch when EFI is Disabled in the Boot Option menu.
+
+
+7. OS limitations or related Known issues
+-----------------------------------------
+   1. Kernel sources needs to be installed in any flavor of Linux OSs. 
+      SMI Driver expects Kernel Sources to be built and installed in server.
+
+   2. A minimum of 1 GB RAM should be installed in the system for SysCfg to execute on WinPE OSs. 
+
+   3. Setting time and Date using "/dt" switch is not supported in WinPE OS
+
+   4. On Windows Vista (EM64T) launch the “cmd prompt” with Administrator privilege to run the utility.
+
+
+8. Platform Dependencies
+------------------------
+
+   
+   a. S7000FC4UR 
+
+       1.'/bht' switch is not supported.
+       2. Restoring of BMC Host IP Address is not supported.
+
+   b. S3200 and X38MLST
+
+       1. PEF configuration, Serial configuration and Firmware Advanced configuration features are not  
+           supported.
+       2. Configuring the "Memory configuration" settings is not supported.
+       
+   c. S3000AH/PT
+      
+      1. A minimum of 512 MB RAM is needed for the utility to run successfully in the mentioned platform series
+
+   d. S55xx, S3420GP/TH & QSSC-S4R Platform series
+
+      1. Serial channel related configuration settings are not supported. 
+      2. Only a subset of BIOS/FW settings are saved to configuration files. 
+      3. For restoring purpose Un-editable Fields, Section Name Headers and Key Names 
+         should not be edited or deleted from the INI file
+         If done so, the utility behavior and error messages shall be unpredictable.
+      4. Some of the LAN settings like Default Gateway IP, Backup Gateway IP etc can be
+         configured only after configuring Host IP and Subnet Mask IP.
+      5. Reordering boot devices using SysCfg switch /bbo should be followed by
+         a system reset as per IPMI spec. Otherwise an immediate display command
+         using /bbo switch may not display the correct boot device order. 
+      6. Restoring of BMC Host, Subnet Mask and Default Gateway IP Address is not supported.
+
+  e. S55xx and S3420GP/TH Platform series
+      
+      1. Due to BIOS issues, HII variables parsing and INI file for BIOS may have problems.
+                         
+
+9. Legal Information
+--------------------
+        
+================================================================================
+
+                               LEGAL INFORMATION
+
+================================================================================
+
+Information in this document is provided in connection with Intel Products
+
+and for the purpose of supporting Intel developed server boards and systems.
+
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+
+property rights is granted by this document. Except as provided in Intel's 
+
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+
+sale and/or use of Intel products including liability or warranties relating 
+
+to fitness for a particular purpose, merchantability, or infringement of any 
+
+patent, copyright or other intellectual property right. Intel Corporation may 
+
+have patents or pending patent applications, trademarks, copyrights, or other 
+
+intellectual property rights that relate to the presented subject matter.  
+
+The furnishing of documents and other materials and information does not 
+
+provide any license, express or implied, by estoppel or otherwise, to any 
+
+such patents, trademarks, copyrights, or other intellectual property rights.  
+
+Intel products are not intended for use in medical, life saving, or life 
+
+sustaining applications. Intel may make changes to specifications and product 
+
+descriptions at any time, without notice.
+
+
+Intel is a registered trademark of Intel Corporation. 
+
+*Other names and brands are the property of their respective owners.
+
+Copyright (c) 2003 - 2011 Intel Corporation.
+
+(end)

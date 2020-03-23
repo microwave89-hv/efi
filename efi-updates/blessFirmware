@@ -1,0 +1,52 @@
+#!/usr/bin/perl
+
+####################################
+my $targetVolume		= $ARGV[2];
+my $FirmwareDirectory	= "/System/Library/CoreServices/Firmware Updates/2012MacBookProRetina15SMC12/";
+my $firmwareName		= "2012MBPR15.smc";
+
+# yes this is secure
+my $debug = (-e "/tmp/com.apple.pkg.testing");
+
+#####################################################################
+
+# If VerifyRequirements returns non-Zero, bail.
+my $command = $targetVolume . $FirmwareDirectory . "VerifyRequirements";
+my $retVal = system($command,"");
+# perl puts the return value in high byte, but we don't care what's in the low byte anyway.
+if ($retVal)
+{
+	debuglog("blessFirmware got a non-zero return value from trying to call VerifyRequirements.\n\tHere is the command trying to call: $command\n\tAnd here is the return code: $retVal");
+	exit 0;
+}
+
+# Decide which model, then bless the appropriate firmware
+
+
+debuglog("my firmwareName is $firmwareName");
+
+if ($firmwareName)
+{
+	$retVal = system("/usr/sbin/bless",	"-mount", "/", 
+								"-firmware", $FirmwareDirectory . "SmcFlasher.efi",
+								"-payload", $FirmwareDirectory .  $firmwareName,
+								"-options", "-wv -LoadApp efi-apple-payload0-data -restart",
+								"--verbose");
+	
+	debuglog("blessFirmware the result of the bless command is: $retVal");
+}
+
+debuglog("deleting payload dir after flash");
+system("/bin/rm",	"-rf", "$FirmwareDirectory");
+
+ 
+########################################################
+# always exit 0
+exit 0;
+
+########################################################
+sub debuglog 
+{
+	# $_[0] is the argument to debuglog
+	system("logger -p install.info '$_[0]'") if ( $debug );
+}

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+updatesdir="/System/Library/CoreServices/Firmware Updates/MBPRetinaEFIUpdate-1.2/"
+firmware="MBP112_0138_B02_LOCKED.scap"
+
+/usr/sbin/bless -mount / -firmware "${updatesdir}/${firmware}" --recovery --verbose
+
+exit 0

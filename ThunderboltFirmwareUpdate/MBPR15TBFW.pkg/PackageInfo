@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pkg-info format-version="2" relocatable="true" deleteObsoleteLanguages="true" overwrite-permissions="true" identifier="com.apple.pkg.MBPR15TBFW" useHFSPlusCompression="true" auth="root" postinstall-action="restart" version="1.2.0.0.1.1366760517">
+  <payload installKBytes="400" numberOfFiles="2"/>
+  <scripts>
+    <postinstall file="postinstall"/>
+  </scripts>
+  <bundle-version/>
+</pkg-info>

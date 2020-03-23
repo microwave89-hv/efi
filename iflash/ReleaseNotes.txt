@@ -1,0 +1,224 @@
+        IFlash32 BIOS Update Utility - Release Notes
+            	Copyright (c) 2010 Intel Corporation
+                     All Rights Reserved
+                     June 11, 2010
+
+
+The IFlash32 BIOS Update Utility is an application program used for 
+updating the system BIOS.
+
+RELEASE NOTES FOR THE IFLASH32 VERSION  2.6 Build 15
+
+A. CHANGES SINCE THE PREVIOUS VERSION
+
+   1. Add suport for preserving OEM IDs across BIOS updates.
+   
+
+B. DEPENDENCIES
+
+   1. Requires platform support for Intel Platform Innovation Framework for 
+      EFI Flash Update Interface Specification, Revision 0.38.
+
+   2. Supported on UEFI, Windows and Linux environments.
+      a. Windows Server(R) 2003/Windows Server(R) 2008/Windows PE (1.5/1.6/2.0/2.1) and 
+         Linux (RHEL5,SLES10)
+
+   3. Binary input files must conform to Intel Platform Innovation 
+      Framework for EFI Capsule Specification, Revision 0.9.
+
+C. SUPPORTED PLATFORMS
+
+   1. S5500 and S5520 platform family.
+   2. S3420 platform family.
+
+D. HOW TO USE THIS UTILITY
+
+For UEFI
+   1. Boot the system to EFI Shell
+
+   2. Copy IFlash32.efi and BIOS update file (also referred as capsule file) 
+      to a HDD or USB Flash Drive
+
+   3. Map the respective storage device in system with the command 
+	
+	    shell > map -r 
+
+   4.change the shell to mapped device file system 
+	   Example: shell > fs0: (or fs1:)
+   
+   5.Run the Iflash32 utility on the prompt
+
+	     fs0:\> iFlash32 [Options] [FileName]
+
+For Windows PE/Windows Server(R) 2003/Windows Server(R) 2008
+   1. Boot to the Windows PE environment using a Windows PE HDD. Alternatively you
+      can use Windows PE CD/HDD customized with the addition of latest flashud.sys
+      driver(recommended).
+
+   2. Copy the release package of IFlash32 utility and BIOS update file 
+      (also referred as capsule file) to a USB Flash Drive or HDD. This should 
+      be a writable media.
+
+   3. Iflash32 utility requires the BIOS update driver (Flashud.sys) to 
+      be installed on the Windows PE environment as a pre-requisite.
+
+	To install BIOS update driver(Only applicable for HDD without 
+        customized driver support and for Windows PE2.0/2.1):	
+
+	a. Go to the command prompt.
+
+	b. Change directory to the path where iFlash32 driver is present.
+
+	c. Run the following command.
+	install.cmd
+
+       Note:- If you are using Windows PE 2.x and not installed driver
+       during Windows PE image creation, upon each reboot user has to
+       install the flash update driver.
+
+       Note:- If you are using Windows PE CD/HDD, the CD/HDD should be customized 
+	with flashud.sys driver support. Refer to "Intel Server 
+      Configuration Utilities Deployment Procedure for Windows PE 2005" document for
+       more information.
+
+   4.Run the Iflash32 utility on the prompt
+	     C:\iFlash32 [Options] [file Name ]
+
+
+For Linux
+
+   1. Copy the iflash files to the linux server in the same folder hierarchy.
+
+   2.Run the Iflash32 utility on the prompt
+	     root@hostname:~# ./iFlash32 [Options] [file Name ]
+
+E. USAGE
+
+   1. Command line Interface
+
+             IFlash32 [Options] [File Name]
+
+      a. To view the command-line help page:
+
+             IFlash32 /h
+             Note: In the EFI environment use "Shift+Pageup" key combination to view the previous page.
+
+      b. To update the System BIOS:
+
+             IFlash32 /u [File Name]
+
+      c. To display file information:
+
+             IFlash32 /i [File Name]
+
+      d. To display the system BIOS Version:
+
+             IFlash32 /i
+
+      e. To update the system BIOS in non-interactive mode:
+             
+             IFlash32 /u [FileName] /ni
+
+
+      f. To Restore Default BIOS Settings
+
+	     IFlash32 /rd
+ 
+      g. To by-pass platform check
+
+	     IFlash32 /nopc
+
+	Note : Usage of this switch with a capsule file not intended
+		for the system can corrupt the BIOS.
+
+    2. Reboot system after the update/Restore Default BIOS Settings operation is completed.
+
+F. UNINSTALL
+
+For UEFI
+
+    1. Delete the iFlash32 files.
+
+For Windows PE/Windows Server(R) 2003/Windows Server(R) 2008
+
+    1. Uninstall BIOS update driver using the following command.
+       uninstall.cmd
+
+    2. Delete the folder containing the iFlash32 files.
+
+For Linux
+
+    1. Delete the folder containing the iFlash32 files.
+
+
+G. KNOWN ISSUES
+
+    1. Management Engine(ME) Capsule update shows as System BIOS update
+       as it is intended to update BIOS flash region. Requires a 
+       A/C power cycle after ME update.
+
+
+	
+       
+H. UNSUPPORTED FEATURES
+
+   1. This version of the utility does not support split binary files.
+
+
+*  Third-party brands and names are the property of their respective owners. 
+
+========================================================
+
+                               LEGAL INFORMATION
+
+========================================================
+
+Information in this document is provided in connection with Intel Products
+
+and for the purpose of supporting Intel developed server boards and systems.
+
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+
+property rights is granted by this document. Except as provided in Intel's 
+
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+
+sale and/or use of Intel products including liability or warranties relating 
+
+to fitness for a particular purpose, merchantability, or infringement of any 
+
+patent, copyright or other intellectual property right. Intel Corporation may 
+
+have patents or pending patent applications, trademarks, copyrights, or other 
+
+intellectual property rights that relate to the presented subject matter.  
+
+The furnishing of documents and other materials and information does not 
+
+provide any license, express or implied, by estoppel or otherwise, to any 
+
+such patents, trademarks, copyrights, or other intellectual property rights.  
+
+Intel products are not intended for use in medical, life saving, or life 
+
+sustaining applications. Intel may make changes to specifications and product 
+
+descriptions at any time, without notice.
+
+ 
+
+Intel is a registered trademark of Intel Corporation. 
+
+ 
+
+*Other names and brands are the property of their respective owners.
+
+ 
+
+Copyright (c) 2010 Intel Corporation.
+
+
+
+(end)

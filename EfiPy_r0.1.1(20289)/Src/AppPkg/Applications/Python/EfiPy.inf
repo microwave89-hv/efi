@@ -1,0 +1,49 @@
+#
+# EfiPy.inf
+#
+# Copyright (C) 2014 - 2015 efipy.core@gmail.com All rights reserved.
+#
+#   EfiPy.inf is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, version 2 of the License.
+#
+#   Foobar is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010016
+  BASE_NAME                      = EfiPy
+  FILE_GUID                      = 06B31C6B-89D9-4c4d-9FB1-533B79649459
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = EfiPy
+
+  DEFINE PYTHON_VERSION       = 2.7.2
+
+#
+#  VALID_ARCHITECTURES        = IA32 X64 IPF
+#
+
+[Packages]
+  StdLib/StdLib.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+
+[FixedPcd]
+
+[Sources]
+  EfiPy/Modules/_EfiPy/EfiPyMain.c
+
+[BuildOptions]
+   MSFT:*_*_IA32_CC_FLAGS         = /Oi- /wd4018 /wd4054 /wd4055 /wd4101 /wd4131 /wd4152 /wd4204 /wd4210 /wd4244 /wd4267 /wd4305 /wd4310 /wd4389 /wd4701 /wd4702 /wd4706 /I$(WORKSPACE)\AppPkg\Applications\Python\Ia32 /I$(WORKSPACE)\AppPkg\Applications\Python\Efi /I$(WORKSPACE)\AppPkg\Applications\Python\Python-$(PYTHON_VERSION)\Include /DHAVE_MEMMOVE /DUSE_PYEXPAT_CAPI /DXML_STATIC
+   MSFT:*_*_X64_CC_FLAGS          = /Oi- /wd4018 /wd4054 /wd4055 /wd4101 /wd4131 /wd4152 /wd4204 /wd4210 /wd4244 /wd4267 /wd4305 /wd4310 /wd4389 /wd4701 /wd4702 /wd4706 /I$(WORKSPACE)\AppPkg\Applications\Python\X64 /I$(WORKSPACE)\AppPkg\Applications\Python\Efi /I$(WORKSPACE)\AppPkg\Applications\Python\Python-$(PYTHON_VERSION)\Include /DHAVE_MEMMOVE /DUSE_PYEXPAT_CAPI /DXML_STATIC
+    GCC:*_*_IA32_CC_FLAGS         = -fno-builtin -Wno-format -I$(WORKSPACE)/AppPkg/Applications/Python/Ia32 -I$(WORKSPACE)/AppPkg/Applications/Python/Python-$(PYTHON_VERSION)/Include -DHAVE_MEMMOVE -DUSE_PYEXPAT_CAPI -DXML_STATIC
+    GCC:*_*_X64_CC_FLAGS          = -Wno-format -I$(WORKSPACE)/AppPkg/Applications/Python/X64 -I$(WORKSPACE)/AppPkg/Applications/Python/Python-$(PYTHON_VERSION)/Include -DHAVE_MEMMOVE -DUSE_PYEXPAT_CAPI -DXML_STATIC
+    GCC:*_*_IPF_SYMRENAME_FLAGS   = --redefine-syms=$(WORKSPACE)/StdLib/GccSymRename.txt

@@ -1,0 +1,48 @@
+
+
+*******************************************************************************
+BIOS Recovery Procedure
+*******************************************************************************
+
+
+In the unlikely event the BIOS is corrupted, leaving the system in an 
+unbootable state, it may be necessary to perform the following BIOS Recovery 
+procedure.  
+
+1.  Copy the following BIOS update files to the root directory of a USB media 
+device (Recovery Media):
+•	IPMI.EFI 
+•	IFlash32.EFI 
+•	RML.ROM 
+•	R##.##.####REC.CAP (where ##.##.#### = BIOS revision number) 
+•	STARTUP.NSH – modified to support BIOS recovery
+Note: These specific files will be located in the "BIOS Recovery Files" folder 
+included in the System Update Package.
+
+2.  Power OFF the system
+
+3.  Locate the BIOS Recovery Jumper on the server board and move the jumper 
+block from pins 1-2 (default) to pins 2-3 (recovery setting)
+
+4.  Insert the recovery media into any available USB port on the back of 
+the server
+Note: The front panel USB ports may not work for this procedure on some server 
+systems.
+
+5.  Power ON the system
+
+6.  The system will automatically boot into the embedded EFI Shell
+
+7.  The STARTUP.NSH file automatically executes and initiates the flash update.
+When complete, the IFlash utility will display a message
+
+8.  Power OFF the system and return the BIOS Recovery jumper to its default 
+position
+
+9.  Remove recovery media from the USB port
+
+10. Power ON the system 
+
+11. Do *NOT* interrupt the BIOS POST during the first boot.
+
+

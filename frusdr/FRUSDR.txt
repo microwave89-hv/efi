@@ -1,0 +1,290 @@
+                  FRUSDR Load Utility - Release Notes
+                 Copyright (c) 2010 Intel Corporation
+                          All Rights Reserved
+                           December 22, 2010
+
+
+RELEASE NOTES FOR FRUSDR LOAD UTILITY VERSION 2.0.1 Build 19
+
+This document describes some specifics of the UEFI64, EFI32 version and Windows PE(32-bit and 64-bit) version
+of FRU & SDR Load Utility.
+
+
+This utility is used for updating or modifying the server management
+subsystem's product level Field Replacement Unit (FRU), Sensor Data 
+Record (SDR) repository, displaying the System Management 
+BIOS (SMB) non-volatile storage components (previously known as the Desktop 
+Management Interface (DMI) non-volatile storage components).
+
+Through the use of a configuration file, added features allow the user to
+control the execution path by probing hardware, requesting user input, and 
+setting tags to provide filtering of FRU and SDR data. Multiple 
+FRU and SDR files may also be processed at once through the configuration file.
+
+The FRUSDR utility fully supports IPMI 1.5 and IPMI 2.0 specifications.
+
+       Important Notes
+
+	A. Install
+	B. Parse the Command Line
+	C. Display FRU, SDR and SMB Information
+	D. Temporary Files
+	E. Limitation:
+	F. DEPENDENCIES:
+	G. SUPPORTED PLATFORMS:
+	H. Documentation:
+	I. Required Files
+	J. Changes Since Last Release
+	K. Errata Items
+	L. Legal Information
+
+
+ 				Important Notes
+
+A. Install
+==========
+
+a. For Windows PE(32-bit and 64-bit)
+
+The FRUSDR Loader is meant to be used as a Windows PE application on a Microsoft 
+Windows Preinstallation Environment* server. 
+
+The frusdr utiliy requires IMBdriver to be installed as a pre-requisite. 
+
+To install IMBdriver:
+	
+	1. Go to the command prompt.
+	2. Change directory to the path where FRUSDR package is present.
+	3. Run the following command.
+
+install.cmd [Full path where FRUSDR Loader utility is present.]
+
+The IMBdriver and memory map driver installation is not needed 
+if the customized Windows PE CD, containing the Intel drivers is used.
+
+Note:- If Microsoft IPMI driver is detected, Intel IMB driver
+will not be installed.
+
+The FRUSDR utility needs to be executed from the same directory, in the 
+command prompt with one of the command line options below.
+
+Normal Command Line Use:
+
+	C:> FRUSDR /CFG MASTER.CFG
+
+	Upon completion of programming the FRU/SDR reboot the server. 
+
+b. For UEFI or EFI32
+
+The FRUSDR Loader is meant to be used as an UEFI-64 or EFI32 bit application that runs 
+on EFI- Shell.
+
+The frusdr utiliy requires IPMI driver file (IPMI.efi) to be present in the 
+same directory from which the utility is run. 
+
+The FRUSDR utility needs to be executed in the EFI-Shell command prompt with 
+one of the command line options below.
+
+Normal Command Line Use:
+
+	fs0:\> FRUSDR /CFG MASTER.CFG
+
+Upon completion of programming the FRU/SDR reboot the server. 
+
+   
+B.  Parsing the Command Line
+============================
+
+
+The FRUSDR Loader utility provides the following command line options:
+
+	Usage: 
+
+      		/? or /h Displays usage information.
+      		/d {smb,fru,sdr} Only displays requested area.
+      		/cfg filename.cfg Uses custom CFG file.
+      		
+      	Users may alternatively use '-' instead of the '/'. 
+
+
+C. Display FRU, SDR and SMB Information
+=======================================
+
+
+The SDR, FRU & SMB area can be displayed using the respective commands. Example 
+for each of these has been listed below.
+
+The /D FRU parameter will display the IMM module FRU area by default. To view 
+other FRU areas, additional addressing information must be provided:
+
+The /D FRU optional addresses are used to view different FRU areas, instead 
+of the default displaying of the IMM module FRU.  The parameters following the 
+/D FRU are in the order: NVS_TYPE, DEVICE_ID, DEV_CNTR, NVS_LUN, DEV_BUS and 
+DEV_ADDRESS. The NVS LUN address and Device Controller address are optional. 
+If the LUN address is used, it must start with a "L". Only LUN addresses of 0,
+1, 2, & 3 are allowed. If the Controller address is used, it must start with a
+"C". There are two basic ways of addressing most FRU devices, Direct Addressing
+and Indirect Addressing (IMM module logical device). Using Direct Addressing, 
+after the NVS type you must supply the correct Device Controller, LUN, bus and 
+slave address. When using Indirect Addressing, after the NVS type only the Device 
+ID (IMM module logical device) is necessary.
+
+      Usage for Direct Addressing:
+      FRUSDR /D FRU [NVS type] [dev ctlr] [lun] [bus] [addr] 
+      Example for IMM module: 
+      FRUSDR /D FRU IMBDEVICE C20 L00 FF 20
+      
+      Usage for Indirect Addressing:
+      FRUSDR /D FRU [NVS type] [device id] [Slave Address]
+      In the above command Slave Address is optional and used for devices like HSC, LCP etc.
+      Example: FRUSDR /D FRU IMBDEVICE 00
+
+
+Examples for the S5000PSL Server board:
+
+	1. To display the SM BIOS area:
+   		fs0:\> FRUSDR /D SMB  
+   		C:> FRUSDR /D SMB  
+
+	2. To display the SDRs:
+   		fs0:\> FRUSDR /D SDR 
+   		C:> FRUSDR /D SDR 
+
+	3. To display the Starlake IMM module FRU:
+   		fs0:\> FRUSDR /D FRU 
+   		C:> FRUSDR /D FRU 
+
+Note: 
+
+   If your system does not display information on any particular FRU device, then 
+   it probably does not contain the device.
+
+
+D. Temporary Files:
+===================
+
+
+If you desire to create temporary files, you must use the undocumented "/tmp"
+switch on the command line. When the FRUSDR Loader is executed, it 
+creates temporary files that may be used to aid in recreating a problem, 
+should one arise.  The FRUSDR Loader does not remove the temporary files, the
+temporary files may be erased by the user after the FRUSDR Loader has 
+completed.
+
+
+E. Limitation:
+==============
+
+
+The FRUSDR utility currently doesn't support programming FRUs and SDRs on any 
+mBMC systems.
+
+
+F. DEPENDENCIES:
+================
+
+
+   1. Executes under the Windows PE/EFI command Shell.
+   2. The Windows PE image on which the utility to run should have support for WMI.
+   3. The IPMI driver file, IPMI.EFI should be present in the same directory as 
+      the utility.
+  
+
+G. SUPPORTED PLATFORMS:
+=======================
+
+
+   1. S5500 platform series.
+   2. S5520 platform series.
+   3. S3420 platform series.
+  
+
+H. Documentation:
+=================
+
+
+Additional information on the FRUSDR Loader utility may be found in the 
+External Product Specification.
+
+
+I. Required Files:
+==================
+
+
+The FRUSDR utility SHOULD contain the following files in the directory from 
+which it is run.
+
+For Windows PE
+	FRUSDR Loader utility program 
+	install.cmd
+	imbdrv.inf
+	imbdrv.sys
+	imbapi.dll 
+	ibsmutil.inf
+	ibsmutil.sys
+	DeviceSetup.exe
+	msipmi.dll
+
+For EFI
+	FRUSDR Loader utility program 
+	IPMI.EFI
+
+
+J. Changes Since Last Release:
+==============================
+ 1. Includes fixes for issues raised on previous release.
+
+K. Errata Items:
+================
+
+ 1. FRUSDR Loader utility will timeout after 30 seconds while
+    trying to communicate with a non existing IPMB device.
+   				
+L. LEGAL INFORMATION:
+=====================
+
+Information in this document is provided in connection with Intel Products
+
+and for the purpose of supporting Intel developed server boards and systems.
+
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+
+property rights is granted by this document. Except as provided in Intel's 
+
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+
+sale and/or use of Intel products including liability or warranties relating 
+
+to fitness for a particular purpose, merchantability, or infringement of any 
+
+patent, copyright or other intellectual property right. Intel Corporation may 
+
+have patents or pending patent applications, trademarks, copyrights, or other 
+
+intellectual property rights that relate to the presented subject matter.  
+
+The furnishing of documents and other materials and information does not 
+
+provide any license, express or implied, by estoppel or otherwise, to any 
+
+such patents, trademarks, copyrights, or other intellectual property rights.  
+
+Intel products are not intended for use in medical, life saving, or life 
+
+sustaining applications. Intel may make changes to specifications and product 
+
+descriptions at any time, without notice.
+
+ 
+
+Intel is a registered trademark of Intel Corporation. 
+
+ 
+
+*Other names and brands are the property of their respective owners.
+
+ 
+
+Copyright (c) 2010 Intel Corporation.

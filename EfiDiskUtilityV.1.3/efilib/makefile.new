@@ -1,0 +1,225 @@
+#
+# Copyright (c) 1999, 2000
+# Intel Corporation.
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+# 
+# 3. All advertising materials mentioning features or use of this software must
+#    display the following acknowledgement:
+# 
+#    This product includes software developed by Intel Corporation and its
+#    contributors.
+# 
+# 4. Neither the name of Intel Corporation or its contributors may be used to
+#    endorse or promote products derived from this software without specific
+#    prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY INTEL CORPORATION AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED.  IN NO EVENT SHALL INTEL CORPORATION OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+
+#
+# Include sdk.env environment
+#
+
+!INCLUDE $(BUILD_DIR)\PlatformTools.env
+
+
+#
+# Globals needed by master.mak
+#
+
+TARGET_LIB = $(BASE_NAME)
+BIN_DIR    = $(BUILD_DIR)\$(PROCESSOR)
+
+#
+# Include paths
+#
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include\$(PROCESSOR)
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\Include\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework\Include\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Inc
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Library
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Library\$(PROCESSOR)
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include\IndustryStandard
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Core\Dxe
+INC = $(INC) -I $(EDK_SOURCE)\Foundation
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework
+INC = $(INC) -I $(SOURCE_DIR)\..\portinc 
+
+!include $(SOURCE_DIR)\..\makefile.hdr
+INC = -I . $(INC)
+
+INC = -I $(SOURCE_DIR)\src\usa $(INC)
+INC = -I $(SOURCE_DIR)\src $(INC)
+INC = -I $(SOURCE_DIR)\inc $(INC)
+INC = -I $(SOURCE_DIR)\efiinc $(INC)
+
+C_FLAGS = /D NO_INTERFACE_DECL $(C_FLAGS)
+
+#
+# Default target
+#
+
+all : sub_dirs $(OBJECTS)
+
+sub_dirs : $(DEST_DIR)\efisrc \
+           $(DEST_DIR)\src\usa \
+
+$(DEST_DIR)\efisrc  : ; - md $(DEST_DIR)\efisrc
+$(DEST_DIR)\src\usa : ; - md $(DEST_DIR)\src\usa
+
+#
+# Program object files
+#
+
+OBJECTS = $(OBJECTS) \
+    $(DEST_DIR)\efisrc\efickmsg.obj     \
+    $(DEST_DIR)\src\usa\array.obj       \
+    $(DEST_DIR)\src\usa\arrayit.obj     \
+    $(DEST_DIR)\efisrc\basesys.obj      \
+    $(DEST_DIR)\src\usa\bigint.obj      \
+    $(DEST_DIR)\src\usa\bitvect.obj     \
+    $(DEST_DIR)\efisrc\cache.obj        \
+    $(DEST_DIR)\src\usa\clasdesc.obj    \
+    $(DEST_DIR)\src\usa\cluster.obj     \
+    $(DEST_DIR)\src\usa\cmem.obj        \
+    $(DEST_DIR)\src\usa\contain.obj     \
+    $(DEST_DIR)\src\usa\dcache.obj      \
+    $(DEST_DIR)\efisrc\drive.obj        \
+    $(DEST_DIR)\src\usa\eaheader.obj    \
+    $(DEST_DIR)\src\usa\easet.obj       \
+    $(DEST_DIR)\efisrc\efitimefunc.obj  \
+    $(DEST_DIR)\efisrc\efimisc.obj      \
+    $(DEST_DIR)\efisrc\efimessages.obj  \
+    $(DEST_DIR)\efisrc\qsort.obj        \
+    $(DEST_DIR)\efisrc\efistrutil.obj   \
+    $(DEST_DIR)\efisrc\layout.obj       \
+    $(DEST_DIR)\src\usa\fat.obj         \
+    $(DEST_DIR)\src\usa\fatdent.obj     \
+    $(DEST_DIR)\src\usa\fatdir.obj      \
+    $(DEST_DIR)\src\usa\fatsa.obj       \
+    $(DEST_DIR)\src\usa\fatsachk.obj    \
+    $(DEST_DIR)\src\usa\fatvol.obj      \
+    $(DEST_DIR)\src\usa\filedir.obj     \
+    $(DEST_DIR)\src\usa\hashindx.obj    \
+    $(DEST_DIR)\src\usa\hmem.obj        \
+    $(DEST_DIR)\efisrc\ifssys.obj       \
+    $(DEST_DIR)\src\usa\ifsutil.obj     \
+    $(DEST_DIR)\src\usa\iterator.obj    \
+    $(DEST_DIR)\src\usa\list.obj        \
+    $(DEST_DIR)\src\usa\listit.obj      \
+    $(DEST_DIR)\src\usa\mem.obj         \
+    $(DEST_DIR)\src\usa\membmgr.obj     \
+    $(DEST_DIR)\src\usa\message.obj     \
+    $(DEST_DIR)\efisrc\newdel.obj       \
+    $(DEST_DIR)\src\usa\numset.obj      \
+    $(DEST_DIR)\src\usa\object.obj      \
+    $(DEST_DIR)\src\usa\rcache.obj      \
+    $(DEST_DIR)\src\usa\rfatsa.obj      \
+    $(DEST_DIR)\src\usa\rootdir.obj     \
+    $(DEST_DIR)\src\usa\secrun.obj      \
+    $(DEST_DIR)\src\usa\seqcnt.obj      \
+    $(DEST_DIR)\src\usa\sortcnt.obj     \
+    $(DEST_DIR)\src\usa\sortlist.obj    \
+    $(DEST_DIR)\src\usa\sortlit.obj     \
+    $(DEST_DIR)\src\usa\supera.obj      \
+    $(DEST_DIR)\src\usa\ufat.obj        \
+    $(DEST_DIR)\src\usa\ulib.obj        \
+    $(DEST_DIR)\src\usa\volume.obj      \
+    $(DEST_DIR)\efisrc\wstring.obj      \
+
+#
+# Source file dependencies
+#
+$(DEST_DIR)\efisrc\efickmsg.obj     : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\array.obj       : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\arrayit.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\basesys.obj      : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\bigint.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\bitvect.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\cache.obj        : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\clasdesc.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\cluster.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\cmem.obj        : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\contain.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\dcache.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\drive.obj        : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\eaheader.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\easet.obj       : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\efitimefunc.obj  : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\efimisc.obj      : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\efimessages.obj  : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\qsort.obj        : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\efistrutil.obj   : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\layout.obj       : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fat.obj         : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fatdent.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fatdir.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fatsa.obj       : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fatsachk.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\fatvol.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\filedir.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\hashindx.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\hmem.obj        : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\ifssys.obj       : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\ifsutil.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\iterator.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\list.obj        : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\listit.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\mem.obj         : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\membmgr.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\message.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\newdel.obj       : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\numset.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\object.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\rcache.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\rfatsa.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\rootdir.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\secrun.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\seqcnt.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\sortcnt.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\sortlist.obj    : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\sortlit.obj     : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\supera.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\ufat.obj        : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\ulib.obj        : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\src\usa\volume.obj      : $(SOURCE_DIR)\src\usa\$(*B).cxx $(INC_DEPS)
+$(DEST_DIR)\efisrc\wstring.obj      : $(SOURCE_DIR)\efisrc\$(*B).cxx $(INC_DEPS)
+
+#
+# Because libefi compiles out of sub-directories, we need some of our own
+# inference rules.  $(CC_LINE) is defined in master.mak
+#
+{$(SOURCE_DIR)\efisrc}.cxx{$(DEST_DIR)\efisrc}.obj: 
+  $(CC_LINE)
+{$(SOURCE_DIR)\src\usa}.cxx{$(DEST_DIR)\src\usa}.obj: 
+  $(CC_LINE)
+
+#
+# Handoff to master.mak
+#
+
+!include $(SOURCE_DIR)\..\master.mak

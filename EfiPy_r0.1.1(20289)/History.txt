@@ -1,0 +1,16 @@
+EfiPy_r0.1.1(20289) 2016/05/03:
+  1. Correct SMBIOS_STRUCTURE and change SMBIOS_TABLE_STRING to class inherit from UINT8
+  2. add _SimpleCData from ctypes into EfiPy
+
+EfiPy_r0.1.0(20289) 2016/03/29:
+  1. Complete py files for UDK 2015 (revision 20289)
+  2. EfiPy LOGO
+
+EfiPy_r0.0.5(1756) 2016/03/05:
+  1. Create EfiPy logo
+  2. NumberOfTableEntries changing from UINT64 to UINTN
+  3. Fixing structure error
+  4. Add Panel test program
+
+EfiPy_r0.0.4(1756):
+  1. Add CorePy package

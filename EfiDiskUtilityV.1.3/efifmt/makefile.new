@@ -1,0 +1,114 @@
+#
+# Copyright (c) 1999, 2000
+# Intel Corporation.
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+# 
+# 3. All advertising materials mentioning features or use of this software must
+#    display the following acknowledgement:
+# 
+#    This product includes software developed by Intel Corporation and its
+#    contributors.
+# 
+# 4. Neither the name of Intel Corporation or its contributors may be used to
+#    endorse or promote products derived from this software without specific
+#    prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY INTEL CORPORATION AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED.  IN NO EVENT SHALL INTEL CORPORATION OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+
+#
+# Include sdk.env environment
+#
+
+!INCLUDE $(BUILD_DIR)\PlatformTools.env
+
+#
+# Set the base output name and entry point
+#
+
+IMAGE_ENTRY_POINT = InitializeEfiFmtApplication
+
+#
+# Globals needed by master.mak
+#
+
+TARGET_APP = $(BASE_NAME)
+BIN_DIR    = $(BUILD_DIR)\$(PROCESSOR)
+
+#
+# Include paths
+#
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include\$(PROCESSOR)
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\efi\Include\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework\Include 
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework\Include\$(PROCESSOR) 
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Inc
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Library
+INC = $(INC) -I $(EDK_SOURCE)\Sample\Application\Shell\Library\$(PROCESSOR)
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Include\IndustryStandard
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Core\Dxe
+INC = $(INC) -I $(EDK_SOURCE)\Foundation
+INC = $(INC) -I $(EDK_SOURCE)\Foundation\Framework
+INC = $(INC) -I $(SOURCE_DIR)\..\portinc 
+
+
+!include $(SOURCE_DIR)\..\makefile.hdr
+INC = -I . $(INC)
+
+INC = -I $(SOURCE_DIR)\..\efilib\inc $(INC)
+INC = -I $(SOURCE_DIR)\..\efilib\efiinc $(INC)
+
+#
+# Libraries
+#
+
+LIBS = $(LIBS) $(BUILD_DIR)\$(PROCESSOR)\EfiShellLib.lib
+LIBS = $(LIBS) $(BUILD_DIR)\$(PROCESSOR)\efilib.lib
+LIBS = $(LIBS) $(BUILD_DIR)\$(PROCESSOR)\EdkFrameworkGuidLib.lib
+LIBS = $(LIBS) $(SOURCE_DIR)\..\efilib\int64.lib
+#
+# Default target
+#
+
+all : $(LIBS) $(OBJECTS)
+
+#
+# Program object files
+#
+
+OBJECTS = $(OBJECTS) \
+    $(DEST_DIR)\efifmt.obj \
+
+#
+# Source file dependencies
+#
+
+$(DEST_DIR)\efifmt.obj     : $(SOURCE_DIR)\$(*B).cxx $(INC_DEPS)
+
+#
+# Handoff to master.mak
+#
+!include $(SOURCE_DIR)\..\master.mak

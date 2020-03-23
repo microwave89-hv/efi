@@ -1,0 +1,204 @@
+EFI System Firmware Update Package (SFUP) Installation and Operation Instructions
+
+Intel (R) Server Board S2600CP family
+Intel (R) Server Sytem P4000CP family
+
+Firmware Update Package Update Instructions 
+
+Released - January 11, 2016
+
+*******************************************************************************
+This update package includes the following system software updates:
+
+  System BIOS  - 02.06.0002
+  ME Firmware  - 02.01.07.328
+  BMC Firmware - 01.25.9398
+  FRUSDR       - 1.11
+
+Important NOTES: 
+
+- All the updates provided in this package are EFI based (unless otherwise noted).To 
+  run these updates, you must boot the system to the embedded EFI shell and then 
+  access the USB device or hard disk containing the system software updates.
+
+- NOTICE:  As security requirement, starting from BIOS R02.05.0004 revision doesn't support capsule 
+ downgrade in normal mode. In order to downgrade from this BIOS version, you must use
+ the recovery jumper method.
+ -This version enhances the protection of platform configuration data as described in 
+Intel Security Advisory INTEL-SA-00043
+
+*************************************************************************************
+                       SYSTEM HARDWARE and SOFTWARE REQUIREMENTS
+*************************************************************************************
+The contents of this update package is used to update the System Firmware for 
+the following Intel Server Products only:
+
+  - Intel(R) Server Board S2600CP family
+  - Intel(R) Server System P4000CP family
+  
+To update the system firmware to the versions included in this update package, the firmware 
+currently loaded on the given server system must meet the following:
+ 
+  - BIOS 01.01.1002, or later Version
+  - ME 02.01.05.069 or later Version
+  - BMC 01.00.2612 or later Version
+  - FRUSDR 1.01 or later version
+
+The utilities used to update the System Firmware are:
+  - Iflash32 11.0 build 11
+  - FWPIAUPD 11.0 build 9
+  - FRUSDR 11.0 build 19
+
+*************************************************************************************
+                 Standard Update Procedure from the embedded EFI Shell
+*************************************************************************************
+
+- Unzip the contents of the update package and copy all files to a folder on a USB flash drive
+- Insert the USB flash drive to any available USB port on the server system to be updated
+- Boot the Server to the EFI shell.  This can be accessed via the <F2> BIOS setup utility during POST.
+- Run the command "map -r" in the EFI shell to mount the USB flash drive
+- Run the command "fs0:" to change folders to the USB flash drive. The USB flash drive 
+may also mount to fs1: depending on  other installed devices. The number of "fs#" is 
+dependent on the result of command "map -r"
+- Change folders to the folder storing the update package files
+- Run the command "Startup.nsh" to start updating all the firmware and BIOS updates
+
+
+Warning: 
+!!Do NOT reboot or remove power from your system during the update process.
+Doing so may render your system inoperable. !!
+
+
+-----  Verifying updates
+-  Reboot the system
+-  During POST, hit the <F2> Key when prompted to access the BIOS Setup Utility
+-  Hit the F9 key to load BIOS Defaults
+-  At the MAIN menu verify the BIOS revision is correct
+-  Move cursor to the SERVER MANAGEMENT Menu
+-  Move cursor down to the SYSTEM INFORMATION Option and hit Enter
+-  Verify the BMC Firmware revision is correct
+-  Verify the SDR revision is correct
+-  Verify the ME Firmware revision is correct
+-  Hit the F10 Key to save changes and Exit
+
+
+The System Software Update is Complete.
+
+
+*************************************************************************************
+Alternate Update Procedure:   Individual Firmware Update Procedure
+*************************************************************************************
+
+If you want to update firmware components individually, like BMC/BIOS/ME/FRUSDR, 
+do NOT run the "STARTUP.NSH" file described in the Standard Update Procedure above.  
+Instead, run the individual .NSH script file for each update included in the update 
+package files. Follow the update order below to ensure a trouble free update:
+
+  1) BMC firmware update
+  2) BIOS update
+  3) Manageability Engine (ME) Firmware update
+  4) FRUSDR update
+
+
+---- Update BMC Firmware
+
+1) Boot the system to the EFI shell and go to root folder
+2) At the shell prompt, run "UpdateBMC.nsh" to start BMC Firmware update
+3) When complete, go to the BIOS update section described below, or power off the 
+   system and cycle AC power before continuing.
+
+
+---- Update System BIOS 
+
+1) Boot the system to the EFI shell and go to root folder
+2) At the shell prompt, run "UpdateBIOS.nsh" to start BIOS update
+3) When complete, reboot the system and enter BIOS Setup by pressing the F2 Key during
+   POST 
+4) Verify the BIOS string on main BIOS menu
+5) Press F9 to load defaults and press F10 to save and reset the system
+6) Go to the ME firmware update section described below
+The BIOS update is complete. Either reboot the server or go to the ME firmware Update section 
+described below.
+
+
+---- Update ME Firmware
+
+1) Boot the system to the EFI shell and go to root folder
+2) At the shell prompt, run "UpdateME.nsh" to start ME firmware update
+3) When complete, go to the FRUSDR update section described below, or power off the 
+   system and cycle AC power before continuing.
+
+   
+
+---- Update FRUSDR
+
+1) Boot the system to the EFI shell and go to root folder
+2) At the EFI command prompt, run "UpdateFRUSDR.nsh" to start FRUSDR update
+3) Answer questions and enter desired information when prompted.
+4) When complete, reboot the system by front control panel
+
+
+---- Verifying updates
+
+
+- Reboot the server  
+- During POST, hit the <F2> Key when prompted to access the BIOS Setup Utility
+-  Hit the F9 key to load BIOS Defaults
+-  At the MAIN menu verify the BIOS revision is correct
+-  Move cursor to the SERVER MANAGEMENT Menu
+-  Move cursor down to the SYSTEM INFORMATION Option and hit Enter
+-  Verify the BMC Firmware revision is correct
+-  Verify the SDR revision is correct
+-  Verify the ME Firmware revision is correct
+-  Hit the F10 Key to save changes and Exit
+
+
+The System Software Update is Complete.
+
+
+
+*******************************************************************************
+BIOS Recovery Process
+*******************************************************************************
+In the unlikely event the BIOS is corrupted, leaving the system in an 
+unbootable state, it may be necessary to perform the following BIOS Recovery 
+procedure.  
+
+1.  Copy the following BIOS update files to the root directory of a USB media 
+device (Recovery Media):
+Note: These specific files will be located in the "BIOS Recovery Files" folder 
+included in the System Update Package.
+
+- IPMI.EFI 
+- IFlash32.EFI 
+- RML.ROM 
+- R##.##.####REC.CAP (where ##.##.#### = BIOS revision number) 
+- STARTUP.NSH (modified to support BIOS recovery)
+
+
+2.  Power OFF the system
+
+3.  Locate the BIOS Recovery Jumper on the server board and move the jumper 
+block from pins 1-2 (default) to pins 2-3 (recovery setting)
+
+4.  Insert the recovery media into any available USB port on the back of 
+the server
+Note: The front panel USB ports may not work for this procedure on some server 
+systems.
+
+5.  Power ON the system
+
+6.  The system will automatically boot into the embedded EFI Shell
+
+7.  The STARTUP.NSH file automatically executes and initiates the flash update.
+When complete, the IFlash utility will display a message
+
+8.  Power OFF the system and return the BIOS Recovery jumper to its default 
+position
+
+9.  Remove recovery media from the USB port
+
+10. Power ON the system 
+
+11. Do *NOT* interrupt the BIOS POST during the first boot.
+

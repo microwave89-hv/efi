@@ -1,0 +1,543 @@
+#     Copyright © 2006-2013 Apple Inc. All rights reserved.				    + *
+#																				+ *
+#  THESE COMPUTER LISTINGS AND SPECIFICATIONS, HEREIN, ARE THE					+ *
+#  PROPERTY OF Apple Inc. AND SHALL												+ *  
+#  NOT BE REPRODUCED OR COPIED OR USED IN WHOLE OR IN PART AS THE BASIS FOR		+ *
+#  MANUFACTURE OR SALE OF ITEMS WITHOUT WRITTEN PERMISSION.						+ *
+## 23 Mar 2012 KM Created
+#  Created using XCode
+#
+#  Change History (newest on top)
+#   J44 MacBook Pro (13-inch, Late 2013)
+
+TDF	102
+TITLE	"This TDF contains test definitions for MacBook Pro & MacBook for ASD."
+PRODUCT	"MacBookPro"
+VERSION	3S158
+
+// text for dialog messages
+set-dialog-descriptionsEnumerated =
+{
+//	text for unsupported machine
+	kSPARE,						"SPARE.",
+	// ====== app strings -- app assumes these strings are where they are, so the order should NOT be changed
+	kDisplayPackageTestsPassFail,	"Did the '%s' tests pass or fail?",		// add "tests" as package names don't use that word
+	kDisplayTestPassFail,			"Did the '%s' pass or fail?",			// don't use "tests", because test names usually already have it
+	
+	// ===== tdf strings
+//	texts for dialog boxes
+	kConnectEnetLoopbackCable,	"Connect Ethernet Loopback cable to the Ethernet port.",
+	kRemoveEnetLoopbackCable,	"Remove Ethernet Loopback cable from the Ethernet port.",
+	kConnectFireWire800Cable,	"Connect FireWire 800 cable to FireEcho server.",
+	kRemoveFireWire800Cable,	"Remove FireWire 800 cable.",
+	kConnectFireWire400Cable,	"Connect FireWire 400 cable to FireEcho server",
+	kRemoveFireWire400Cable,	"Remove FireWire 400 cable.",
+	kKeyboardTestPost,			"Turn off the Caps Lock key before continuing.",
+	kKeyboardBacklightOff,		"If the keyboard backlight is on it will turn off. ",
+	kKeyboardBacklightPostOff,	"Did the keyboard backlight turn off? ",
+	kKeyboardBackLightTestPost,	"Did the backlight turn on then off?",
+	kKeyboardBacklight,			"The backlit keyboard will activate for 3 seconds.",
+	kKeyboardLongKey,			"Press long key four times each (white keys), then press Check Results button.",
+	kBatteryLED,				"The battery LED will activate for 3 seconds.",
+	kCameraLED,					"The Camera LED will activate for 6 seconds.",
+	kCloseOpenLid,				"Close and Open the lid after pressing the OK button.",
+	kPlugACCord,				"Plug in the AC adapter plug and wait 5 seconds before pressing OK.",
+	kPlugACCord15,				"Plug in the AC adapter plug to charge the battery above 15%.",
+	kUnplugACCord,				"Unplug the AC adapter plug to discharge the battery below 85%.",
+	kAccelerateMMM,				"Tilt the UUT to the back and then tilt to one side.",
+	kCheckBattery,				"Battery capacity must be %s %s to pass.  Battery is now: %d%%.          (Capacity status updates every 30 seconds.)",
+	kNextTestPattern,			"Press Show Patterns, then press the space bar to continue to the next pattern.",
+	kTestPatternStatus,			"Did all the test patterns display correctly?",
+	kEthernetVGAVideoPort,		"Connect Ethernet cable and VGA cable to DAV Test Box.",
+	kEthernetDAVDVIVideoPort,	"Connect Ethernet cable and DVI cable to DAV Test Box.",
+	kEthernetDPVideoPort,		"Connect Ethernet cable and DisplayPort (DP) cable to DAVDP Test Box.",
+	kEthernetDVIVideoPort,		"Connect Ethernet cable and DVI cable to DAVDP Test Box.",
+//	kEthernetDPVideoPort,		"Connect Ethernet cable and DisplayPort (DP) cable to DAVDP Test Box.  Set the EDID switch on the DAVDP Test Box to DVI and recycle the power of the DAVDP Test Box.",
+//	kEthernetDVIVideoPort,		"Connect Ethernet cable and DVI cable to DAVDP Test Box.  Set the EDID switch on the DAVDP Test Box to HDMI and recycle the power of the DAVDP Test Box.",
+	kEjectBootCD,				"Eject the boot CD to run the %s test.",
+	kInsertBlankCD,				"Insert a blank CD.",
+	kEjectBlankCD,				"Eject the blank CD.",
+	kInsertATD2CD,				"Insert the Apple Test Disc 2 CD.",
+	kEjectATD2CD,				"Eject the Apple Test Disc 2 CD.",
+	kInsertATD1DVD,				"Insert the Apple Test Disc 1 DVD.",
+	kEjectATD1DVD,				"Eject the Apple Test Disc 1 DVD.",
+	kInsertBootCD,				"Insert the ASD boot DVD to continue testing.",
+	kInsertATD9DVD,				"Insert the Apple Test Disc 9 DVD.",
+	kEjectATD9DVD,				"Eject the Apple Test Disc 9 DVD.",
+	kInsertBlankDVD,			"Insert a blank DVD+R.",
+	kEjectBlankDVD,				"Eject the blank DVD+R.",
+	kCameraBarCode,				"Hold up test barcode test image 15 inches from UUT camera and press OK. Hold the barcode steady until the test completes.",
+	kCameraVisual,				"Verify that the camera image has no visual distortions and the green LED is on. Test will end in 15 seconds.",
+	kDPDisplayVisual,			"Verify that the desktop image appears on the external monitor.",
+	kRemoteIR,					"After pressing OK, point the IR remote at the UUT and press the remote button.",
+	kUSBdevDetect,				"Plug in a USB 2.0 test device into the USB port: ", 
+	kHeadphone,					"Connect Edirol UA-4FX box to the headphone jack and USB port.", 
+	kHeadphoneStereo,			"Connect Edirol UA-4FX box to USB port and stereo output to the headphone jack.",
+	kHeadphoneDigital,			"Connect Edirol UA-4FX box to USB port and digital in to the headphone jack.",
+//	kMAudioLineIn,				"Connect M-Audio box to USB port, ISO-MAX transformer IN to M-Audio box line, and ISO-MAX transformer OUT to the headphone jack.",
+	kMAudioLineIn,				"Connect the USB cable and headphone jack from the M-audio Line In test equipment to the unit.",
+//	kMAudioDigitalOut,			"Connect M-Audio box to USB port and a digital optical cable from M-Audio box line/optical to the headphone jack.",
+	kMAudioDigitalOut,			"Connect the USB cable and headphone jack from the M-audio Digital test equipment to the unit.",
+//	kMAudioHeadphone,			"Connect M-Audio box to USB port, ISO-MAX transformer OUT to M-Audio box line/optical, and ISO-MAX transformer IN to the headphone jack.",
+	kMAudioHeadphone,			"Connect the USB cable and headphone jack from the M-audio Headphones test equipment to the unit.",
+	kMikeyBoard,				"Connect Mikey Board to the headphone jack and USB port.",
+	kAudioLineIn,				"Connect a stereo loopback cable from Audio In to Audio Out.",
+	kAudioDigitalIn,			"Connect a digital loopback cable from Digital-in to Digital-out.",
+//	kTrackpad,					"Touch all pixels along the four edges of trackpad.",
+	kTrackpad,					"Touch all pixels along rows and columns on the trackpad.\nNote: If the test image gets behind the main test window, connect a mouse and click on the trackpad pixel test to bring it to the front.  ",
+	kTrackpadLButton,			"Press the Pick Button 3 or 4 times in the lower LEFT corner. Wait 1 second between clicks. ",
+	kTrackpadCButton,			"Press the Pick Button 3 or 4 times in the lower CENTER. Wait 1 second between clicks. ",
+	kTrackpadRButton,			"Press the Pick Button 3 or 4 times in the lower RIGHT corner. Wait 1 second between clicks. ",
+	kAirPortAccessPoint,		"AirPort Base Station must be active.",
+	kAirPortBroadcastServerB,	"The AirPort 802.11b AP Broadcast Server must be active.",
+	kAirPortBroadcastServerA,	"The AirPort 802.11a AP Broadcast Server must be active.",
+	kAirPortM35BServer,			"The Atheros AirPort Server must be active.",
+    kAirPortPingServer,			"AirPort Base Station and PING server must be active.",
+	kAirPortFTPserver,			"AirPort Base Station and FTP server must be active.",	
+	kBTThruputServer,			"Connect Bluetooth Ethernet cable.  IP Address is 10.0.0.5.",	// note: There really isn't a "Bluetooth" cable--but the AASPt has color coded Ethernet cables, so referring to a "Bluetooth" cable will make sense to the techs
+	kBTThruputServerRemove,		"Remove Bluetooth Ethernet cable.",	// note: There really isn't a "Bluetooth" cable--but the AASPt has color coded Ethernet cables, so referring to a "Bluetooth" cable will make sense to the techs
+	kAudioPortServer,			"Connect Ethernet cable and audio cable from Audio Test Server to Ethernet port and headphone jack.  IP Address is 10.0.0.5.",	// note: There really isn't a "Bluetooth" cable--but the AASPt has color coded Ethernet cables, so referring to a "Bluetooth" cable will make sense to the techs
+	kAudioPortServerRemove,		"Remove Ethernet cable and audio cable.",	// note: There really isn't a "Bluetooth" cable--but the AASPt has color coded Ethernet cables, so referring to a "Bluetooth" cable will make sense to the techs
+	kExpressCardUSPFileXfer,	"Insert a USB flash memory ExpressCard into the ExpressCard slot.",
+	kPCIExpCardUSPFileXfer,		"Insert a PCI-E based ExpressCard into the ExpressCard slot.",
+	kSDCardUSBFileXfer,			"Insert an SDHC card into the SD card slot.",
+	kSDCardMediaPresent,		"Insert a SD card into the SD card slot. Wait 10 seconds before pressing OK.",
+	kSDCardMediaPresentRemove,	"Insert a SD card into the SD card slot and wait 10 seconds before pressing OK. AFTER PRESSING OK REMOVE THE SD CARD FROM THE SLOT.    ",
+	kSDCardWakeMediaPresent,	"After the unit goes to sleep WAIT 20 seconds then insert a SD card into the SD card slot to wake it up",
+	kSDCardLockedMediaPresent,	"Insert a LOCKED SD card into the SD card slot. Wait 10 seconds before pressing OK.",
+	kSDCardUnLockedMediaPresent,"Insert a UNLOCKED SD card into the SD card slot. Wait 10 seconds before pressing OK.",
+	kSDCardSDKMEDIA,			"Insert a Extream Class 10 Sandisk SDHC card into the SD card slot. Card must be named SDKMEDIA.  Wait 10 seconds before pressing OK.",
+ 	kSDCardEmptySlot,			"Remove SD card from the SD card slot.",
+  	kSDXCI64GBCard,				"Insert an SDXC I 64GB card into the SD card slot. Wait 10 seconds before pressing OK.",
+ 	kSDXC200Card,				"Insert an SDXC 200Mb card into the SD card slot. Wait 10 seconds before pressing OK.",
+	kSDHC100Card,				"Insert an SDHC 100Mb Class 10 Sandisk Extreme SDHC card with volume name SDKMEDIA card into the SD card slot. Wait 10 seconds before pressing OK.",
+    kExternalFWDrive,			"Connect an external FireWire drive to any FireWire port.\nRemove drive when testing is complete",
+	kFW_EchoServerConnect400,	"Connect FireWire 400 cable to FireEcho server.",
+	kFW_EchoServerConnect800,	"Connect FireWire 800 cable to FireEcho server.",
+    kFW_EchoServerHubConnect400,"Connect FireWire 400 cable to FireEcho server and a FireWire Hub.",
+    kFW_EchoServerHubConnect800,"Connect FireWire 800 cable to FireEcho server and a FireWire Hub.",
+	kFW_Disonnect400,			"Please disconnect FireWire 400 cable.",
+	kFW_Disonnect800,			"Please disconnect FireWire 800 cable.",	
+	kFW_BussPoweredDevice,		 "Connect a FireWire device powered by buss power to a FireWire port.",		
+	kNetworkPingServer,			"PING server must be active. Connect Ethernet cable to server.",
+	kNetworkWOLServer,			"WOL server must be active. Connect Ethernet cable to server. Then the computer will sleep for up to 2 minutes and then will Wake On LAN.  IP Address is 10.0.0.10.",
+	kNetworkWOLServerRemove,	"Remove Ethernet cable.",
+	kNetworkFTPServer,			"FTP server must be active. Connect Ethernet cable to server.  IP Address is 10.0.0.10.",
+	kNetworkFTPServerRemove,	"Remove Ethernet cable.",
+	kNetworkEtherperfServer,	"EtherPerf server must be active. Connect Ethernet cable to server.  IP Address is 10.0.0.5.",
+	kNetworkEtherperfServerRemove,	"Remove Ethernet cable.",
+    kPhotometerExercise,		"After pressing OK, wait 5 seconds, then cover both light sensors.",
+    kClamshellExercise,			"Close the lid, wait 15 seconds, then open to wake the computer.",
+	kBackLightTestPost,			"Did the backlight turn on then off?",
+	kBatteryLEDTestPost,		"Did the battery LED turn on then off?",
+	kCameraLEDTestPost,			"Did the camera LED turn on then off?",
+	kAccelerometerAllAxise,		"Tilt back and tilt to one side the UUT after pressing the OK button.",
+	kUSBflashCard,				"Plug in a USB 2.0 test device into the USB port: ",
+	kUSBflashCard_R,			"Plug in a USB 2.0 test device into the USB port: Right and wait 10 seconds for it to mount before pressing OK.",
+	kUSBflashCard_L,			"Plug in a USB 2.0 test device into the USB port: Left and wait 10 seconds for it to mount before pressing OK.",
+	kUSBflashCard_LF,			"Plug in a USB 2.0 test device into the USB port: Left Front and wait 10 seconds for it to mount before pressing OK.",
+	kUSBflashCard_LC,			"Plug in a USB 2.0 test device into the USB port: Left Center and wait 10 seconds for it to mount before pressing OK.",
+	kUSBflashCard_LR,			"Plug in a USB 2.0 test device into the USB port: Left Rear and wait 10 seconds for it to mount before pressing OK.",
+	kUSB2devDetectLeft,		    "Plug in a USB 2.0 test device into the USB port left and wait 10 seconds for it to mount before pressing OK. ",
+	kUSB3devDetectLeft,		    "Plug in a USB 3.0 test device into the USB port left and wait 10 seconds for it to mount before pressing OK. ",
+	kUSB2devDetectRight,		"Plug in a USB 2.0 test device into the USB port right and wait 10 seconds for it to mount before pressing OK. ",
+	kUSB3devDetectRight,	    "Plug in a USB 3.0 test device into the USB port right and wait 10 seconds for it to mount before pressing OK. ",
+	kUSBdevDetectleftrear,		"Plug in a USB 2.0 test device into the USB port rear and wait 10 seconds for it to mount before pressing OK. ",
+	kUSBdevDetectleftfront,		"Plug in a USB 2.0 test device into the USB port front and wait 10 seconds for it to mount before pressing OK. ",
+	kUSB3devDetectleftrear,		"Plug in a USB 3.0 test device into the USB port rear and wait 10 seconds for it to mount before pressing OK. ",
+	kUSB3devDetectleftfront,	"Plug in a USB 3.0 test device into the USB port front and wait 10 seconds for it to mount before pressing OK. ",
+	kUSBdevDetectleftcenter,	"Plug in a USB 2.0 test device into the USB port left-center and wait 10 seconds for it to mount before pressing OK. ",
+	kUSBdevDetectfront,			"Plug in a USB 2.0 test device into the USB port front and wait 10 seconds for it to mount before pressing OK. ",
+	kUSBdevDetectrear,			"Plug in a USB 2.0 test device into the USB port rear and wait 10 seconds for it to mount before pressing OK. ",
+	kSleepWake,					"The computer will sleep for 20 seconds and then wake.",
+	kAirPortSleepWake,			"Plug in AC Adapter before starting test. The computer will sleep for at least 80 seconds and then wake on wireless simulation.",
+	kSDCardReaderSleepWake,		"The computer will sleep for at least 80 seconds and then wake.",
+	kRemoveEnetCable,			"Remove the Ethernet cable.",
+	kRemoveAudioCable,			"Remove the stereo loopback cable.",
+	kRemoveEdirolBox,			"Remove the Edirol UA-4FX box.",
+//	kRemoveMAudioBoxISOMAXTrans,"Remove the M-Audio box and ISO-MAX transformer.",
+//	kRemoveMAudioBox,			"Remove the M-Audio box.",
+	kRemoveMAudioLineIn,		"Remove the M-audio Line In test equipment.",
+	kRemoveMAudioHeadphone,		"Remove the M-audio Headphones test equipment.",
+	kRemoveMAudioDigitalOut,	"Remove the M-audio Digital test equipment.",
+	kRemoveMikeyBoard,			"Remove the Mikey Board.",
+	kRemoveDigitalCable,		"Remove the digital loopback cable.",
+	kRemoveEthernetVGACables,	"Remove Ethernet and VGA cables.",
+	kRemoveEthernetDPCables,	"Remove Ethernet and DisplayPort (DP) cables.",
+	kRemoveEthernetDVICables,	"Remove Ethernet and DVI cables.",
+	kRemoveDigitalCable,		"Remove the digital loopback cable.",
+	kCameraDiffuser,			"Place the opal diffuser in front of the camera until the test completes.",
+	kBattCharge_1up,			"The battery capacity is (%d%%) must be %s %s capacity for the test to pass. ",
+	kMicrophone,				"Remove all Audio cables before proceeding with microphone test.",
+	kExpressCardRemove,			"Remove the ExpressCard from ExpressCard slot.",
+//	kDisplayTest,				"Press spacebar to sequence through display color test.",
+	kNewDisplayTest,			"Press trackpad button to sequence through display color test.",
+	kNewDisplayGrayTest,		"Press trackpad button to end the test.",
+	kDPVideoController,			"Connect DisplayPort (DP) cable to DAVDP Test Box.",
+	kDVIVideoController,		"Connect DVI cable to DAV Test Box.",
+	kRemoveDPCable,				"Remove the DisplayPort (DP) cable.",
+	kRemoveDVICable,			"Remove the DVI cable.",
+	kDisplayPassFailPost,		"Did the test pass or fail?",
+	kDRBPassFailPost,			"Did the test pass or fail?",
+	kPressBILButton,			"Press the battery indicator lights (BIL) button after pressing OK.",
+	kSILOnOffTest-Post,			"The System Indicator Light (SIL front right) will go on then off?",
+	kSILOnOffTest,				"Did the System Indicator Light (SIL front right) go on then off?",
+	kSILOnTest,					"Is the System Indicator Light (SIL) on?",
+	kSILOffTest,				"Is the System Indicator Light (SIL) off?",
+	kSILBreathTest-Post,		"The System Indicator Light (SIL front right) will breath?",
+	kSILBreathTest,				"Did the System Indicator Light (SIL front right) breath?",
+	kConnectDRB,				"Connect the Thunderbolt cable from the Thunderbolt port to Dr. B and connect DP monitor to Dr. B.",
+	kConnectDiagBoard,			"Connect the diag board to the Thunderbolt port.",
+	kRemoveDiagBoard,			"Remove the diag board from the Thunderbolt port.",
+	kSDXCI64GBCard,				"Insert an SDXC I 64GB card into the SD card slot.",
+	kRemoveSDCard,				"Remove and unlock the SD card from the SD card slot.",
+	kRemoveLockedSDCard,		"Remove the SD card from the SD card slot and unlock it.",
+	kRemoveDRB,					"Remove the Thunderbolt cable from the Thunderbolt port",
+}
+
+//	text for buttons
+set-button-namesEnumerated=
+{
+	kEjectTxt,		"Eject",
+	kOKTxt,			"OK",
+	kContinueTxt,	"Continue",
+	kYesTxt,		"Yes",
+	kNoTxt,			"No",
+	kShoPatTxt,		"Show Patterns",
+	kCancelTxt,		"Cancel"
+}
+
+//	text for dialog titles
+set-dialog-titlesEnumerated =
+{
+	// ====== app strings -- app assumes these strings are where they are, so the order should NOT be changed
+	kPackageDialogTitle,	"%s Tests",		// instead of empty title, use the package name + "Tests"
+	
+	// ===== tdf strings
+	kENTPortDlogName,				"Ethernet Port Test",
+	kFWIPort800DlogName,			"FireWire Port 800 Test",
+	kFWIPort400DlogName,			"FireWire Port 400 Test",
+	kKeyBacklightDlogName,			"Backlit Keyboard Test",
+	kKeyLongDlogName,				"Long Key Corner Test",
+	kBatteryLEDDlogName,			"Battery LED Test",
+	kSNSRDlogName,					"Sensor Test",
+	kBATTDlogName,					"Battery Test",
+	kPATTDlogName,					"Test Patterns",
+	kCDMediaDlogName,				"CD Media Test",
+	kDVDMediaDlogName,				"DVD Media Test",
+	kCameraDlogName,				"Camera Test",
+	kCameraVisualDlogName,			"Camera - Operator Visual Test",
+	kCameraLEDDlogName,				"Camera - LED Test",
+	kRemoteIRDlogName,				"Remote IR Test",
+	kUSBDlogName,					"USB Port Device Test",
+	kAudioDlogName,					"Audio Test",
+	kWirelessDlogName,				"Airport Wireless Test",
+	kBlueToothDlogName,				"Bluetooth Wireless Test",
+	kExpressCardDlogName,			"ExpressCard Test",
+	kSDCardDlogName,				"SD Card Test",
+	kFireWireDlogName400,			"FireWire 400 Test",
+	kFireWireDlogName800,			"FireWire 800 Test",
+    kEnetControllerDlogName,		"Ethernet Controller Test",
+    kNetworkDlogName,				"Network Test",
+    kPhotometerDlogName,			"Light Sensor Test",
+    kClamshellDlogName,				"Sleep Switch Test",
+	kAccelerometerDlogName,			"Accelerometer Test",
+	kUSBflashCardDlogName,			"USB Port Device Test",
+	kSleepWakeDlogName,				"Sleep Wake Test",
+	kAirPortSleepWakeDlogName,		"AirPort Sleep Wake Test",
+	kSDCardReaderSleepWakeDlogName,	"SD Card Reader Sleep/Wake Test",
+	kKeyBbackLightDlogName,			"Keyboard Back Light Test",
+	kDisplayTestDlogName,			"Display Test",
+	kKeyboardTestPostDlogName,		"Keyboard Test",
+	kTrackpadDlogName,				"Trackpad Test",
+	kVideoPortDlogName,				"Video Port Test",	
+	kVideoControllerDlogName,		"Video Controller Test",
+	kBILButtonDlogName,				"Battery Indicator Lights Test",
+	kSILDlogName,					"System Indicator Light Test",
+	kThunderboltDlogName,			"Thunderbolt Test",
+	kThunderboltPortDlogName,		"Thunderbolt Port Test",
+}
+
+# --	EFI AirPort	--
+TEST	"AirPort"	"DIAG"	'EFI_'	'SA__'	1	(class="AirPort")	"PCI-E LinkWidth Verification Test"	"Verifies PCI-E link width is as expected"
+
+
+# --	EFI Battery	--
+TEST	"Battery"	"DIAG"	'EFI_'	'SA__'	1	(class="Battery")	"Error Condition Test"	"Checks if there is an Error Condition set."	""
+TEST	"Battery"	"DIAG"	'EFI_'	'SA__'	6	(class="Battery")	"Sealed Battery test"	"Checks the Battery is sealed."	""
+
+# == EFI Bluetooth =
+TEST	"Bluetooth"	"DIAG"	'EFI_'	'SA__'	1	(class="Bluetooth")	"Bluetooth USB Interface Test"	"Verifies bluetooth host usb interface"	""
+
+# --	EFI BootROM	--
+TEST	"BootROM"	"DIAG"	'EFI_'	'SA__'	2	(class="BootROM")	"Boot ROM FW GUID MAC Addr Checksum Test"	"Verify the Boot ROM FW GUID MAC address checksum."	""
+TEST	"BootROM"	"DIAG"	'EFI_'	'SA__'	4	(class="BootROM")	"Boot ROM Headers and Data Checksum Test"	"Verify headers and data checksum for all firmware volume regions throughout BootROM."	""
+
+# --	EFI Chipset	--
+TEST	"Chipset"	"DIAG"	'EFI_'	'SA__'	1	(class="Chipset")	"Management Engine Presence Test"	"Verifies the presence of the Management Engine."	""
+TEST	"Chipset"	"DIAG"	'EFI_'	'SA__'	2	(class="Chipset")	"Descriptor Mode On Test"	"Verifies that Descriptor Mode is on."	""
+#TEST	"Chipset"	'DIAG'	'EFI_'	'SA__'	3	(class="Chipset" & vendor-id="0x8086")	"Management Engine Integrity Test"	"Verifies that Management Engine's image has no corruption."	""
+
+# EFI Display
+TEST	"Display"	"DIAG"	'EFI_'	'SA__'	1	(class="Display")	"Display EDID Checksum Test"	"Gets EDID from display and verifies caclucated checksum matches checksum defined in the EDID"	""
+TEST	"Display"	"DIAG"	'EFI_'	'SA__'	10	(class="Display")	"Display Back Light Fault Detection Test"	"Read display back light controller fault register and report failures when any fault bits are on."	""
+
+# DisplayPort
+TEST	"DisplayPort"	"DIAG"	'EFI_'	'SA__'	2	(class="DisplayPort"&location="internal")	"Symbol Error Test (1 / 30 sec)"	"Verifies no more than one symbol error in 30 seconds."	""
+
+# --	EFI HardDrive	--
+TEST	"HardDrive"	"DIAG"	'EFI_'	'SA__'	30	(class="HardDrive" & is-raid-controlled="FALSE" & smart-support="TRUE")	"Check SMART status"	"Check the SMART status of a device."	""
+TEST	"HardDrive"	"DIAG"	'EFI_'	'SA__'	40	(class="HardDrive" & is-raid-controlled="FALSE")	"Random multi-block test (AppleCare)"	"Reads a fixed quantity of disk blocks from random regions of the drive."	"This test is for use by AppleCare only"
+
+
+# --	EFI Memory	--
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	1	(class="Memory" & (type="virtual" | type="system"))	"Address as Data Test"	"Test memory using address as data and !address as data."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	2	(class="Memory" & (type="virtual" | type="system"))	"Patterns Test"	"Test memory using different data patterns."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	3	(class="Memory" & (type="virtual" | type="system"))	"Marching ones and zeros Test"	"Test memory using marching ones and zeros."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	4	(class="Memory" & (type="virtual" | type="system"))	"Knaizuk Hartmann Test"	"Test memory using the Knaizuk Hartmann algorithm."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	5	(class="Memory" & (type="virtual" | type="system"))	"MOD3 Test"	"Test memory using the MOD3 data patterns."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	6	(class="Memory" & (type="virtual" | type="system"))	"March U Test"	"Test memory using Van de Goor's March U."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	7	(class="Memory" & (type="virtual" | type="system"))	"Random Test"	"Test memory using Pseudo-random values."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	9	(class="Memory" & (type="virtual" | type="system"))	"MP Memory Test"	"Test memory using many cores."	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	60	(class="Memory"&type="virtual")	"MP Block Checkerboard Test"	"Run Block Checkerboard Test in MP mode"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	61	(class="Memory"&type="virtual")	"MP Bit Checkerboard Test"	"Run Bit Checkerboard Test"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	62	(class="Memory"&type="virtual")	"MP Sequential Byte Block Test"	"Run Sequential ByteBlock Test in MP mode"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	63	(class="Memory"&type="virtual")	"MP Walking Ones Test"	"Run Walking Ones Test in MP mode"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	64	(class="Memory"&type="virtual")	"MP Walking Zeros Test"	"Run Walking Zeros Test in MP mode"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	65	(class="Memory"&type="virtual")	"MP Walking Spread Bits Test"	"Run Walking Spread Bits Test in MP mode"	""
+TEST	"Memory"	"DIAG"	'EFI_'	'SA__'	66	(class="Memory"&type="virtual")	"MP Walking Bit Flip Test"	"Run Walking Bit Flip Test in MP mode"	""
+
+
+# --	EFI MLB	--
+TEST	"MLB"	"DIAG"	'EFI_'	'SA__'	4	(class="MLB")	"Check POST Results"	"Check POST results from last reboot."	""	launch-run
+#TEST	"MLB"	"DIAG"	'EFI_'	'SA__'	8	(class="MLB")	"Verify MLB Serial Number Checksum"	"Verify the MLB Serial Number Checksum is correct"	""
+
+
+# --	EFI Motor	--
+TEST	"Motor"	"DIAG"	'EFI_'	'SA__'	1	(class="Motor")	"Quick Motor Test"	"System turns on motor and verifies that the motor is on quickly."	""
+TEST	"Motor"	"DIAG"	'EFI_'	'SA__'	4	(class="Motor")	"Max Speed All Fans Full,Min Speed All Fans Min"	"Verify fan max speed with all fans at full speed, min speed with all fans at min speed"	""
+
+
+# --	EFI Processor	--
+TEST	"Processor"	"DIAG"	'EFI_'	'SA__'	1	(class="Processor")	"L1 Cache Test"	"Test Processor's L1 Caches."
+
+# --	SD Card Reader
+TEST	"SDCardReader"	"DIAG"	'EFI_'	'SA__'	1	(class="SDCardReader")	"SD Card Reader basic test"	"Performs a rudimentary test of the SD Card slot"	""
+
+# --	EFI Sensor	--
+using-package="Sensor"	'SA__'	dontTest-action={"high-limit", 0}
+TEST	"Sensor"	"DIAG"	'EFI_'	'SA__'	1	(class="Sensor" & (type="Current" | type="Voltage" | type="Power" | type="Temperature" | type="Photometer" | type="Sensor" | type="CalibrationKeys")& !location="VD0R")	"Sensor Reads Within Operating Range"	"Check to ensure that sensor reads within operating range."
+
+# --	EFI SMC	--
+TEST	"SMC"	"DIAG"	'EFI_'	'SA__'	1	(class="SMC" & has-sensor-pid-trip="TRUE" & is-primary="TRUE")	"SMC Critical Sensor Check Test"	"Checks the SMC Critical Sensor warning counter that is monitoring each critical sensor for erratic behaviour."	""
+# AERD TEST	"SMC"	"DIAG"	'EFI_'	'SA__'	6	(class="SMC" & is-primary="TRUE")	"SMC EPM Production Check"	"Check to verify EPM Version is set to Production."	""	launch-run
+TEST	"SMC"	"DIAG"	'EFI_'	'SA__'	7	(class="SMC" & is-primary="TRUE")	"SMC EPM check"	"Check to ensure that UV and CV EPM blocks are programmed for with units without power balancing enabled.."	""	launch-run
+TEST	"SMC"	"DIAG"	'EFI_'	'SA__'	8	(class="SMC" & is-primary="TRUE")	"SMC Power Balancing check"	"Check to ensure that Power Balancing is enabled."	""	launch-run
+TEST	"SMC"	"DIAG"	'EFI_'	'SA__'	9	(class="SMC")	"SMC App Code mode check"	"Check to ensure that SMC in App code mode."	""
+
+# == EFI Thunderbolt 
+TEST	"Thunderbolt"	"DIAG"	'EFI_'	'SA__'	2	(class="Thunderbolt")	"NHI PCI-E 4 LinkWidth Verification Test"	"Verifies NHI PCI-E link width is 4"	""
+TEST	"Thunderbolt"	"DIAG"	'EFI_'	'SA__'	5	(class="Thunderbolt")	"NHI PCI-E 2.5G Link Speed Verification Test"	"Verifies NHI PCI-E is running at 2.5G Gen1 speed"	""
+
+#TEST	"VideoController"	"DIAG"	'EFI_'	'SA__'	10	(class="VideoController" & location="built-in")	"Frame Buffer Address as Data Test"	"Tests frame buffer using data as address pattern"	""
+#TEST	"VideoController"	"DIAG"	'EFI_'	'SA__'	11	(class="VideoController" & location="built-in")	"Frame Buffer Patterns Test"	"Tests frame buffer using various patterns"	""
+#TEST	"VideoController"	"DIAG"	'EFI_'	'SA__'	12	(class="VideoController" & location="built-in")	"Frame Buffer Marching 1s and 0s Test"	"Tests frame buffer via marching 1s and 0s"	""
+#TEST	"VideoController"	"DIAG"	'EFI_'	'SA__'	13	(class="VideoController" & location="built-in")	"Frame Buffer Knaizuk Hartmann Test"	"Tests frame buffer using Knaizuk Hartmann pattern"	""
+#TEST	"VideoController"	"DIAG"	'EFI_'	'SA__'	14	(class="VideoController" & location="built-in")	"Frame Buffer MOD3 Test"	"Tests frame buffer using MOD3 pattern"	""
+
+
+# --	EFI Custom	--
+#TEST	"Custom"	"DIAG"	'EFI_'	'SA__'	2	(class="")	"Hardware Existence Check"	"Verifies non-configurable hardware existance."	""	launch-run
+
+#-------------- Begin OS testing------------
+
+# --	OS Custom	--
+#TEST	"Custom"	"DIAG"	'OS__'	'SA__'	2	(class="")	"Hardware Existence Check"	"Verifies non-configurable hardware existance."	""	launch-run
+
+# --	OS Custom	--
+#TEST	"Custom"	"DIAG"	'OS__'	'SA__'	3	(class="")	"Create a list file"	"Creates non-configurable hardware existance."	""	launch-run
+
+
+# --	OS AirPort	--
+TEST	"AirPort"	"DIAG"	'OS__'	'SA__'	1	(class="AirPort")	"MAC Address Verification Test"	"Verifies the AirPort MAC address is not all 00s or all FFs."
+TEST	"AirPort"	"DIAG"	'OS__'	'SA__'	3	(class="AirPort")	"AirPort Power Cycle Test"	"The test performs an AirPort power off and power on cycle.  It then verifies AirPort by performing wireless scan."
+TEST	"AirPort"	"DIAG"	'OS__'	'SA__'	9	(class="AirPort")	"Wireless Module PCIe Root Port Hardware Register Test"	"Verifies PCIe root port error bits for wireless module doesn't register any NAKs"	"The OS debug switches (boot-args set to debug=0x40) need to be set in NVRAM for this test to function"
+
+TEST	"AirPort"	"DIAG"	'OS__'	'SE__'	41	(class="AirPort")	"Wake on Wireless Internal Simulation Test"	"The test verifies the interconnect between the wireless module and system using an internal simulation mode during a sleep/wake"	pre-dialogOK={kAirPortSleepWake, kAirPortSleepWakeDlogName}
+
+TEST	"AudioController"	"DIAG"	'OS__'	'SA__'	1	(class="AudioController")	"Device Check Test"	"Verify the device is on io registry and be consistent to what is found during probe."	""
+
+# --	OS AudioSystem	--
+TEST	"AudioSystem"	"DIAG"	'OS__'	'SE__'	1	(class="AudioSystem" & (type="Internal Microphone" | type="DualMicrophoneSpeakers"))	"Auto Mic Test"	"Plays a set of chordal tones through each individual speaker and listens for those same tones via microphone. If more than one microphone is present, the test will also verify the signal received is different from each microphone or test will fail."	""
+
+--	AC ACAdapterPort TEST	--
+TEST	"ACAdapterPort"	"DIAG"	'OS__'	'SE__'	1	(class="ACAdapterPort")	"AC Adapter Connection Test"	"Checks that the AC adapter is connected."	pre-dialogOK={kPlugACCord, kBATTDlogName}
+
+# --	OS Battery	--
+#TEST	"Battery"	"DIAG"	'OS__'	'SA__'	1	(class="Battery")	"Check Battery Installed"	"Checks for the presence of a battery."	""	launch-run
+TEST	"Battery"	"DIAG"	'OS__'	'SA__'	51	(class="Battery")	"ATV Table Test"	"Checks to see if the Battery is using the programmed  ATV Table."	""	launch-run
+TEST	"Battery"	"DIAG"	'OS__'	'SA__'	31	(class="Battery")	"Unconsumed Battery Capacity Test"	"Checks Battery has completed less cycles than design-cycle-count and maximum capacity is greater than 80% of designed capacity."	launch-run-test	pre-action=isCyclesConsumed	test-checkbox-off
+TEST	"Battery"	"DIAG"	'OS__'	'SE__'	7	(class="Battery")	"Battery Charge Test .75 percent"	"Checks that the battery can charge (up .75 percent within 180 secs)."	preTest-action=batteryBelow={85, "Waiting until < 85%% charge; charge = %d%%.", pre-dialogOK={kUnplugACCord, kBATTDlogName}	post-dialogOK={kPlugACCord, kBATTDlogName}}
+TEST	"Battery"	"DIAG"	'OS__'	'SE__'	3	(class="Battery")	"15 percent+ Capacity Test"	"Checks that the battery has at least 15 percent capacity."	preTest-action=batteryAbove={15, "Waiting until > 15%% charge; charge = %d%%.", pre-dialogOK={kPlugACCord15, kBATTDlogName}}
+
+# --	OS Bluetooth	--
+TEST	"Bluetooth"	"DIAG"	'OS__'	'SA__'	1	(class="Bluetooth")	"USB Interface Test"	"Verifies USB interface between host and Bluetooth module."
+TEST	"Bluetooth"	"DIAG"	'OS__'	'SA__'	2	(class="Bluetooth")	"MAC Address Verification Test"	"Verifies the Bluetooth MAC address is not all 00s or all FFs."
+TEST	"Bluetooth"	"DIAG"	'OS__'	'SA__'	4	(class="Bluetooth")	"Bluetooth Power Cycle Test"	"Verifies USB interface between host and Bluetooth module after performing a Bluetooth power cycle."
+
+
+# --	OS BootROM	--
+TEST	"BootROM"	"DIAG"	'OS__'	'SA__'	2	(class="BootROM")	"Boot ROM FW GUID MAC Addr Checksum Test"	"Verify the Boot ROM FW GUID MAC address checksum."	""
+
+
+# --	OS Button	--
+TEST	"Button"	"DIAG"	'OS__'	'SE__'	1	(class="Button" & type="BIL")	"BIL Button Press Test"	"Verifies SMC can detect BIL button press"	"Requires operator to press BIL button after test starts"	pre-dialogOK={kPressBILButton, kBILButtonDlogName}
+
+
+# --	OS Camera	--
+TEST	"Camera"	"DIAG"	'OS__'	'SE__'	14	(class="Camera")	"Photo Booth Operator Visual Test"	"Verifies camera has no distortions based on operator's visual check using Photo Booth app"	""	pre-dialogOK={kCameraVisual, kCameraDlogName}	post-dialogPassFail={kDisplayPassFailPost, kDisplayTestDlogName} 	testQuery-action=delay=5
+
+# --	OS Chipset	--
+#TEST	"Chipset"	"DIAG"	'OS__'	'SA__'	25	(class="Chipset")	"Dmi Error Check"	"Checks for Dmi related errors."	"Checks for Dmi related errors."
+
+
+# --	OS Display	--
+TEST	"Display"	"DIAG"	'OS__'	'SE__'	15	(class="Display")	"RGBWGray Test"	"Red>Green>Blue>White>Gray Test" ""	pre-dialogOK={kNewDisplayTest, kDisplayTestDlogName} post-dialogPassFail={kDisplayPassFailPost, kDisplayTestDlogName}	testQuery-action="waitForAnyKey"
+TEST	"Display"	"DIAG"	'OS__'	'SE__'	16	(class="Display")	"GrayBlW Test"	"Gray>Black>White Test" ""	pre-dialogOK={kNewDisplayTest, kDisplayTestDlogName} post-dialogPassFail={kDisplayPassFailPost, kDisplayTestDlogName}		testQuery-action="waitForAnyKey"
+TEST	"Display"	"DIAG"	'OS__'	'SE__'	17	(class="Display")	"Gray Test"	"Gray Test"  ""	pre-dialogOK={kNewDisplayGrayTest, kDisplayTestDlogName}	post-dialogPassFail={kDisplayPassFailPost, kDisplayTestDlogName}		testQuery-action="waitForAnyKey"
+TEST	"Display"	"DIAG"	'OS__'	'SA__'	30	(class="Display")	"EDID Checksum Test"	"Calculate EDID checksum"	""
+
+
+# --	OS HardDrive	--
+TEST	"HardDrive"	"DIAG"	'OS__'	'SA__'	5	(class="HardDrive" & bay="Internal" & smart-support="TRUE" & is-raid-member="FALSE")	"Check SMART status"	"Check the SMART status of a device."	""
+TEST	"HardDrive"	"DIAG"	'OS__'	'SA__'	40	(class="HardDrive" & bay="Internal" & is-raid-member="FALSE")	"SATA port stress test"	"Runs a stress test on the SATA PCI port by sending commands to the target device while checking for errors and command timeouts."	""
+TEST	"HardDrive"	'DIAG'	'OS__'	'SA__'	11	(class="HardDrive" & bay="Internal" & is-asynchronous-access-supported="TRUE" & (type="HDD" | type="SSD") & is-raid-member="FALSE")	"Short random multi-block test (AppleCare)"	"Reads a fixed quantity of disk blocks from random regions of the drive. Quick test for head seeking, etc."	"This test is for use by AppleCare only"
+
+
+# --	OS Keyboard	--
+TEST	"Keyboard"	"DIAG"	'OS__'	'SA__'	4	(class="Keyboard" & is-backlit="TRUE")	"KBL Off Test"	"Turns off the keyboard backlight as default."	""		launch-run
+
+TEST	"Keyboard"	"DIAG"	'OS__'	'UA__'	3	(class="Keyboard" & is-backlit="TRUE")	"KBL On Test"	"Turns on the keyboard backlight and asks user if it turned on then off."	""		testQuery-action=delay=3	pre-dialogOK={kKeyboardBacklight, kKeyBacklightDlogName}	post-dialogPassFail={kKeyboardBackLightTestPost, kKeyBacklightDlogName}
+
+
+using-package="Keyboard"	for="DIAG"	'SE__'	post-dialogOK={kKeyboardTestPost, kKeyboardTestPostDlogName}
+TEST	"Keyboard"	"DIAG"	'OS__'	'SE__'	1	(class="Keyboard" & type="Apple Internal Keyboard / Trackpad")	"Keyboard Test"	"Test for Stuck/Shorted/Bad Keys on a keyboard."	""	do-result-code={5, map-to-cancel}
+
+
+# --	OS Memory	--
+#TEST	"Memory"	"DIAG"	'OS__'	'SA__'	10	(class="Memory"&type="virtual")	"Main Memory Self-refresh test"	"Tests Memory before and after a sleep wake cycle testing the memory's self-refresh."	""
+#TEST	"Memory"	"DIAG"	'OS__'	'SA__'	11	(class="Memory"&type="virtual")	"Main Memory Self-refresh Hibernation Test"	"Tests Memory before and after a hibernate wake cycle testing the memory's self-refresh."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	30	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Address As Data test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	31	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Random Pattern test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	32	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Sequential Increment test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	33	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Block Checkerboard test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	34	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Bit Checkerboard test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	35	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Sequential Byte Block test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	36	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Walking Ones test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	37	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Walking Zeros test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	38	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Walking Spread Bits test"	"Perform Apple simple memory test task under 64-bits environment."	""
+TEST	"Memory"	"DIAG"	'OS__'	'SA__'	39	(class="Memory"&type="virtual"&is-64-bit-supported="TRUE")	"Apple 64 Memory Walking Bit Flip test"	"Perform Apple simple memory test task under 64-bits environment."	""
+
+# --	OS MLB	--
+TEST	"MLB"	"DIAG"	'OS__'	'SA__'	1	(class="MLB")	"Check POST Results"	"Check Results of POST from last reboot."	""	launch-run
+
+
+# --	OS Motor	--
+# Changed from SA to SE
+TEST	"Motor"	"DIAG"	'OS__'	'SA__'	4	(class="Motor" & tachometer="Yes" & controlled="Yes")	"Turn On Automatically"	"System turns on Motor and verifies Motor is can reach minimum/maximum values"
+TEST	"Motor"	"DIAG"	'OS__'	'SA__'	5	(class="Motor" & tachometer="Yes" & controlled="Yes")	"Quick Motor Test"	"System verifies that the Motor is running to target speed"	""
+TEST	"Motor"	"DIAG"	'OS__'	'SA__'	6	(class="Motor" & tachometer="Yes" & controlled="Yes")	"Motor Stall Test"	"System verifies that the Motor can run above motor stall speed"	"Test takes no longer than 6 seconds to complete"
+
+
+# --	OS Pointer	--
+TEST	"Pointer"	"DIAG"	'OS__'	'SA__'	8	(class="Pointer" & type="Trackpad" & model="Cumulus")	"Multitouch Trackpad Open Test"	"Detects potential digital opens by reading unbaseline raw data and making sure no consecutive high readings."	""
+TEST	"Pointer"	"DIAG"	'OS__'	'SE__'	19	(class="Pointer" & type="Trackpad" & (model="Wellspring" | model="Wellspring_PB" | model="Cumulus" | model="T25"))	"Multitouch Trackpad Full Trace Test"	"Verifies all rows and columns are functional by tracing around all of the trackpad."	"Requires an operator to touch all pixels of the trackpad"	pre-dialogOK={kTrackpad, kTrackpadDlogName}
+TEST	"Pointer"	"DIAG"	'OS__'	'SE__'	11	(class="Pointer" & type="Trackpad" & (model="Wellspring_PB" | model="Cumulus"  | model="T25"))	"Left Button Test"	"Verifies the pick button is operational in Lower Left Corner."	"Requires an operator to press the Pick button in lower Left Corner 3 times"	pre-dialogOK={kTrackpadLButton, kTrackpadDlogName}
+TEST	"Pointer"	"DIAG"	'OS__'	'SE__'	12	(class="Pointer" & type="Trackpad" & (model="Wellspring_PB" | model="Cumulus"  | model="T25"))	"Centre Button Test"	"Verifies the pick button is operational in Centre of the pick button 3 times."	"Requires an operator to press the Pick button in Centre"	pre-dialogOK={kTrackpadCButton, kTrackpadDlogName}
+TEST	"Pointer"	"DIAG"	'OS__'	'SE__'	13	(class="Pointer" & type="Trackpad" & (model="Wellspring_PB" | model="Cumulus"  | model="T25"))	"Right Button Test"	"Verifies the pick button is operational in Lower Right Corner."	"Requires an operator to press the Pick button in lower Right Corner 3 times"	pre-dialogOK={kTrackpadRButton, kTrackpadDlogName}
+
+
+# --	OS Processor	--
+TEST	"Processor"	"DIAG"	'OS__'	'SA__'	1	(class="Processor")	"Whetstone Test"	"Concurrent whetstone floating point unit benchmark test"
+TEST	"Processor"	"DIAG"	'OS__'	'SA__'	2	(class="Processor")	"Dhrystone Test"	"Concurrent dhrystone integer unit benchmark test"
+TEST	"Processor"	"DIAG"	'OS__'	'SA__'	3	(class="Processor")	"Linpack Test"	"Concurrent linpack floating point benchmark test"
+TEST	"Processor"	"DIAG"	'OS__'	'SA__'	5	(class="Processor")	"Encoder Test"	"Uses meg2 encoder optimized for intel processor to encode a short video clip twice, and verifies the two results are identical"
+
+
+# --	OS Product	--
+TEST	"Product"	"DIAG"	'OS__'	'SA__'	2	(class="Product"&!type="FAKE"&!type="PCI")	"System Serial Number Format Verification Test"	"Verifies that a correctly formatted system serial number has been burned into the unit."	""	launch-run
+TEST	"Product"	"DIAG"	'OS__'	'SA__'	14	(class="Product"&!type="FAKE"&!type="PCI")	"Sleep / Wake 30/60 Test"	"Verifies that a unit can automatically sleep and wake using the OS sleepx tool with 30/60/1 settings."	""
+#TEST	"Product"	"DIAG"	'OS__'	'SE__'	196	(class="Product")	"Thermal System Evaluation"	"Checks and evaluates the systems thermal response."	""
+
+
+# == OS SATA 
+TEST	"SATA"	"DIAG"	'OS__'	'SA__'	1	(class="SATA")	"SATA PCI Register Test"	"Checks the SATA link error registers for dropped data packets using direct PCI access."	""
+
+TEST	"SDCardReader"	"DIAG"	'OS__'	'SA__'	1	(class="SDCardReader")	"Card Reader and Host Interface Test"	"Verify card presence in io registry as either an usb device or a pci device."	""
+
+TEST	"SDCardReader"	"DIAG"	'OS__'	'SE__'	4	(class="SDCardReader")	"Media Not Presence Test"	"Verify no SD card is present in the SD Card Reader slot and is recognizable by system."	"Require no SD Card is inserted to the SD Card Reader slot"	pre-dialogOK={kSDCardEmptySlot, kSDCardDlogName}
+TEST	"SDCardReader"	"DIAG"	'OS__'	'SE__'	5	(class="SDCardReader")	"Media Presence Test"	"Verify a SD card is present in the SD Card Reader slot and is recognizable by system."	"Require a SD Card is inserted to the SD Card Reader slot"	pre-dialogOK={kSDCardMediaPresent, kSDCardDlogName}
+TEST	"SDCardReader"	"DIAG"	'OS__'	'SE__'	6	(class="SDCardReader")	"SD Card Write-Protection On Test"	"Verifies a write-protected SD Card is non-writable. It intends to test write-protection pin of the reader connector"	"Requires a SD Card with write protection lock switched on be inserted to the SD Card Reader slot"	pre-dialogOK={kSDCardLockedMediaPresent, kSDCardDlogName}		post-dialogOK={kRemoveLockedSDCard, kSDCardDlogName}
+TEST	"SDCardReader"	"DIAG"	'OS__'	'SE__'	3	(class="SDCardReader")	"SD Card Removal Test"	"Verify a SD card is present in the SD Card Reader slot and then removed from system."	"Require a SD Card is inserted to the SD Card Reader slot prior to the test and to be removed from system by an operator in the middle of test"	pre-dialogOK={kSDCardMediaPresentRemove, kSDCardDlogName}
+
+# --	OS Sensor	--
+TEST	"Sensor"	"DIAG"	'OS__'	'SA__'	1	(class="Sensor" & (type="Current" | type="Voltage" | type="Temperature" | type="CalibrationKeys" | type="Power") & !location="IM0C")	"Sensor Reads Within Operating Range"	"Check to ensure that sensor reads within operating range."	""
+#TEST	"SensorGroup"	"DIAG"	'OS__'	'SA__'	1	(class="SensorGroup")	"Limit with Idle Test"	"Verifies a group of sensors defined in bof.  The system is placed in an idle state."	""
+TEST	"Sensor"	"DIAG"	'OS__'	'SA__'	11	(class="Sensor" & (type="Temperature" & !banded="TRUE") & ((location="TC0P") | (location="TP0P") | (location="TM0P") | (location="Ta0P") | (location="Th2H") | (location="Th1H") | (location="Ts0P") | (location="TC1C") | (location="TC2C") | (location="TC3C") | (location="TC4C") | (location="TCXC") | (location="TCGC") | (location="TCSA")))	"Extended Sensor Flat Line Test"	"Checks that the Sensor changes value i.e. not stuck, with longer time allowance for change (5 mins)."	""
+
+TEST	"Sensor"	"DIAG"	'OS__'	'SE__'	2	(class="Sensor" & type="Photometer")	"Light Sensor Test"	"Exercises the Photometer"	"Requires user to wait 2 seconds, then cover a photometer"	pre-dialogOK={kPhotometerExercise, kPhotometerDlogName}
+TEST	"Sensor"	"DIAG"	'OS__'	'SE__'	42	(class="Sensor" & type="Magnetometer")	"Clamshell Sleep Wake Test"	"Verifies that Sleep switch and checks the sleep wake reason"	"User must manually close the clamshell, then return  to original position Unit wakes up automatically"	pre-dialogOK={kClamshellExercise, kClamshellDlogName}
+
+
+# --	OS SMC	--
+TEST	"SMC"	"DIAG"	'OS__'	'SA__'	1	(class="SMC" & has-sensor-pid-trip="TRUE" & is-primary="TRUE")	"SMC Critical Sensor Check Test"	"Checks if the SMC reports any errors on critical sensors."	""
+TEST	"SMC"	"DIAG"	'OS__'	'SA__'	7	(class="SMC" & is-primary="TRUE")	"SMC EPM Flash Check Test"	"Check to ensure that UV and CV EPM blocks are programmed."	""	launch-run
+TEST	"SMC"	"DIAG"	'OS__'	'SA__'	8	(class="SMC" & is-primary="TRUE")	"SMC Power Balancing check"	"Check to ensure that Power Balancing is enabled."	""
+TEST	"SMC"	"DIAG"	'OS__'	'SA__'	9	(class="SMC")	"SMC App Code mode check"	"Check to ensure that SMC in App code mode."	""
+
+# --	OS ThermalInterface	--
+TEST	"ThermalInterface"	"DIAG"	'OS__'	'SA__'	16	(class="ThermalInterface" & location="Processor:Processor0")	"Extended TIM Test 75 percent GB"	"Check that CPU heatsink is properly attached, using product spec theta dh + 75 percent guardband."	""
+
+
+# --	OS Thunderbolt	--
+TEST	"Thunderbolt"	"DIAG"	'OS__'	'SA__'	1	(class="Thunderbolt")	"Thunderbolt PCI Interface Test"	"Verify Thunderbolt presence in io registry as a pci device."	""
+TEST	"Thunderbolt"	"DIAG"	'OS__'	'SA__'	2	(class="Thunderbolt")	"Thunderbolt Sleep Wake Test"	"Verify Thunderbolt pci interface is maintained over sleep wake cycle."	"System sleep wake must be working.  Required sleep key: SLEEPX"
+TEST	"Thunderbolt"	"DIAG"	'OS__'	'SA__'	3	(class="Thunderbolt")	"Thunderbolt Error Register Check Test"	"Read error registers and verifies errors within limit."	""
+TEST	"Thunderbolt"	"DIAG"	'OS__'	'SA__'	4	(class="Thunderbolt")	"Thunderbolt Internal Loopback Test"	"Enable internal loopback and verifies different patterns of data are sent, received and no mismatch."	""
+TEST	"Thunderbolt"	"DIAG"	'OS__'	'SA__'	21	(class="Thunderbolt")	"Read PCIe link error registers"	"Read and log the PCIe link error registers for the Thunderbolt device"	""
+
+# --	OS ThunderboltPort	--
+TEST	"ThunderboltPort"	"DIAG"	'OS__'	'SA__'	1	(class="ThunderboltPort")	"ThunderboltPort Interface Test"	"Get port status for each lane on the Thunderbolt port."	""
+TEST	"ThunderboltPort"	"DIAG"	'OS__'	'SA__'	2	(class="ThunderboltPort")	"ThunderboltPort Error Register Check Test"	"Read error register on each lane of Thunderbolt port (HEC error register ...)."	""
+
+
+#--	OS USBController	--
+TEST	"USBController"	"DIAG"	'OS__'	'SA__'	1	(class="USBController" & type="XHCI")	"USB XHCI Interface Test"	"Check usb controller XHCI interface by verifying vendor id and product id are expected."	""
+
+
+# --	OS USBPort	--
+TEST	"USBPort"	"DIAG"	'OS__'	'SE__'	32	(class="USBPort" & location="left")	"High Speed (USB 2.0) Device Presence Test"	"Test for the presence of a high speed USB device plugged in the USBPort."	"Requires a high speed usb (USB 2.0) device."	pre-dialogOKC={kUSB2devDetectLeft, kUSBDlogName}	test-checkbox-off
+TEST	"USBPort"	"DIAG"	'OS__'	'SE__'	33	(class="USBPort" & location="left" & speed="5000")	"Super Speed (USB 3.0) Device Presence Test"	"Test for the presence of a super speed USB device plugged in the USBPort."	"Requires a super speed usb (USB Super Speed) device."	pre-dialogOKC={kUSB3devDetectLeft, kUSBflashCardDlogName}	test-checkbox-off
+TEST	"USBPort"	"DIAG"	'OS__'	'SE__'	32	(class="USBPort" & location="right")	"High Speed (USB 2.0) Device Presence Test"	"Test for the presence of a high speed USB device plugged in the USBPort."	"Requires a high speed usb (USB 2.0) device."	pre-dialogOKC={kUSB2devDetectRight, kUSBDlogName}	test-checkbox-off
+TEST	"USBPort"	"DIAG"	'OS__'	'SE__'	33	(class="USBPort" & location="right" & speed="5000")	"Super Speed (USB 3.0) Device Presence Test"	"Test for the presence of a super speed USB device plugged in the USBPort."	"Requires a super speed usb (USB Super Speed) device."	pre-dialogOKC={kUSB3devDetectRight, kUSBflashCardDlogName}	test-checkbox-off
+
+
+# open GL tests
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	2	(class="VideoController")	"OpenGL Point Test"	"Render Points"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	3	(class="VideoController")	"OpenGL Line Test"	"Render Lines"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	4	(class="VideoController")	"OpenGL Triangle Test"	"Render Triangles"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	5	(class="VideoController")	"OpenGL Quad Test"	"Render Quads"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	6	(class="VideoController")	"OpenGL Quad with Texture Test"	"Render Quads with Textures"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	7	(class="VideoController")	"OpenGL Rectangle Test"	"Render Rectangles"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	8	(class="VideoController")	"OpenGL Cube Test"	"Render Cubes"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	9	(class="VideoController")	"OpenGL Cube with Fog Test"	"Render Cube with Fog"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	10	(class="VideoController")	"OpenGL Wireframe Model Test"	"Render Wireframe Model"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	11	(class="VideoController")	"OpenGL Solid Red Model Test"	"Render Solid Red Model"
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	12	(class="VideoController")	"OpenGL Solid Red Model with Fog Test"	"Render Solid Red Model with Fog"
+
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	70	(class="VideoController")	"Fragment Instruction Test"	"Tests each instruction of the ARB fragment program instruction by doing calculation and comparing actual against expected"	""
+
+# PCIe test
+TEST	"VideoController"	"DIAG"	'OS__'	'SA__'	93	(class="VideoController" & pcie-lane-width="8")	"PCIe 8 Link Width Verification Test"	"Verifies that the pcie link width is 8"	""
+
+

@@ -1,0 +1,113 @@
+================================================================================
+EFI Disk Utilities version 1.3
+May 18, 2011
+================================================================================
+
+================================================================================
+                                 INTRODUCTION
+================================================================================
+The EFI Disk Utilities contain the source codes and documentations required to
+develop UEFI related tools for the UEFI filesystem. These tools build in the EDK
+environment. This release follows the UEFI Specification 2.3.1. This package
+also includes the pre-built binaries for IA32, x64 and IPF platforms.
+	
+The release note contains the following information:
+
+* Package Contents
+* How to Build EFI Disk Utilities
+* EFI Disk Utilities Directory Structure
+* Use the Pre-Built Binaries
+* Known Limitations
+	
+If you are not interested in how to build the utilities from the source codes,
+just reading the following three sections is enough.
+
+* EFI Disk Utilities Directory Structure
+* Use the Pre-Built Binaries
+* Known Limitations
+
+================================================================================
+                                 PACKAGE CONTENTS
+================================================================================
+The EFI Disk Utilities contains the following:
+
+* EFI Disk Utilities source code & pre-built binaries
+* EFI Disk Utilities Release Notes
+
+================================================================================
+                           HOW TO BUILD EFI DISK UTILITIES
+================================================================================
+The EFI Disk Utilities require the Edk 1.06 official release package to build 
+with. Two changes to the Edk 1.06 official release package are needed.
+
+Both happen in $(EDK_SOURCE)\Foundation\Efi\Protocol\BlockIO\BlockIO.h.
+1. The definition of EFI_BLOCK_IO_MEDIA should be changed as follows:
+  typedef struct {
+    UINT32  MediaId;
+    BOOLEAN RemovableMedia;
+    BOOLEAN MediaPresent;
+
+    BOOLEAN LogicalPartition;
+    BOOLEAN ReadOnly;
+    BOOLEAN WriteCaching;
+
+    UINT32  BlockSize;
+    UINT32  IoAlign;
+
+    EFI_LBA LastBlock;
+
+    EFI_LBA LowestAlignedLba;
+    UINT32  LogicalBlocksPerPhysicalBlock;
+
+    UINT32  OptimalTransferLengthGranularity;
+  } EFI_BLOCK_IO_MEDIA;
+
+2. Add the below line:
+  #define EFI_BLOCK_IO_PROTOCOL_REVISION3 0x00020031
+
+Please refer to EDK Build Document (URL:
+https://edk.tianocore.org/files/documents/16/347/file_347.dat/EDK%20Build_0_2.pdf
+) for detailed instructions on how to build applications.
+NOTE:
+  64-bit math library (int64.lib) is needed to build the IA32 version binaries.
+  The library can be found in the Microsoft* Device Driver Development Kit (DDK)
+  and should be put in \efilib directory. The DDK can be downloaded from 
+  Microsoft's web site.
+
+================================================================================
+                       EFI DISK UTILITIES DIRECTORY STRUCTURE
+================================================================================
+The directory layout of EFI Disk Utilities is as follows:
+  \binaries
+    \ia32    Binaries for IA32 platform.
+    \x64     Binaries for x64 platform.
+    \ipf     Binaries for IPF platform.
+  \diskpart  Source for the EFI Disk partitioning tool.
+  \efichk    Source for the EFI Check Disk utility.
+  \efifmt    Source for the EFI Format utility.
+  \efilib    Library routines to support the tools.
+  \portinc   Header files for porting the EFI Disk Utilities to EDK.
+
+================================================================================
+                         USE THE PRE-BUILT BINARIES
+================================================================================
+The pre-built binaries can be found in \binaries\ia32, \binaries\x64 and 
+\binaries\ipf, respectively.
+
+To use the utilities, copy the binaries folder into a floppy or USB disk and
+then mount the disk on the target. DISKPART can be invoked from the boot manager
+directly because it is not a shell application. EFIFMT and EFICHK need to run
+under the EFI Shell environment.
+
+================================================================================
+                                KNOWN LIMITATIONS
+================================================================================
+1. NOT support Legacy MBR services
+   DISKPART will not create a Legacy MBR structure nor will it add partitions
+   therein. The only manipulation of the legacy MBR is to add the partition type 
+   0xEF to indicate that it's a GPT Partition. Details can be found in the UEFI
+   Specification.
+2. Require 64-bit math library
+   64-bit math library (int64.lib) is needed to build the IA32 version binaries.
+   The library can be found in the Microsoft* Device Driver Development Kit (DDK).
+   The DDK can be downloaded from Microsoft's web site.

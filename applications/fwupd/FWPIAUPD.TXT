@@ -1,0 +1,193 @@
+     	    	   Important Information about
+        Firmware PIA Flash Update Utility with Support files
+        	       Version 4.0.2 Build 10
+
+	    Copyright (c) 2004-2009,Intel Corporation
+		     ALL RIGHTS RESERVED
+
+             	        Oct 16, 2009
+
+This document describes some specifics of the FWPIAUPD Utility  
+Version 4.0.2 release. This utility is used for updating 
+the boot block, operational code and PIA for various micro-controllers 
+on a given platform through the use of platform - specific Intel hex
+programming files and binary image files.
+
+The Firmware and PIA Flash Update Utility (FWPIAUPD) updates the boot block, 
+operational code and PIA on the BMC or an IMM module, or sends commands 
+through the BMC to update another controller on the IPMB. After the code 
+is updated, it is compared with the code from the hex file to make sure 
+the write was done correctly.  Finally, the controller is put back into 
+operational mode.
+
+The utility supports the firmware update using the HEX file or BIN file having version
+2 / version 3 of PIA header.
+
+Dependencies
+------------
+
+A. Platform supported: S5500 and S5520 platform series and S3420GP, QSSC-S4R platform series.
+   Environment Supported: WinPE 1.5/1.6, WinPE 2.0,2.1, UEFI 2.0
+ 
+Important Notes
+
+A. -b, -o and -pia will update only selected areas.
+B. -u will do only update. Use -v to verify.
+C. RMM3 will be autodetected and updated when opcode update of BMC firmware is selected.
+
+Important Notes
+---------------
+
+A. Supported command line arguments on a system with an IMM module
+
+* -?
+* -(h)elp
+* -ni
+* -(u)pload
+* -(i)nventory
+* -address=XX
+* -errlog=file
+* -nodownrev
+* -(v)erify
+* -(b)oot
+* -(o)p          
+* -pia
+* -(s)econdary    <default = Primary Controller>
+* -bin            <default = Intel Hex file>
+* -setdef     	
+
+B. Documentation
+----------------
+
+- FWPiaUpdate confirms to EPS revision 2.4 as it is.
+
+C. Examples for a system update.
+
+For inventory
+a. fwpiaupd -i
+b. fwpiaupd -i -address=2c
+c. fwpiaupd -i hsc.hex
+d. fwiaupd -i bmc.ima -bin
+
+For non-interactive mode
+a. BMC image file Firmware update: 
+   fwpiaupd -u -b -o -pia -bin bmc.ima -ni
+b. ME Firmware update : 
+   fwpiaupd -u ME-dib.bin -bin -ni
+c. HSC Firmware update : 
+   fwpiaupd -u -b HSC.hex -ni
+d. LCP Firmware update : 
+   fwpiaupd -u -o LCP.hex -ni
+
+For interactive mode
+a. fwpiaupd or fwpiaupd -bin
+
+For help
+b. fwpiaupd -h
+
+Installation
+------------
+WinPE 2.x
+Installation of drivers on windows
+a. Execute install.cmd
+
+Uninstallation 
+a. Execute uninstall.cmd
+
+Note:- Do not reboot after installation. Use WinPE customization procedure
+on WinPE 1.5/1.6.
+
+EFI
+1. No seperate installation steps required. Binary files can be
+	copied and executed from any location.
+
+
+
+Errata Items
+------------
+
+A. Unsupported Functionality
+* Verification of ME firmware not supported.
+* Verification of Firmware without update can result in verification failure.
+  This is expected behavior based on firmware used. For BMC PIA
+  area cannot be verified independently. HSC Boot block verification without
+  an update is also not supported.
+* BIN / HEX files without DIB information is not supported for updating any firmware.
+* LCP firmware boot area update not supported.
+* The maximum path name for an input file is 255 including the file name.
+
+B. Known issues
+* While updating BMC Firmware in force boot mode, 
+  FWPIAUPD utility displays an error message at the end of update.
+  This message can be ignored as the update is successful.
+* FWPIAUPD utility uses BMC USB unterface to update only if the OS populates the
+  USB interface and the support drivers are loaded correctly by OS.
+* Use Intel IPMI driver in case of any communication failure with Microsoft IPMI driver.
+  Command to Install Intel driver is "DeviceSetup -v install imbdrv.inf *IMBDRV".
+* Firmware update will be slower while using Microsoft IPMI driver interface due
+  to buffer size limitation.
+
+
+
+Changes Since Last Release:
+---------------------------
+ 1. Fix for HSC update issue on EFI on QSSC-S4R platform series.
+  
+
+
+========================================================
+
+                               LEGAL INFORMATION
+
+========================================================
+
+Information in this document is provided in connection with Intel Products
+
+and for the purpose of supporting Intel developed server boards and systems.
+
+No license, express or implied, by estoppel or otherwise, to any intellectual 
+
+property rights is granted by this document. Except as provided in Intel's 
+
+Terms and Conditions of Sale for such products, Intel assumes no liability 
+
+whatsoever, and Intel disclaims any express or implied warranty, relating to 
+
+sale and/or use of Intel products including liability or warranties relating 
+
+to fitness for a particular purpose, merchantability, or infringement of any 
+
+patent, copyright or other intellectual property right. Intel Corporation may 
+
+have patents or pending patent applications, trademarks, copyrights, or other 
+
+intellectual property rights that relate to the presented subject matter.  
+
+The furnishing of documents and other materials and information does not 
+
+provide any license, express or implied, by estoppel or otherwise, to any 
+
+such patents, trademarks, copyrights, or other intellectual property rights.  
+
+Intel products are not intended for use in medical, life saving, or life 
+
+sustaining applications. Intel may make changes to specifications and product 
+
+descriptions at any time, without notice.
+
+ 
+
+Intel is a registered trademark of Intel Corporation. 
+
+ 
+
+*Other names and brands are the property of their respective owners.
+
+ 
+
+Copyright (c) 2009 Intel Corporation.
+
+
+
+(end)
+

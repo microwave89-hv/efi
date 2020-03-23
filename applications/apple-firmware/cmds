@@ -1,0 +1,35 @@
+-clearflag (clear in progress)
+-d
+-eraseObject
+-f
+-flog
+-h
+-m Apple_Ram
+-noreset
+-s
+-safetyoff
+-x
+-v
+-FullUpdate
+-A
+-Checkfile
+-BiosOnly
+-ChecksumFile
+-EraseBlock
+-FWGuid
+-ForceAll
+-Frank
+-OverrideROM
+-grst
+-GlobalReset
+-H
+-Info
+-Linda
+-MLB
+-MeUnlock
+-Program
+-RawImage
+-safetyoff
+-Safetyoff
+-OVR and -MLB
+-Linda not valid with Frank cards

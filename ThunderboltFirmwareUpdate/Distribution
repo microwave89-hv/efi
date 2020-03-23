@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+    <options type="firmware" customize="never" hostArchitectures="i386" rootVolumeOnly="true"/>
+    <title>SU_TITLE</title>
+    <script>
+var updateName = "ThunderBoltFirmwareUpdate";
+
+function debuglog(message)
+{
+	// yes, this is secure
+	if (system.files.fileExistsAtPath("/tmp/com.apple.pkg.testing")) system.log("********** " + updateName + ": " + message);
+}
+
+function oc(a)
+{
+	// http://snook.ca/archives/javascript/testing_for_a_v
+	var o = {};
+	for(var i=0;i &lt; a.length;i++)
+	{
+		o[a[i]]='';
+	}
+	return o;
+}
+
+// Some iMac12,1 do not have Thunderbolt. We have to check circumstantial evidence.
+function iMacHasTB()
+{
+		// check model
+		var model = system.sysctl("hw.model");
+		if (!model) return false;
+		if (model != "iMac12,1") 
+		{
+			debuglog("iMacHasTB:  Model Property fail; got: " + model);
+			return false;
+		}
+		debuglog("iMacHasTB:  Model property pass; got: " + model);
+		
+		//Check for Bluetooth
+		var Bluetooth = 
+system.ioregistry.fromPath("IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/EHC2@1A,7/AppleUSBEHCI/Bluetooth USB Host Controller@fa111000");
+		if (!Bluetooth)
+		{
+			debuglog("iMacHasTB:  Can't find Bluetooth controller; assuming machine doesn't need update.");
+			return false;
+		}
+		debuglog("iMacHasTB:  Bluetooth found!; continuing ...");
+		
+		// check for IR
+		var IR = 
+system.ioregistry.fromPath("IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/EHC1@1D,7/AppleUSBEHCI/IR Receiver@fd120000");
+		if (!IR)
+		{
+			debuglog("iMacHasTB:  Can't find IR Receiver; assuming machine doesn't need update.");
+			return false;
+		}
+		debuglog("iMacHasTB:  IR Receiver found!; This iMac12,1 should have TB!");
+		return true;
+}
+
+//CRNeedsUpdate:
+//{
+//	Matching Class = IOThunderboltSwitch
+//	Property "Route String" == 0
+//	Property "Vendor ID" == 0x8086
+//	Property "Device ID" == 0x1547
+//	{
+//		Property "ROM Version"  >= 0x11
+//		Property "ROM Version"  &lt; 0x23
+//	} OR {
+//		Property "ROM Version"  == 0x23
+//		Property "EEPROM Revision" &lt; 4
+//	}
+//} OR {
+//	No entry present of class IOThunderboltSwitch with "Route String" == 0
+//}
+
+function CRNeedsUpdateJS()
+{
+	debuglog("Checking if CRNeedsUpdate.");
+	var candidates = system.ioregistry.matchingClass("IOThunderboltSwitchType2");
+	var foundNoZeros = true;
+	
+	debuglog("Found " + candidates.length + " candidates");
+
+	if (candidates &amp;&amp; (candidates.length>0))
+	{
+		for (var i = 0; i &lt; candidates.length; i++)
+		{
+			var candidate = candidates[i];
+			debuglog("........Checking candidate " + i);
+			
+			var RouteString = candidate["Route String"];
+			if (RouteString != 0) continue;
+			foundNoZeros = false;
+			debuglog("............Route String pass");
+			
+			var VendorID = candidate["Vendor ID"];
+			if (VendorID != 0x8086) continue;
+			debuglog("............Vendor ID pass");
+			
+			var DeviceID = candidate["Device ID"];
+			if (DeviceID != 0x1547) continue;
+			debuglog("............Device ID pass");
+			
+			var ROMVersion = candidate["ROM Version"];
+			var EEPROMRevision = candidate["EEPROM Revision"];
+			debuglog("ThunderBolt ROM Version is: " + ROMVersion);
+		    debuglog("ThunderBolt EEPROM Revision is: " + EEPROMRevision);
+			
+			if (ROMVersion &lt; 0x11)
+			{
+				debuglog("............NVM Version too old for this update");
+				continue;
+			}
+			else if (ROMVersion == 0x23)
+			{
+				if (EEPROMRevision >=4)
+				{
+					debuglog("............NVM Version too new for this update");
+					my.result.message = system.localizedString('AlreadyUpToDate');
+					continue;
+				}
+			}
+			else if (ROMVersion > 0x23)
+			{
+				debuglog("............NVM Version too new for this update");
+				my.result.message = system.localizedString('AlreadyUpToDate');
+				continue;
+			}
+			debuglog("............NVM Version pass");
+			debuglog("We have a winner! TRUE");
+			return true;
+		}
+	}
+	debuglog("No passing candidates, but we also pass if all the candidates had a non-zero Route String, so we're returning " + foundNoZeros);
+	return foundNoZeros;
+}
+
+
+//LRERNeedsUpdateJS:
+//Matching Class = IOThunderboltPort
+//	Property "Adapter Type" == 1
+//	Parent Entry = Matching Class = IOThunderboltSwitch
+//		Property "Route String" == 0
+//		Property "Vendor ID" == 0x8086
+//		{
+//			Property "Device ID" == 0x1513
+//			OR Property "Device ID" == 0x151A
+//		}
+//	{
+//		Property "Micro Version" >= 0x20007
+//		Property "Micro Version" &lt; 0x20103
+//	} OR {
+//		Property "Micro Version" == 0xFFFFFFFF
+//	}
+
+function LRERNeedsUpdateJS()
+{
+	debuglog("Checking if LRERNeedsUpdate.");
+	var candidates = system.ioregistry.matchingClass("IOThunderboltPort");
+	
+	if (candidates &amp;&amp; (candidates.length>0))
+	{
+		debuglog("Found " + candidates.length + " candidates");
+		for (var i = 0; i &lt; candidates.length; i++)
+		{
+			var candidate = candidates[i];
+			debuglog("........Checking candidate " + i);
+			
+			var AdapterType = candidate["Adapter Type"];
+			if (AdapterType != 1) continue;
+			debuglog("............Adapter Type pass");
+			
+			var goodParent = false;
+			var parents = system.ioregistry.parentsOf(candidate);
+			if (!parents || (parents.length == 0))
+			{
+				debuglog("............Candidate has no parents? NEXT.")
+				continue;
+			}
+			for (var j = 0; j &lt; parents.length; j++)
+			{
+				var parent = parents[j];
+				debuglog("............Checking parent " + j + " of " + parents.length);
+				
+				var RouteString = parent["Route String"];
+				if (RouteString != 0) continue;
+				debuglog("................Route String pass");
+				
+				var VendorID = parent["Vendor ID"];
+				if (VendorID != 0x8086) continue;
+				debuglog("................Vendor ID pass");
+				
+				var DeviceID = parent["Device ID"];
+				if ((DeviceID != 0x1513) &amp;&amp; (DeviceID != 0x151A)) continue;
+				debuglog("................Device ID pass, parent passes");
+
+				goodParent = true;
+				break;
+			}
+			
+			if (!goodParent)
+			{
+				debuglog("............No parent of this candidate passes, skip to next candidate");
+				continue;
+			}
+						
+			var MicroVersion = candidate["Micro Version"];
+		    debuglog("ThunderBolt Micro Version is: " + MicroVersion);
+
+            if (MicroVersion == 0xFFFFFFFF || MicroVersion == -1)
+            {
+				debuglog("............candidate has Micro Version 0xFFFFFFFF or -1");
+				debuglog("We have a winner! TRUE");
+				return true;
+			}
+			if (MicroVersion &lt; 0x20007)
+			{
+				// too old
+				debuglog("............candidate has Micro Version too old for this to update");
+				continue;
+			}
+			if (MicroVersion >= 0x20103)
+			{
+				// too new, set error code
+				my.result.message = system.localizedString('AlreadyUpToDate');
+				debuglog("............candidate has Micro Version too new for this update");
+				continue;
+			}
+			
+			debuglog("............Micro Version pass");
+						
+			debuglog("We have a winner! TRUE");
+			return true;
+		}
+		debuglog("Found no winning candidates. FALSE");
+		return false;
+	}
+	debuglog("Found no candidates at all. FALSE");
+	return false;
+}
+</script>
+    <installation-check script="InstallationCheck()"/>
+    <script>
+function InstallationCheck(prefix) {
+	if (system.compareVersions(system.version.ProductVersion, '10.8.3') &lt; 0) {
+		my.result.message = system.localizedStringWithFormat('ERROR_0', '10.8.3');
+		my.result.type = 'Fatal';
+		return false;
+	}
+	my.result.message = system.localizedString('ERROR_1');
+	if (!NeedsUpdate("/")) {
+		my.result.type = 'Fatal';
+		return false;
+	}
+	return true;
+}
+function NeedsUpdate(prefix) {
+	if (isLRERandNeedsUpdate(prefix) || isCRandNeedsUpdate(prefix)) {
+		return true;
+	}
+	return false;
+}
+function isLRERandNeedsUpdate(prefix) {
+	if (isLRER(prefix) &amp;&amp; LRERNeedsUpdate(prefix)) {
+		return true;
+	}
+	return false;
+}
+function isLRER(prefix) {
+	if (iMacHasTBCheck(prefix) || isOtherLRER(prefix)) {
+		return true;
+	}
+	return false;
+}
+function iMacHasTBCheck(prefix) {
+	if (!iMacHasTB()) {
+		return false;
+	}
+	return true;
+}
+function isOtherLRER(prefix) {
+	var versions = ['MacBookPro8,1','MacBookPro8,2','MacBookPro8,3','MacBookPro9,1','MacBookPro9,2','iMac12,2','Macmini5,1','Macmini5,2','Macmini5,3','MacBookAir4,1','MacBookAir4,2'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function LRERNeedsUpdate(prefix) {
+	if (!LRERNeedsUpdateJS()) {
+		return false;
+	}
+	return true;
+}
+function isCRandNeedsUpdate(prefix) {
+	if (isCR(prefix) &amp;&amp; CRNeedsUpdate(prefix)) {
+		return true;
+	}
+	return false;
+}
+function isCR(prefix) {
+	if (isRetina15(prefix) || isRetina13(prefix) || isiMac21(prefix) || isiMac27(prefix) || isMacMini(prefix) || isMacBookAir(prefix)) {
+		return true;
+	}
+	return false;
+}
+function isRetina15(prefix) {
+	var versions = ['MacBookPro10,1'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function isRetina13(prefix) {
+	var versions = ['MacBookPro10,2'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function isiMac21(prefix) {
+	var versions = ['iMac13,1','iMac13,3'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function isiMac27(prefix) {
+	var versions = ['iMac13,2'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function isMacMini(prefix) {
+	var versions = ['Macmini6,1','Macmini6,2'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function isMacBookAir(prefix) {
+	var versions = ['MacBookAir5,1','MacBookAir5,2'];
+	var property = system.sysctl('hw.model');
+	if (property) {
+		for (var i = 0; i &lt; versions.length; i++) {
+			if (versions[i] == property) return true;
+		}
+	}
+	return false;
+}
+function CRNeedsUpdate(prefix) {
+	if (!CRNeedsUpdateJS()) {
+		return false;
+	}
+	return true;
+}
+</script>
+    <license file="License.rtf"/>
+    <readme file="ReadMe.html"/>
+    <choices-outline>
+        <line choice="manual"/>
+    </choices-outline>
+    <choice id="manual" title="SU_TITLE">
+        <pkg-ref id="TBFW" auth="Root" active="LRERNeedsUpdate(my.target.mountpoint)" onConclusion="RequireRestart">#ThunderboltFirmwareUpdate.pkg</pkg-ref>
+        <pkg-ref id="MBPR15" auth="Root" active="isRetina15(my.target.mountpoint)" onConclusion="RequireRestart">#MBPR15TBFW.pkg</pkg-ref>
+        <pkg-ref id="MBPR13" auth="Root" active="isRetina13(my.target.mountpoint)" onConclusion="RequireRestart">#MBPR13TBFW.pkg</pkg-ref>
+        <pkg-ref id="iMac21" auth="Root" active="isiMac21(my.target.mountpoint)" onConclusion="RequireRestart">#21.5-inchiMacThunderboltFirmwareUpdate.pkg</pkg-ref>
+        <pkg-ref id="iMac27" auth="Root" active="isiMac27(my.target.mountpoint)" onConclusion="RequireRestart">#27-inchiMacThunderboltFirmwareUpdate.pkg</pkg-ref>
+        <pkg-ref id="MM" auth="Root" active="isMacMini(my.target.mountpoint)" onConclusion="RequireRestart">#MMTBFW.pkg</pkg-ref>
+        <pkg-ref id="MBA" auth="Root" active="isMacBookAir(my.target.mountpoint)" onConclusion="RequireRestart">#MBATBFW.pkg</pkg-ref>
+    </choice>
+
+	<pkg-ref id='iMac21' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='iMac27' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBA' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBPR13' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBPR15' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MM' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='TBFW' installKBytes='255' version='1.2.0.0.1.1366760517'/>
+
+	<pkg-ref id='iMac21' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='iMac27' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBA' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBPR13' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MBPR15' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='MM' installKBytes='260' version='1.2.0.0.1.1366760517'/>
+	<pkg-ref id='TBFW' installKBytes='255' version='1.2.0.0.1.1366760517'/>
+</installer-gui-script>
